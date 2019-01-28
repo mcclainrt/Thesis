@@ -1,0 +1,48 @@
+circular light  https://www.etrailer.com/Trailer-Lights/Optronics/BUL11CB.html        -2
+oval light      https://www.etrailer.com/Trailer-Lights/Optronics/BUL10CB.html        -4
+2 prong pigtail https://www.etrailer.com/Accessories-and-Parts/Optronics/A46P75B.html -5
+round grommet   https://www.etrailer.com/Accessories-and-Parts/Optronics/A45GB.html   -2
+oval grommet    https://www.etrailer.com/Accessories-and-Parts/Optronics/A70GB.html   -2
+
+plexi glass
+transparency films
+vinyl
+plastic
+
+3-d print enclosure?
+
+
+------
+#verify bashrc
+gedit ~/.bashrc
+mkdir thesis
+cd thesis
+rospack list-names
+#if image geometry isnt there
+sudo apt-get install ros-kinetic-image-geometry
+mkdir -p catkin_ws/crs
+cd catkin_ws/src
+git clone https://github.com/dmalyuta/apriltags2_ros.git
+catkin_make in the directory
+
+camera
+ls -ltrh /dev/video*
+cheese to test
+
+camera cal
+https://github.com/smidm/video2calibration.git
+
+rename node /usb_cam:=/camera
+start image proc in ROS_NAMESPACE=camera
+
+work on getting camera topic into ros
+
+
+^D close tem window
+^Q close all?
+
+needed to install sudo apt-get install libgtk2.0-dev
+
+uvc camera ros pack
+installed libuvc - from git, mkdir nbuild, cd build, cmake .., make, sudo make install
+need v4l-utils

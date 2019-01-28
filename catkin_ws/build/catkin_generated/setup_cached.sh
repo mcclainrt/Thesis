@@ -7,5 +7,7 @@
 # new environment variables
 
 # modified environment variables
-export PKG_CONFIG_PATH="/home/student/thesis/catkin_ws/devel/lib/pkgconfig:$PKG_CONFIG_PATH"
-export PWD="/home/student/thesis/catkin_ws/build"
+export CMAKE_PREFIX_PATH="/home/rtmcclai/thesis/Thesis/catkin_ws/devel:$CMAKE_PREFIX_PATH"
+export PWD="/home/rtmcclai/thesis/Thesis/catkin_ws/build"
+export ROSLISP_PACKAGE_DIRECTORIES="/home/rtmcclai/thesis/Thesis/catkin_ws/devel/share/common-lisp"
+export ROS_PACKAGE_PATH="/home/rtmcclai/thesis/Thesis/catkin_ws/src:$ROS_PACKAGE_PATH"

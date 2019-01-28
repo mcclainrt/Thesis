@@ -1,0 +1,59 @@
+#verify bashrc
+gedit ~/.bashrc
+mkdir thesis
+cd thesis
+rospack list-names
+#if image geometry isnt there
+sudo apt-get install ros-kinetic-image-geometry
+mkdir -p catkin_ws/crs
+cd catkin_ws/src
+git clone https://github.com/dmalyuta/apriltags2_ros.git
+catkin_make in the directory
+
+camera
+ls -ltrh /dev/video*
+cheese to test
+
+camera cal
+https://github.com/smidm/video2calibration.git
+
+rename node /usb_cam:=/camera
+start image proc in ROS_NAMESPACE=camera
+
+work on getting camera topic into ros
+
+
+^D close tem window
+^Q close all?
+
+needed to install sudo apt-get install libgtk2.0-dev
+
+uvc camera ros pack
+installed libuvc - from git, mkdir nbuild, cd build, cmake .., make, sudo make install
+need v4l-utils
+
+camera cal in image_pipeline pack
+
+
+roscore
+
+rosrun usb_cam usb_cam_node /usb_cam:=/camera_rect
+
+
+to get all required topics published: also may beable to edit so doesnt require camera_rect
+ROS_NAMESPACE=camera_rect rosrun image_proc image_proc
+
+rosrun rqt_graph rqt_graph
+
+rosrun rqt_image_view rqt_image_view 
+
+roslaunch apriltags2_ros continuous_detection.launch
+
+ROS_NAMESPACE=camera_rect rosrun image_proc image_proc
+
+rosrun rviz rviz 
+
+rosrun tf static_transform_publisher 0.0 0.0 0.0 0.0 0.0 -1.570796 map camera 100
+
+roslaunch apriltags2_ros thesis_tags1
+

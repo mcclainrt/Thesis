@@ -1,0 +1,8 @@
+prefix=/home/rtmcclai/thesis/Thesis/catkin_ws/install
+
+Name: image_rotate
+Description: Description of image_rotate
+Version: 1.12.23
+Cflags: -I/home/rtmcclai/thesis/Thesis/catkin_ws/install/include
+Libs: -L/home/rtmcclai/thesis/Thesis/catkin_ws/install/lib 
+Requires: 
