@@ -14,26 +14,38 @@ camera
 ls -ltrh /dev/video*
 cheese to test
 
-camera cal
+camera cal--- independent of ROS
 https://github.com/smidm/video2calibration.git
 
 rename node /usb_cam:=/camera
-start image proc in ROS_NAMESPACE=camera
+start image proc in ROS_NAMESPACE=camera (NAMESPACE adds /"NAMESPACE"/___ to each topic)
 
-work on getting camera topic into ros
+work on getting camera topic into ros--done, needed driver
 
 
 ^D close tem window
 ^Q close all?
-
-needed to install sudo apt-get install libgtk2.0-dev
-
-uvc camera ros pack
+---------------
+needed to install sudo apt-get install libgtk2.0-dev -- for what?
+-----------
+uvc camera ros pack -- didnt actually use
 installed libuvc - from git, mkdir nbuild, cd build, cmake .., make, sudo make install
 need v4l-utils
 
+------------------------------------------------------------
+
 camera cal in image_pipeline pack
 
+	rosrun usb_cam usb_cam_node
+	
+	rosrun camera_calibration cameracalibrator.py --size 8x6 --square 0.0025 image:=/usb_cam/image_raw camera:=/usb_cam
+	
+	"size is number of interior corners of board, square is size of single sqaure on board in meters
+
+the calibrate button will freeze video and take a couple seconds (maybe minutes) and then will display cal in terminal. hit commit to create the file in the appropriate .ros/camera_info directory or save and then find it in the /tmp file under root and move it
+
+---------------------------------------------
+running without built launch
 
 roscore
 
@@ -55,5 +67,21 @@ rosrun rviz rviz
 
 rosrun tf static_transform_publisher 0.0 0.0 0.0 0.0 0.0 -1.570796 map camera 100
 
+-------------------------------------------
+current launch file
+
 roslaunch apriltags2_ros thesis_tags1
+
+--------------------------------------------
+
+**looks like "size" in the tags.yaml config for apriltags is the size of just the black part not with the 1 bit white border
+also, measuring about 3cm off consistently, may change with a larger tag?
+running with just the camera to april tags it is more off
+with the image rectified through the image pipeline its closer. calibration may play a bigger roll? may need a larger chessboard
+
+
+to run april tags with raw image, changed the launch file for continuous detection to reflect the right topics for the camera and image
+
+to view the poses: rostopic echo /tag_detections
+
 
