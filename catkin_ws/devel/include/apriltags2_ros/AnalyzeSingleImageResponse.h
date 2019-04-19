@@ -40,6 +40,7 @@ struct AnalyzeSingleImageResponse_
 
 
 
+
   typedef boost::shared_ptr< ::apriltags2_ros::AnalyzeSingleImageResponse_<ContainerAllocator> > Ptr;
   typedef boost::shared_ptr< ::apriltags2_ros::AnalyzeSingleImageResponse_<ContainerAllocator> const> ConstPtr;
 

@@ -22,8 +22,8 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/home/rtmcclai/thesis/Thesis/catkin_ws/src/apriltags2_ros/apriltags2/include"
   "/opt/ros/kinetic/include"
   "/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
-  "/opt/ros/kinetic/include/opencv-3.3.1"
-  "/opt/ros/kinetic/include/opencv-3.3.1/opencv"
+  "/opt/ros/kinetic/include/opencv-3.3.1-dev"
+  "/opt/ros/kinetic/include/opencv-3.3.1-dev/opencv"
   "/usr/include/eigen3"
   )
 

@@ -6,5 +6,5 @@ CXX_FLAGS =
 
 CXX_DEFINES = -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\"image_publisher\"
 
-CXX_INCLUDES = -I/home/rtmcclai/thesis/Thesis/catkin_ws/devel/include -I/opt/ros/kinetic/include -I/opt/ros/kinetic/include/opencv-3.3.1 -I/opt/ros/kinetic/include/opencv-3.3.1/opencv -I/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp 
+CXX_INCLUDES = -I/home/rtmcclai/thesis/Thesis/catkin_ws/devel/include -I/opt/ros/kinetic/include -I/opt/ros/kinetic/include/opencv-3.3.1-dev -I/opt/ros/kinetic/include/opencv-3.3.1-dev/opencv -I/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp 
 

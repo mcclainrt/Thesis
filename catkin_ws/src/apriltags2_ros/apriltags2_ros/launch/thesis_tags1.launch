@@ -3,14 +3,25 @@
   <arg name="node_namespace" default="apriltags2_node" />
   <arg name="camera_name" default="/usb_cam" />
   <arg name="camera_frame" default="camera" />
-  <arg name="image_topic" default="image_rect" />
+  <arg name="image_topic" default="image_raw" /> <!-- use image_rect with image_proc node-->
 
   <!-- Set parameters -->
   <rosparam command="load" file="$(find apriltags2_ros)/config/settings.yaml" ns="$(arg node_namespace)" />
   <rosparam command="load" file="$(find apriltags2_ros)/config/tags.yaml" ns="$(arg node_namespace)" />
 
-  <node  name="usb_cam" pkg="usb_cam" type="usb_cam_node"  output="screen" launch-prefix="xterm -e"/>
-  <node  name="image_proc" pkg="image_proc" type="image_proc" ns="usb_cam"/>  
+  <node  name="usb_cam" pkg="usb_cam" type="usb_cam_node" clear_params="true" output="screen" launch-prefix="xterm -e">
+    <param name="video_device" value="/dev/video0" />
+    <param name="image_width" value="640" />
+    <param name="image_height" value="480" />
+    <param name="contrast" value="32" />
+    <param name="brightness" value="32" />
+    <param name="pixel_format" value="yuyv" />
+    <param name="camera_frame_id" value="laptop" />
+    <param name="camera_name" value="laptop" />
+    <param name="io_method" value="mmap" />	
+  </node>
+
+  <!-- <node  name="image_proc" pkg="image_proc" type="image_proc" ns="usb_cam"/>  -->
 
   <node pkg="apriltags2_ros" type="apriltags2_ros_continuous_node" name="$(arg node_namespace)" clear_params="true" output="screen" launch-prefix="$(arg launch_prefix)" >
     <!-- Remap topics from those used in code to those on the ROS network -->

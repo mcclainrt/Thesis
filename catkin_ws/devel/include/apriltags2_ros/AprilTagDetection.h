@@ -50,6 +50,7 @@ struct AprilTagDetection_
 
 
 
+
   typedef boost::shared_ptr< ::apriltags2_ros::AprilTagDetection_<ContainerAllocator> > Ptr;
   typedef boost::shared_ptr< ::apriltags2_ros::AprilTagDetection_<ContainerAllocator> const> ConstPtr;
 

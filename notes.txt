@@ -84,4 +84,68 @@ to run april tags with raw image, changed the launch file for continuous detecti
 
 to view the poses: rostopic echo /tag_detections
 
+-----------------------------------------------
+
+patrickelectric git hub for ros package
+ 
+needed pymavlink also
+
+which need to use python and pip 
+	https://pip.pypa.io/en/stable/installing/
+	https://github.com/ArduPilot/pymavlink
+
+also needed pyros
+	sudo pip install -U pyros /or whatever
+
+need to install mavros too
+https://github.com/mavlink/mavros/blob/master/mavros/README.md
+needed the geographiclib too
+
+-----------------------------------------------
+new path, try to get udp into ros video stream, ros packagae above is not publishing camera topics
+
+downloaded viseo_stream_opencv and created launch file thesistags2 to try and use it, dont know where im going wrong
+
+rtp stream requires sdp file, created the sdp, or tried to, and saved as camera try. Just don't know
+
+! multiudpsink clients=192.168.2.1:5600,192.168.2.1:5601
+
+-----------------------------------------------
+using bluerov2_node, the camera raw topic is published but need to modify scripts to publish camera info topic as well
+
+using this method could possibly change the user node to do the same
+
+still want to look into just streaming the video and using groundcontrol?
+
+also if using both need to remember to multisink the camera and change the udp stream the node is using
+
+so, create new python script or update bluerov2_node.py to publish the camera_info topic/ message
+if I create my own, could take out all the other stuff and specify 5601 as port and just use video script
+and then only publish the topics i want to publish
+
+script would only need to call video.py and publish that image and the camera info, 
+
+
+------------------------------------------------
+
+launch file apriltags2_ros thesistags_ext uses external logitech camera
+with box set up, the lighting is too bright, need to figure out how to adjust the contrast, whitebalance, and or brightness to be able to get rid of the wash out effect
+
+-------------------------------------------------
+
+to bring camera feed from rov using bluerov2 node
+roslaunch apriltags2_ros continuous_detection.launch camera_name:=/BlueRov2/camera image_rect:=/image_raw
+still need the camera_info to be published
+
+-------------------------------------------------
+
+rtmcclai@kala:~/thesis/Thesis/catkin_ws/src/bluerov_ros_playground/src/bluerov$ roslaunch apriltags2_ros continuous_detection.launch camera_name:=/ROVcam image_rect:=/image_raw
+
+finally
+
+rtmcclai@kala:~$ rosrun udpvid pubs2.py 
+
+rate in the node file will change sleep rate, 30-50 is avg
+
+
 
