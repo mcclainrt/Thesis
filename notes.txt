@@ -139,13 +139,21 @@ still need the camera_info to be published
 
 -------------------------------------------------
 
-rtmcclai@kala:~/thesis/Thesis/catkin_ws/src/bluerov_ros_playground/src/bluerov$ roslaunch apriltags2_ros continuous_detection.launch camera_name:=/ROVcam image_rect:=/image_raw
+roslaunch apriltags2_ros continuous_detection.launch camera_name:=/ROVcam image_rect:=/image_raw
 
 finally
 
 rtmcclai@kala:~$ rosrun udpvid pubs2.py 
 
 rate in the node file will change sleep rate, 30-50 is avg
+
+changed script and now vidpublisher is the node to run
+will build rospack with vidpublisher, video then a launch file with that and the 
+
+
+
+need to make launch file
+parameters: udp port, camera info url, ROVcam namespace and matches to apriltags
 
 
 
