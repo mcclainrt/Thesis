@@ -155,5 +155,7 @@ will build rospack with vidpublisher, video then a launch file with that and the
 need to make launch file
 parameters: udp port, camera info url, ROVcam namespace and matches to apriltags
 
+control c is not killing the node? i think its not throwing the exception that and erroring out 
+- i was right, the else pass I had in it never let it break the try:
 
 
