@@ -1,2 +1,2 @@
-apriltags2_ros/apriltags2:apriltags2_ros/apriltags2_ros:udpvid
+apriltags2_ros/apriltags2:apriltags2_ros/apriltags2_ros:image_pipeline/camera_calibration:image_pipeline/depth_image_proc:image_pipeline/image_pipeline:image_pipeline/image_proc:image_pipeline/image_publisher:image_pipeline/image_rotate:image_pipeline/image_view:image_pipeline/stereo_image_proc:udpvid
 -DCATKIN_DEVEL_PREFIX=/home/rtmcclai/thesis/Thesis/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/rtmcclai/thesis/Thesis/catkin_ws/install -G Unix Makefiles

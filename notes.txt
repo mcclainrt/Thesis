@@ -158,4 +158,11 @@ parameters: udp port, camera info url, ROVcam namespace and matches to apriltags
 control c is not killing the node? i think its not throwing the exception that and erroring out 
 - i was right, the else pass I had in it never let it break the try:
 
+------------------------------------------------------------
+
+ROV Camera cal using image pipline rospack
+
+rosrun camera_calibration cameracalibrator.py --size 8x6 --square 0.0025 image:=/ROVcam/image_raw camera:=/ROVcam --no-service-check
+
+
 
