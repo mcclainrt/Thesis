@@ -14,13 +14,13 @@
 #
 # standalone_tags:
 #   [
-#     {id: ID, size: SIZE, name: NAME},
+#     {id: ID, size: SIZE(of black part), name: NAME},
 #     ...
 #   ]
 standalone_tags:
-  [{id: 22, size: 0.095},
-   {id: 7, size: 0.095},
-   {id: 10, size: 0.095},
+  [{id: 22, size: 0.127},
+   {id: 7, size: 0.153},
+   {id: 10, size: 0.115},
   ]
 # ## Tag bundle definitions
 # ### Remarks
