@@ -164,5 +164,11 @@ ROV Camera cal using image pipline rospack
 
 rosrun camera_calibration cameracalibrator.py --size 8x6 --square 0.0025 image:=/ROVcam/image_raw camera:=/ROVcam --no-service-check
 
+-----------------------
 
+Back lit
+Acrylic with vinyl is simplest and most effective so far
+filled in acrylic will be just as good
+exposure and other settings are crucial, not sure how to auto set that but thats future work
+launch fille needs help, needs to launch april tags also. vidpub node isnt updating or refreshing sometimes, not really sure why
 
