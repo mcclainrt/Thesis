@@ -182,5 +182,7 @@ roslaunch udpvid vidpublisher.launch camera_name:=/ROVcam image_rect:=/image_raw
 
 rosbag record /tag_detections /tf --duration 10 -O Ex[experiment number]_[Tag type and light, V1, V2, T]_[Test number]_[distanc/angle]
 
+rosbag record /tag_detections /tf --duration 10 -O Ex2_V1_1_1
+
 
 
