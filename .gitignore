@@ -8,3 +8,5 @@ catkin_ws/src/video_stream_opencv/
 catkin_ws/devel/
 catkin_ws/build/
 Archive/
+Pictures/
+Experiments/
