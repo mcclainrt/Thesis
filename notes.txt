@@ -184,5 +184,9 @@ rosbag record /tag_detections /tf --duration 10 -O Ex[experiment number]_[Tag ty
 
 rosbag record /tag_detections /tf --duration 10 -O Ex2_V1_1_1
 
+rosbag record /tag_detections /tf --duration 10 -O Ex3_V1_1_1
 
+--------------------------------------------------------
+
+To work with bag files may need roboticsAddons to use the custom message the AprilTags produces
 
