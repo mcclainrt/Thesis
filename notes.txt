@@ -190,3 +190,7 @@ rosbag record /tag_detections /tf --duration 10 -O Ex3_V1_1_1
 
 To work with bag files may need roboticsAddons to use the custom message the AprilTags produces
 
+Vidpublisher has been freezing more, computer issue? buffering issue? the log still shows it is sending images to ros but how do I check that since image_view is not showing it.
+
+Need to sit down with Mike and actually talk about it
+
