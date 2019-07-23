@@ -15,7 +15,9 @@ close all
 % Had to load customros message. https://www.mathworks.com/help/releases/R2017b/robotics/ug/ros-custom-message-support.html
 % PAckage for messages is at 
 
-filein=dir;
+Prefix = 'Ex2/bags/';
+filein = dir(Prefix);
+relfilename = strcat(Prefix,filein(5).name)
 numfile=size(filein);
 %could automate to count number of .bag extensions?
 % Fpath=[];
