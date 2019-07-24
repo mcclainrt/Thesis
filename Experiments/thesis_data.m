@@ -43,7 +43,7 @@ Bag = rosbag('BagTests/Ex2_P_1_1.bag');
 bag_select = select(Bag,'Topic','/tag_detections');
 
 % Create a time series object
-ts_bag = timeseries(bag_select,'Pose.Pose.Pose.X');
+ts_bag = timeseries(bag_select,'Detections.Pose.Pose.Pose.X');
 
 % This doesn't work. It says the property doesn't exist. but if I read the
 % messages like delow I can access the data. I feel it has something to do
