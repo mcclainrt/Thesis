@@ -196,5 +196,8 @@ Need to sit down with Mike and actually talk about it
 
 Create script of some sort to list files in a directory, create the list, rosbag play each file in list, and wait 15 seconds then move to next file in list.
 
+look at https://stackabuse.com/python-list-files-in-a-directory/
+
 
 increase buffer or wait before sending next image? talk to mike
+
