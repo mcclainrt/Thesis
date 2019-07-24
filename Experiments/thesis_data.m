@@ -56,6 +56,7 @@ ts_bag = timeseries(bag_select,'Detections.Pose.Pose.Pose.X');
 msgs = readMessages(bag_select);
 [r_msg,c_msg] = size(msgs);
 Test1 = zeros(r_msg,6);
+msgs{1}.Detections.Pose.Pose.Pose.Position.X
 for i=1:r_msg
     Test1(i) = [msgs{i}.Detections.Id, msgs{i}.Detections.Pose.Pose.Pose.Position.X,...
         msgs{i}.Detections.Pose.Pose.Pose.Position.Y,msgs{i}.Detections.Pose.Pose.Pose.Orientation.W,...
