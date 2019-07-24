@@ -15,24 +15,27 @@ close all
 % Had to load customros message. https://www.mathworks.com/help/releases/R2017b/robotics/ug/ros-custom-message-support.html
 % PAckage for messages is at https://www.mathworks.com/help/robotics/ug/create-custom-messages-from-ros-package.html
 
-Prefix = 'Ex2/bags/';
-filein = dir(Prefix);
-relfilename = strcat(Prefix,filein(5).name);
-numfile=size(filein);
+% Prefix = 'Ex2/bags/';
+% Prefix = 'BagTests/';
+% filein = dir(Prefix);
+% relfilename = strcat(Prefix,filein(5).name);
+% numfile=size(filein);
 %could automate to count number of .bag extensions?
 % Fpath=[];
 % Fname=[];
 % Fext=[];
 
-for i=1:numfile
-    [Fpath,Fname,Fext]=fileparts(filein(i).name);
-    if strcmp('.bag',Fext)
-        Bag = rosbag(filein(i).name);
-    end
+% for i=1:numfile
+%     [Fpath,Fname,Fext]=fileparts(filein(i).name);
+%     if strcmp('.bag',Fext)
+%         Bag = rosbag(filein(i).name);
+%     end
 %     %filein(i) = rosbag(filein(i).name); % how to pull in multiple files and parse their names?
-end
+% end
 
-Bag = rosbag('Ex2/bags/Ex2_P_1_1.bag');
+Bag = rosbag('BagTests/Ex2_P_1_1.bag');
+
+
 %% Parse data
 % Will need to separate tag_detections and tf topics with the time series
 
