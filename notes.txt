@@ -44,6 +44,18 @@ camera cal in image_pipeline pack
 
 the calibrate button will freeze video and take a couple seconds (maybe minutes) and then will display cal in terminal. hit commit to create the file in the appropriate .ros/camera_info directory or save and then find it in the /tmp file under root and move it
 
+for rov:
+camera cal in image_pipeline pack
+
+	rosrun udpvid vidcal.launch
+
+	rosrun camera_calibration cameracalibrator.py --size 8x8 --square 0.1 image:=/ROVcam/image_raw camera:=/ROVcam --no-service-check
+	
+	"size is number of interior corners of board, square is size of single sqaure on board in meters
+
+the calibrate button will freeze video and take a couple seconds (maybe minutes) and then will display cal in terminal. hit commit to create the file in the appropriate .ros/camera_info directory or save and then find it in the /tmp file under root and move it
+
+
 ---------------------------------------------
 running without built launch
 
