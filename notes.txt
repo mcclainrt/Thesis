@@ -49,7 +49,7 @@ camera cal in image_pipeline pack
 
 	rosrun udpvid vidcal.launch
 
-	rosrun camera_calibration cameracalibrator.py --size 8x8 --square 0.1 image:=/ROVcam/image_raw camera:=/ROVcam --no-service-check
+	rosrun camera_calibration cameracalibrator.py --size 8x7 --square 0.1 image:=/ROVcam/image_raw camera:=/ROVcam --no-service-check
 	
 	"size is number of interior corners of board, square is size of single sqaure on board in meters
 
