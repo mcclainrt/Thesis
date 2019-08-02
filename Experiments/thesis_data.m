@@ -1,6 +1,8 @@
 % Initial script to code things out, possibly split loading into a function
 % or a separate script?
 % This basics came from ME4823 HW
+% Had to load customros message. https://www.mathworks.com/help/releases/R2017b/robotics/ug/ros-custom-message-support.html
+% Package for messages is at https://www.mathworks.com/help/robotics/ug/create-custom-messages-from-ros-package.html
 
 clear all
 close all
@@ -12,46 +14,226 @@ close all
 % Example: Experiment 3 with vinyl tag using single light for test 1 at 6m
 % Ex3_V1_1_6
 
-% Had to load customros message. https://www.mathworks.com/help/releases/R2017b/robotics/ug/ros-custom-message-support.html
-% PAckage for messages is at https://www.mathworks.com/help/robotics/ug/create-custom-messages-from-ros-package.html
+%% Structure set-up
 
-% Prefix = 'Ex2/bags/';
-% Prefix = 'BagTests/';
-% filein = dir(Prefix);
-% relfilename = strcat(Prefix,filein(5).name);
-% numfile=size(filein);
-%could automate to count number of .bag extensions?
-% Fpath=[];
-% Fname=[];
-% Fext=[];
+Ex2.P = struct('T1',0,'T2',0,'T3',0,'T4',0);
+Ex2.T = struct('T1',0,'T2',0,'T3',0,'T4',0);
+Ex2.V1 = struct('T1',0,'T2',0,'T3',0,'T4',0);
 
-% for i=1:numfile
-%     [Fpath,Fname,Fext]=fileparts(filein(i).name);
-%     if strcmp('.bag',Fext)
-%         Bag = rosbag(filein(i).name);
-%     end
-%     %filein(i) = rosbag(filein(i).name); % how to pull in multiple files and parse their names?
-% end
+%% Loop restructuring
+Prefix = 'Ex2/bags/';
+filein = dir(Prefix);
+numfile=length(filein);
 
-Bag = rosbag('BagTests/Ex2_P_1_1.bag');
+for i=1:numfile
+    [Fpath,Fname,Fext]=fileparts(filein(i).name);
+    if strcmp('.bag',Fext)
+        relfilename = strcat(Prefix,filein(i).name);
+        Bag = rosbag(relfilename);
+        bag_select = select(Bag,'Topic','/tag_detections');
+        msgs = readMessages(bag_select);
+        if contains(Fname,'P')
+            if contains(Fname,'_1_')
+                index = length(Ex2.P.T1);
+                for ii = 1:length(msgs)
+                    % Loop through detections
+                    for jj = 1:length(msgs{ii}.Detections)
+                        if i <= numfile
+                            index = index + 1;
+                            Dist_ang = regexp(Fname,'\w*_\w*_._','split');
+                            DAdbl = str2double(Dist_ang(2));
+                            field1 = double(msgs{ii}.Detections(jj).Id);
+                            field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
+                            Ex2(1).P(1).T1(index,1:3) = [DAdbl,field1,field2];
+                        end
+                    end
+                end
+                    
+            elseif contains(Fname,'_2_')
+                index = length(Ex2.P.T2);
+                for ii = 1:length(msgs)
+                    % Loop through detections
+                    for jj = 1:length(msgs{ii}.Detections)
+                        if i <= numfile
+                            index = index + 1;
+                            Dist_ang = regexp(Fname,'\w*_\w*_._','split');
+                            DAdbl = str2double(Dist_ang(2));
+                            field1 = double(msgs{ii}.Detections(jj).Id);
+                            field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
+                            Ex2(1).P(1).T2(index,1:3) = [DAdbl,field1,field2];
+                        end
+                    end
+                end
+                    
+            elseif contains(Fname,'_3_')
+                index = length(Ex2.P.T3);
+                for ii = 1:length(msgs)
+                    % Loop through detections
+                    for jj = 1:length(msgs{ii}.Detections)
+                        if i <= numfile
+                            index = index + 1;
+                            Dist_ang = regexp(Fname,'\w*_\w*_._','split');
+                            DAdbl = str2double(Dist_ang(2));
+                            field1 = double(msgs{ii}.Detections(jj).Id);
+                            field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
+                            Ex2(1).P(1).T3(index,1:3) = [DAdbl,field1,field2];
+                        end
+                    end
+                end
+                    
+            elseif contains(Fname,'_4_')
+                index = length(Ex2.P.T4);
+                for ii = 1:length(msgs)
+                    % Loop through detections
+                    for jj = 1:length(msgs{ii}.Detections)
+                        if i <= numfile
+                            index = index + 1;
+                            Dist_ang = regexp(Fname,'\w*_\w*_._','split');
+                            DAdbl = str2double(Dist_ang(2));
+                            field1 = double(msgs{ii}.Detections(jj).Id);
+                            field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
+                            Ex2(1).P(1).T4(index,1:3) = [DAdbl,field1,field2];
+                        end
+                    end
+                end
+            end
+                       
+        elseif contains(Fname,'V1')
+            if contains(Fname,'_1_')
+                index = length(Ex2.V1.T1);
+                for ii = 1:length(msgs)
+                    % Loop through detections
+                    for jj = 1:length(msgs{ii}.Detections)
+                        if i <= numfile
+                            index = index + 1;
+                            Dist_ang = regexp(Fname,'\w*_\w*_._','split');
+                            DAdbl = str2double(Dist_ang(2));
+                            field1 = double(msgs{ii}.Detections(jj).Id);
+                            field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
+                            Ex2(1).V1(1).T1(index,1:3) = [DAdbl,field1,field2];
+                        end
+                    end
+                end
 
+            elseif contains(Fname,'_2_')
+                index = length(Ex2.V1.T2);
+                for ii = 1:length(msgs)
+                    % Loop through detections
+                    for jj = 1:length(msgs{ii}.Detections)
+                        if i <= numfile
+                            index = index + 1;
+                            Dist_ang = regexp(Fname,'\w*_\w*_._','split');
+                            DAdbl = str2double(Dist_ang(2));
+                            field1 = double(msgs{ii}.Detections(jj).Id);
+                            field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
+                            Ex2(1).V1(1).T2(index,1:3) = [DAdbl,field1,field2];
+                        end
+                    end
+                end
 
-%% Parse data
-% Will need to separate tag_detections and tf topics with the time series
+            elseif contains(Fname,'_3_')
+                index = length(Ex2.V1.T3);
+                for ii = 1:length(msgs)
+                    % Loop through detections
+                    for jj = 1:length(msgs{ii}.Detections)
+                        if i <= numfile
+                            index = index + 1;
+                            Dist_ang = regexp(Fname,'\w*_\w*_._','split');
+                            DAdbl = str2double(Dist_ang(2));
+                            field1 = double(msgs{ii}.Detections(jj).Id);
+                            field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
+                            Ex2(1).V1(1).T3(index,1:3) = [DAdbl,field1,field2];
+                        end
+                    end
+                end
 
-% Parse bag file for topic - tag_detections
-bag_select = select(Bag,'Topic','/tag_detections');
+            elseif contains(Fname,'_4_')
+                index = length(Ex2.V1.T4);
+                for ii = 1:length(msgs)
+                    % Loop through detections
+                    for jj = 1:length(msgs{ii}.Detections)
+                        if i <= numfile
+                            index = index + 1;
+                            Dist_ang = regexp(Fname,'\w*_\w*_._','split');
+                            DAdbl = str2double(Dist_ang(2));
+                            field1 = double(msgs{ii}.Detections(jj).Id);
+                            field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
+                            Ex2(1).V1(1).T4(index,1:3) = [DAdbl,field1,field2];
+                        end
+                    end
+                end
+            end
+            
+        elseif contains(Fname,'T')
+            if contains(Fname,'_1_')
+                index = length(Ex2.T.T1);
+                for ii = 1:length(msgs)
+                    % Loop through detections
+                    for jj = 1:length(msgs{ii}.Detections)
+                        if i <= numfile
+                            index = index + 1;
+                            Dist_ang = regexp(Fname,'\w*_\w*_._','split');
+                            DAdbl = str2double(Dist_ang(2));
+                            field1 = double(msgs{ii}.Detections(jj).Id);
+                            field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
+                            Ex2(1).T(1).T1(index,1:3) = [DAdbl,field1,field2];
+                        end
+                    end
+                end
 
-% Create a time series object
-ts_bag = timeseries(bag_select,'Detections.Pose.Pose.Pose.X');
+            elseif contains(Fname,'_2_')
+                index = length(Ex2.T.T2);
+                for ii = 1:length(msgs)
+                    % Loop through detections
+                    for jj = 1:length(msgs{ii}.Detections)
+                        if i <= numfile
+                            index = index + 1;
+                            Dist_ang = regexp(Fname,'\w*_\w*_._','split');
+                            DAdbl = str2double(Dist_ang(2));
+                            field1 = double(msgs{ii}.Detections(jj).Id);
+                            field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
+                            Ex2(1).T(1).T2(index,1:3) = [DAdbl,field1,field2];
+                        end
+                    end
+                end
 
-% This doesn't work. It says the property doesn't exist. but if I read the
-% messages like delow I can access the data. I feel it has something to do
-% with using the custom message.
- 
-% Tried to use the read messages cell array to pull the data but still
-% getting errors, all of the data is in the variable but I think I am doing
-% it wrong.
+            elseif contains(Fname,'_3_')
+                index = length(Ex2.T.T3);
+                for ii = 1:length(msgs)
+                    % Loop through detections
+                    for jj = 1:length(msgs{ii}.Detections)
+                        if i <= numfile
+                            index = index + 1;
+                            Dist_ang = regexp(Fname,'\w*_\w*_._','split');
+                            DAdbl = str2double(Dist_ang(2));
+                            field1 = double(msgs{ii}.Detections(jj).Id);
+                            field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
+                            Ex2(1).T(1).T3(index,1:3) = [DAdbl,field1,field2];
+                        end
+                    end
+                end
+
+            elseif contains(Fname,'_4_')
+                index = length(Ex2.T.T4);
+                for ii = 1:length(msgs)
+                    % Loop through detections
+                    for jj = 1:length(msgs{ii}.Detections)
+                        if i <= numfile
+                            index = index + 1;
+                            Dist_ang = regexp(Fname,'\w*_\w*_._','split');
+                            DAdbl = str2double(Dist_ang(2));
+                            field1 = double(msgs{ii}.Detections(jj).Id);
+                            field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
+                            Ex2(1).T(1).T4(index,1:3) = [DAdbl,field1,field2];
+                        end
+                    end
+                end
+            end           
+        end
+    end
+end
+
+%% Use this for the fields i need
 
 msgs = readMessages(bag_select);
 [r_msg,c_msg] = size(msgs);
@@ -67,6 +249,26 @@ end
 % 'Detections.Pose.Pose.Position.X','Detections.Pose.Pose.Position.Y',...
 %     'Detections.Pose.Pose.Orientation.W','Detections.Pose.Pose.Orientation.X',...
 %     'Detections.Pose.Pose.Orientation.Y','Detections.Pose.Pose.Orientation.Z');
+
+%% Fix lengths in first column
+
+for ind=1:length(Ex2.P.T1)
+    if Ex2.P.T1(ind,1) > 1
+        Ex2.P.T1(ind,1) = Ex2.P.T1(ind,1)/10;
+    end
+end
+
+for ind=1:length(Ex2.V1.T1)
+    if Ex2.V1.T1(ind,1) > 1
+        Ex2.V1.T1(ind,1) = Ex2.V1.T1(ind,1)/10;
+    end
+end
+
+for ind=1:length(Ex2.T.T1)
+    if Ex2.T.T1(ind,1) > 1
+        Ex2.T.T1(ind,1) = Ex2.T.T1(ind,1)/10;
+    end
+end
 
 %% Haven't done anything below this
 
@@ -147,3 +349,164 @@ legend('Origin', 'Odom', 'AMCL Pose', 'Goal Pose');
 
 % Save figure
 saveas(gcf, '../images/rviz_goals.png');
+
+%% Trial code
+
+%% Bag loading and message reading
+
+% Prefix = 'Ex2/bags/';
+% % Prefix = 'BagTests/';
+% filein = dir(Prefix);
+% % relfilename = strcat(Prefix,filein(5).name);
+% numfile=length(filein);
+% index = 1;
+% for i=1:numfile
+%     [Fpath,Fname,Fext]=fileparts(filein(i).name);
+%     if strcmp('.bag',Fext)
+%         relfilename = strcat(Prefix,filein(i).name);
+%         Bag = rosbag(relfilename);
+%         bag_select = select(Bag,'Topic','/tag_detections');
+%         msgs = readMessages(bag_select);
+%         if contains(Fname,'P')
+%             for ii = 1:length(msgs)
+%                 % Loop through detections
+%                 for jj = 1:length(msgs{ii}.Detections)
+%                     if contains(Fname,'_1_')
+%                         if i <= numfile
+%                             Dist_ang = regexp(Fname,'\w*_\w*_._','split');
+%                             field1 = msgs{ii}.Detections(jj).Id;
+%                             field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
+%                             Ex2(1).P(1).T1(index,:) = [Dist_ang(2),field1,field2];
+%                             index = index + 1;
+%                         end
+%                     
+%                     elseif contains(Fname,'_2_')
+%                         if i <= numfile
+%                             Dist_ang = regexp(Fname,'\w*_\w*_._','split');
+%                             field1 = msgs{ii}.Detections(jj).Id;
+%                             field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
+%                             Ex2(1).P(1).T2(index,:) = [Dist_ang(2),field1,field2];
+%                             index = index + 1;
+%                         end                        
+%                     
+%                     elseif contains(Fname,'_3_')
+%                         if i <= numfile
+%                             Dist_ang = regexp(Fname,'\w*_\w*_._','split');
+%                             field1 = msgs{ii}.Detections(jj).Id;
+%                             field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
+%                             Ex2(1).P(1).T3(index,:) = [Dist_ang(2),field1,field2];
+%                             index = index + 1;
+%                         end                        
+%                     
+%                     elseif contains(Fname,'_4_')
+%                         if i <= numfile
+%                             Dist_ang = regexp(Fname,'\w*_\w*_._','split');
+%                             field1 = msgs{ii}.Detections(jj).Id;
+%                             field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
+%                             Ex2(1).P(1).T4(index,:) = [Dist_ang(2),field1,field2];
+%                             index = index + 1;
+%                         end                        
+%                     end
+%                 end
+%             end
+%         
+%         elseif contains(Fname,'V1')
+%             for ii = 1:length(msgs)
+%                 % Loop through detections
+%                 for jj = 1:length(msgs{ii}.Detections)
+%                     if contains(Fname,'_1_')
+%                         if i <= numfile
+%                             Dist_ang = regexp(Fname,'\w*_\w*_._','split');
+%                             field1 = msgs{ii}.Detections(jj).Id;
+%                             field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
+%                             Ex2(1).V(1).T1(index,:) = [Dist_ang(2),field1,field2];
+%                             index = index + 1;
+%                         end
+%                     
+%                     elseif contains(Fname,'_2_')
+%                         if i <= numfile
+%                             Dist_ang = regexp(Fname,'\w*_\w*_._','split');
+%                             field1 = msgs{ii}.Detections(jj).Id;
+%                             field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
+%                             Ex2(1).V(1).T2(index,:) = [Dist_ang(2),field1,field2];
+%                             index = index + 1;
+%                         end                        
+%                     
+%                     elseif contains(Fname,'_3_')
+%                         if i <= numfile
+%                             Dist_ang = regexp(Fname,'\w*_\w*_._','split');
+%                             field1 = msgs{ii}.Detections(jj).Id;
+%                             field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
+%                             Ex2(1).V(1).T3(index,:) = [Dist_ang(2),field1,field2];
+%                             index = index + 1;
+%                         end                        
+%                     
+%                     elseif contains(Fname,'_4_')
+%                         if i <= numfile
+%                             Dist_ang = regexp(Fname,'\w*_\w*_._','split');
+%                             field1 = msgs{ii}.Detections(jj).Id;
+%                             field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
+%                             Ex2(1).V(1).T4(index,:) = [Dist_ang(2),field1,field2];
+%                             index = index + 1;
+%                         end                        
+%                     end
+%                 end
+%             end
+%         
+%         elseif contains(Fname,'T')
+%             for ii = 1:length(msgs)
+%                 % Loop through detections
+%                 for jj = 1:length(msgs{ii}.Detections)
+%                     if contains(Fname,'_1_')
+%                         if i <= numfile
+%                             Dist_ang = regexp(Fname,'\w*_\w*_._','split');
+%                             field1 = msgs{ii}.Detections(jj).Id;
+%                             field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
+%                             Ex2(1).T(1).T1(index,:) = [Dist_ang(2),field1,field2];
+%                             index = index + 1;
+%                         end
+%                     
+%                     elseif contains(Fname,'_2_')
+%                         if i <= numfile
+%                             Dist_ang = regexp(Fname,'\w*_\w*_._','split');
+%                             field1 = msgs{ii}.Detections(jj).Id;
+%                             field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
+%                             Ex2(1).T(1).T2(index,:) = [Dist_ang(2),field1,field2];
+%                             index = index + 1;
+%                         end                        
+%                     
+%                     elseif contains(Fname,'_3_')
+%                         if i <= numfile
+%                             Dist_ang = regexp(Fname,'\w*_\w*_._','split');
+%                             field1 = msgs{ii}.Detections(jj).Id;
+%                             field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
+%                             Ex2(1).T(1).T3(index,:) = [Dist_ang(2),field1,field2];
+%                             index = index + 1;
+%                         end                        
+%                     
+%                     elseif contains(Fname,'_4_')
+%                         if i <= numfile
+%                             Dist_ang = regexp(Fname,'\w*_\w*_._','split');
+%                             field1 = msgs{ii}.Detections(jj).Id;
+%                             field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
+%                             Ex2(1).T(1).T4(index,:) = [Dist_ang(2),field1,field2];
+%                             index = index + 1;
+%                         end                        
+%                     end
+%                 end
+%             end
+%         end
+%     end
+% end
+
+%%
+% msgs = readMessages(bag_select);
+% % Loop through messages
+% for ii = 1:length(msgs)
+%     % Loop through detections
+%     for jj = 1:length(msgs{ii}.Detections)
+%         fprintf('msg [%d], detection [%d], Id [%d], X=%.3f\n', ...
+%             ii,jj,msgs{ii}.Detections(jj).Id, ...
+%             msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X);
+%     end
+% end
