@@ -1,7 +1,7 @@
 % Initial script to code things out, possibly split loading into a function
 % or a separate script?
-% The basics came from ME4823 HW
-% Had to load custom ROS message. https://www.mathworks.com/help/releases/R2017b/robotics/ug/ros-custom-message-support.html
+% This basics came from ME4823 HW
+% Had to load customros message. https://www.mathworks.com/help/releases/R2017b/robotics/ug/ros-custom-message-support.html
 % Package for messages is at https://www.mathworks.com/help/robotics/ug/create-custom-messages-from-ros-package.html
 
 clear all
@@ -44,14 +44,7 @@ for i=1:numfile
                             DAdbl = str2double(Dist_ang(2));
                             field1 = double(msgs{ii}.Detections(jj).Id);
                             field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
-                            field4 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.Y;
-                            field5 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.Z;
-                            field6 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.X;
-                            field7 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.Y;
-                            field8 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.Z;
-                            field9 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.W;
-
-                            Ex2(1).P(1).T1(index,1:9) = [DAdbl,field1,field2,field4,field5,field6,field7,field8,field9];
+                            Ex2(1).P(1).T1(index,1:3) = [DAdbl,field1,field2];
                         end
                     end
                 end
@@ -240,28 +233,62 @@ for i=1:numfile
     end
 end
 
+%% Use this for the fields i need
+
+msgs = readMessages(bag_select);
+[r_msg,c_msg] = size(msgs);
+Test1 = zeros(r_msg,6);
+msgs{1}.Detections.Pose.Pose.Pose.Position.X
+for i=1:r_msg
+    Test1(i) = [msgs{i}.Detections.Id, msgs{i}.Detections.Pose.Pose.Pose.Position.X,...
+        msgs{i}.Detections.Pose.Pose.Pose.Position.Y,msgs{i}.Detections.Pose.Pose.Pose.Orientation.W,...
+        msgs{i}.Detections.Pose.Pose.Pose.Orientation.X,msgs{i}.Detections.Pose.Pose.Pose.Orientation.Y,...
+        msgs{i}.Detections.Pose.Pose.Pose.Orientation.Z];
+end
+
+% 'Detections.Pose.Pose.Position.X','Detections.Pose.Pose.Position.Y',...
+%     'Detections.Pose.Pose.Orientation.W','Detections.Pose.Pose.Orientation.X',...
+%     'Detections.Pose.Pose.Orientation.Y','Detections.Pose.Pose.Orientation.Z');
+
 %% Fix lengths in first column
 
 for ind=1:length(Ex2.P.T1)
     if Ex2.P.T1(ind,1) > 1
         Ex2.P.T1(ind,1) = Ex2.P.T1(ind,1)/10;
     end
-    
 end
-Ex2.P.T1(1,:)=[]; % repeat for others in a loop?
+
 for ind=1:length(Ex2.V1.T1)
     if Ex2.V1.T1(ind,1) > 1
         Ex2.V1.T1(ind,1) = Ex2.V1.T1(ind,1)/10;
     end
 end
-Ex2.V1.T1(1,:)=[];
+
 for ind=1:length(Ex2.T.T1)
     if Ex2.T.T1(ind,1) > 1
         Ex2.T.T1(ind,1) = Ex2.T.T1(ind,1)/10;
     end
 end
-Ex2.T.T1(1,:)=[];
+
 %% Haven't done anything below this
+
+
+% Select by topic
+amcl_select = select(bag,'Topic','/amcl_pose');
+ 
+% Create time series object
+ts_amcl = timeseries(amcl_select,'Pose.Pose.Position.X','Pose.Pose.Position.Y',...
+    'Pose.Pose.Orientation.W','Pose.Pose.Orientation.X',...
+    'Pose.Pose.Orientation.Y','Pose.Pose.Orientation.Z');
+
+% Select by topic
+goal_select = select(bag,'Topic','/move_base/goal');
+ 
+% Create time series object
+ts_goal = timeseries(goal_select,'Goal.TargetPose.Pose.Position.X','Goal.TargetPose.Pose.Position.Y',...
+    'Goal.TargetPose.Pose.Orientation.W','Goal.TargetPose.Pose.Orientation.X',...
+    'Goal.TargetPose.Pose.Orientation.Y','Goal.TargetPose.Pose.Orientation.Z');
+
 
 % Normalize time from timeseries
 timeN=ts_odom.time-ts_odom.time(1);
@@ -291,14 +318,13 @@ close all
 
 % y = est dist, x = actual dist
 
-% y = est angle, x = actual angle at 2, 4, 6
+% y = est angle, x = actual angle
 
 % y = tag %, x = actual dist
 
-% y = tag %, x = actual angle at 2, 4 ,6
+% y = tag %, x = actual angle
 
-% y = measured dist, x = actual angle, for 2, 4, 6 error bars and O's at
-% actual distance
+% 
 
 
 
