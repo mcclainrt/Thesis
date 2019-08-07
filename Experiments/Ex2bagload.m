@@ -124,3 +124,5 @@ for ind=1:size(Ex2.T.T1,1)
 end
 
 clearvars -except Ex2
+
+save('Ex2struct')

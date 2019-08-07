@@ -144,7 +144,7 @@ for ind=1:size(Ex2.T.T1,1)
 end
 
 %% Haven't done anything below this
-
+load('Ex2struct')
 time = 10;
 
 %https://www.mathworks.com/matlabcentral/answers/224877-how-to-extract-rows-based-on-column-values-in-a-matrix

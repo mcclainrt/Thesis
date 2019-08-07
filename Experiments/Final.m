@@ -6,7 +6,7 @@ clc
 close all
 
 
-run('Ex2bagload')
+load('Ex2struct')
 % run('Ex3bagload')
 % run('Ex4bagload')
 % run('Ex5bagload')
