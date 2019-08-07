@@ -3,6 +3,10 @@
 % The basics came from ME4823 HW
 % Had to load custom ROS message. https://www.mathworks.com/help/releases/R2017b/robotics/ug/ros-custom-message-support.html
 % Package for messages is at https://www.mathworks.com/help/robotics/ug/create-custom-messages-from-ros-package.html
+% pull from git the apriltags2_ros folder
+% rosgenmsg('C:\Users\mccla\Documents\MATLAB\custom_msgs\apriltags2_ros')
+
+
 
 clear all
 close all
@@ -50,64 +54,64 @@ for i=1:numfile
             case 'P'
                 switch Namecell{3}
                     case '1'
-                        loaded = loadbagmsgs(msgs,Fname,Ex2.P.T1);
+                        loaded = loadbagmsgs(msgs,Fname);
                         Ex2.P.T1 = cat(1,Ex2.P.T1,loaded);
                         if Ex2.P.T1(1)==0 % is there an easier way to do this?
                             Ex2.P.T1(1,:)=[];
                         end
                     case '2'
-                        loaded = loadbagmsgs(msgs,Fname,Ex2.P.T2);
+                        loaded = loadbagmsgs(msgs,Fname);
                         Ex2.P.T2 = cat(1,Ex2.P.T2,loaded);
                     case '3'
-                        loaded = loadbagmsgs(msgs,Fname,Ex2.P.T3);
+                        loaded = loadbagmsgs(msgs,Fname);
                         Ex2.P.T3 = cat(1,Ex2.P.T3,loaded);
                     case '4'
-                        loaded = loadbagmsgs(msgs,Fname,Ex2.P.T4);
+                        loaded = loadbagmsgs(msgs,Fname);
                         Ex2.P.T4 = cat(1,Ex2.P.T4,loaded);
                 end
             case 'T'
                 switch Namecell{3}
                     case '1'
-                        loaded = loadbagmsgs(msgs,Fname,Ex2.T.T1);
+                        loaded = loadbagmsgs(msgs,Fname);
                         Ex2.T.T1 = cat(1,Ex2.T.T1,loaded);
                     case '2'
-                        loaded = loadbagmsgs(msgs,Fname,Ex2.T.T2);
+                        loaded = loadbagmsgs(msgs,Fname);
                         Ex2.T.T2 = cat(1,Ex2.T.T2,loaded);
                     case '3'
-                        loaded = loadbagmsgs(msgs,Fname,Ex2.T.T3);
+                        loaded = loadbagmsgs(msgs,Fname);
                         Ex2.T.T3 = cat(1,Ex2.T.T3,loaded);
                     case '4'
-                        loaded = loadbagmsgs(msgs,Fname,Ex2.T.T4);
+                        loaded = loadbagmsgs(msgs,Fname);
                         Ex2.T.T4 = cat(1,Ex2.T.T4,loaded);
                 end
             case 'V1'
                 switch Namecell{3}
                     case '1'
-                        loaded = loadbagmsgs(msgs,Fname,Ex2.V1.T1);
+                        loaded = loadbagmsgs(msgs,Fname);
                         Ex2.V1.T1 = cat(1,Ex2.V1.T1,loaded);
                     case '2'
-                        loaded = loadbagmsgs(msgs,Fname,Ex2.V1.T2);
+                        loaded = loadbagmsgs(msgs,Fname);
                         Ex2.V1.T2 = cat(1,Ex2.V1.T2,loaded);
                     case '3'
-                        loaded = loadbagmsgs(msgs,Fname,Ex2.V1.T3);
+                        loaded = loadbagmsgs(msgs,Fname);
                         Ex2.V1.T3 = cat(1,Ex2.V1.T3,loaded);
                     case '4'
-                        loaded = loadbagmsgs(msgs,Fname,Ex2.V1.T4);
+                        loaded = loadbagmsgs(msgs,Fname);
                         Ex2.V1.T4 = cat(1,Ex2.V1.T4,loaded);
                 end
             case 'V2'
                 switch Namecell{3}
                     case '1'
-                        loaded = loadbagmsgs(msgs,Fname,Ex2.V2.T1);
+                        loaded = loadbagmsgs(msgs,Fname);
                         Ex2.V2.T1 = cat(1,Ex2.V2.T1,loaded);
                     case '2'
-                        loaded = loadbagmsgs(msgs,Fname,Ex2.V2.T2);
+                        loaded = loadbagmsgs(msgs,Fname);
                         Ex2.V2.T2 = cat(1,Ex2.V2.T2,loaded);
                     case '3'
-                        loaded = loadbagmsgs(msgs,Fname,Ex2.V2.T3);
+                        loaded = loadbagmsgs(msgs,Fname);
                         Ex2.V2.T3 = cat(1,Ex2.V2.T3,loaded);
                     case '4'
-                        loaded = loadbagmsgs(msgs,Fname,Ex2.V2.T4);
+                        loaded = loadbagmsgs(msgs,Fname);
                         Ex2.V2.T4 = cat(1,Ex2.V2.T4,loaded);
                         if Ex2.V2.T4(1)==0
                             Ex2.V2.T4(1,:)=[];
@@ -117,6 +121,154 @@ for i=1:numfile
     end
 end
   
+
+
+%% Fix lengths in first column
+
+for ind=1:size(Ex2.P.T1,1)
+    if Ex2.P.T1(ind,1) > 10
+        Ex2.P.T1(ind,1) = Ex2.P.T1(ind,1)/10;
+    end
+end
+
+for ind=1:size(Ex2.V1.T1,1)
+    if Ex2.V1.T1(ind,1) > 10
+        Ex2.V1.T1(ind,1) = Ex2.V1.T1(ind,1)/10;
+    end
+end
+
+for ind=1:size(Ex2.T.T1,1)
+    if Ex2.T.T1(ind,1) > 10
+        Ex2.T.T1(ind,1) = Ex2.T.T1(ind,1)/10;
+    end
+end
+
+%% Haven't done anything below this
+
+time = 10;
+
+%https://www.mathworks.com/matlabcentral/answers/224877-how-to-extract-rows-based-on-column-values-in-a-matrix
+
+%T1s
+
+% Extract each set, then true and false, then count
+dists = [1 1.5 2 2.5 3 3.5 4 4.5 5 5.5 6];
+errors = zeros(length(dists), 1);
+%true = zeros(1,8);
+plot1.P.true = [];
+
+
+for k = 1:length(dists)
+    
+    evalind = Ex2.P.T1(:,1) == dists(k);
+    eval = Ex2.P.T1(evalind,:);
+    
+    trueind = eval(:,2) == 5;
+    true = eval(trueind,:);
+    % counts trues
+    Tcount = size(true,1);
+    [A, outind] = rmoutliers(true(:,5));
+    true_out = true(~outind,:);
+    % calculate error of trues
+    SE = (dists(k)-true_out(:,5)).^2;
+    RMSE(k,1) = sqrt(mean(SE));
+    % calculate detections over 10 seconds
+    
+    plot1.P.true = cat(1,plot1.P.true,true); % save errors
+    falseind = eval(:,2) ~= 5; 
+    false = eval(falseind,:);
+    % count falses
+    % error(k) = 
+
+end
+
+plot(dists,RMSE)
+
+false = Ex2.P.T1(:,2) ~= 5
+Ex2.P.T1(false,:)
+
+
+
+    
+
+%% Data collection
+% Take total time divided by number none zero tag detections
+% how to do detection rate? number of detections over time? time is always
+% 10 seconds
+
+% need tag percentage over 10 seconds
+
+% need measured distance vs actual distance arrays - these should be
+% included in structure
+
+
+%% Plotting
+
+close all
+
+% error bars? will need error vectors, how to measure the error? is it the
+% variance over the 10 seconds? what is RMS? idk
+
+% y = est dist, x = actual dist
+
+% y = est angle, x = actual angle at 2, 4, 6
+
+% y = tag %, x = actual dist
+
+% y = tag %, x = actual angle at 2, 4 ,6
+
+% y = measured dist, x = actual angle, for 2, 4, 6 error bars and O's at
+% actual distance
+
+
+
+
+% Map as Background
+% Information copied from the map.yaml file
+% NOTE: These numbers will change on a case-by-case basis!
+resolution = 0.05;
+origin = [-10.000000, -10.000000, 0.000000];
+ 
+% Read the image - assumes the image file is in your home directory, change path as necessary
+ifile = '../maps/map.pgm';   % Image file name
+I=imread(ifile);
+ 
+% Span of image in meters
+dx = size(I,2)*resolution;
+dy = size(I,1)*resolution;
+ 
+% Set the size scaling
+xWorldLimits = [0 dx]+origin(1);
+yWorldLimits = [0 dy]+origin(2);
+% Reference to world coordinates (meters)
+RI = imref2d(size(I),xWorldLimits,yWorldLimits);
+  
+% Plot Map
+figure;
+imshow(flipud(I),RI)
+set(gca,'YDir','normal')
+ 
+% Optionally, put a maker at the origin
+hold on;
+plot(0,0,'r*')
+
+% Odom plot
+plot(ts_odom.Data(:,1),ts_odom.Data(:,2));
+xlabel('X position')
+ylabel('Y position')
+title('Turtle Position') 
+
+% AMCL Pose plot
+plot(ts_amcl.Data(:,1),ts_amcl.Data(:,2),"--");
+
+% Goal Pose plot
+plot(ts_goal.Data(:,1),ts_goal.Data(:,2),"o");
+legend('Origin', 'Odom', 'AMCL Pose', 'Goal Pose');
+
+% Save figure
+saveas(gcf, '../images/rviz_goals.png');
+
+%% Trial code
 
 %% This is skipping lines becasue of the index variable
 % for i=1:numfile
@@ -518,119 +670,6 @@ end
 %     end
 % end
 
-%% Fix lengths in first column
-
-for ind=1:size(Ex2.P.T1,1)
-    if Ex2.P.T1(ind,1) > 10
-        Ex2.P.T1(ind,1) = Ex2.P.T1(ind,1)/10;
-    end
-end
-
-for ind=1:size(Ex2.V1.T1,1)
-    if Ex2.V1.T1(ind,1) > 10
-        Ex2.V1.T1(ind,1) = Ex2.V1.T1(ind,1)/10;
-    end
-end
-
-for ind=1:size(Ex2.T.T1,1)
-    if Ex2.T.T1(ind,1) > 10
-        Ex2.T.T1(ind,1) = Ex2.T.T1(ind,1)/10;
-    end
-end
-
-%% Haven't done anything below this
-
-time = 10;
-
-%https://www.mathworks.com/matlabcentral/answers/224877-how-to-extract-rows-based-on-column-values-in-a-matrix
-
-%T1s
-
-dists = [1 1.5 2 2.5 3 3.5 4 4.5 6];
-
-for i = 1:length(dists)
-    plot1x 
-end
-    
-
-%% Data collection
-% Take total time divided by number none zero tag detections
-% how to do detection rate? number of detections over time? time is always
-% 10 seconds
-
-% need tag percentage over 10 seconds
-
-% need measured distance vs actual distance arrays - these should be
-% included in structure
-
-
-%% Plotting
-
-close all
-
-% error bars? will need error vectors, how to measure the error? is it the
-% variance over the 10 seconds? what is RMS? idk
-
-% y = est dist, x = actual dist
-
-% y = est angle, x = actual angle at 2, 4, 6
-
-% y = tag %, x = actual dist
-
-% y = tag %, x = actual angle at 2, 4 ,6
-
-% y = measured dist, x = actual angle, for 2, 4, 6 error bars and O's at
-% actual distance
-
-
-
-
-% Map as Background
-% Information copied from the map.yaml file
-% NOTE: These numbers will change on a case-by-case basis!
-resolution = 0.05;
-origin = [-10.000000, -10.000000, 0.000000];
- 
-% Read the image - assumes the image file is in your home directory, change path as necessary
-ifile = '../maps/map.pgm';   % Image file name
-I=imread(ifile);
- 
-% Span of image in meters
-dx = size(I,2)*resolution;
-dy = size(I,1)*resolution;
- 
-% Set the size scaling
-xWorldLimits = [0 dx]+origin(1);
-yWorldLimits = [0 dy]+origin(2);
-% Reference to world coordinates (meters)
-RI = imref2d(size(I),xWorldLimits,yWorldLimits);
-  
-% Plot Map
-figure;
-imshow(flipud(I),RI)
-set(gca,'YDir','normal')
- 
-% Optionally, put a maker at the origin
-hold on;
-plot(0,0,'r*')
-
-% Odom plot
-plot(ts_odom.Data(:,1),ts_odom.Data(:,2));
-xlabel('X position')
-ylabel('Y position')
-title('Turtle Position') 
-
-% AMCL Pose plot
-plot(ts_amcl.Data(:,1),ts_amcl.Data(:,2),"--");
-
-% Goal Pose plot
-plot(ts_goal.Data(:,1),ts_goal.Data(:,2),"o");
-legend('Origin', 'Odom', 'AMCL Pose', 'Goal Pose');
-
-% Save figure
-saveas(gcf, '../images/rviz_goals.png');
-
-%% Trial code
 
 %% Bag loading and message reading
 
