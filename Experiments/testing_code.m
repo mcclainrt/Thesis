@@ -542,6 +542,8 @@ end
 
 time = 10;
 
+%https://www.mathworks.com/matlabcentral/answers/224877-how-to-extract-rows-based-on-column-values-in-a-matrix
+
 %T1s
 
 dists = [1 1.5 2 2.5 3 3.5 4 4.5 6];
