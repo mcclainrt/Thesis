@@ -8,8 +8,11 @@ close all
 
 load('Data/Ex2struct')
 load('Data/Ex2structtab')
-load('Data/Ex3bagload')
-load('Data/Ex4bagload')
+load('Data/Ex3struct')
+load('Data/Ex4struct')
+load('Data/Ex5struct')
+load('Data/Ex6struct')
+load('Data/Ex7struct')
 
 Ex2.T = Ex2Tab.T;
-% run('Ex5bagload')
+clearvars Ex2Tab
