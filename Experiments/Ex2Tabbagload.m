@@ -166,5 +166,5 @@ for ind=1:size(Ex2.T.T1,1)
 end
 
 clearvars -except Ex2
-
+Ex2 = Ex2Tab
 save('./Data/Ex2structTab')

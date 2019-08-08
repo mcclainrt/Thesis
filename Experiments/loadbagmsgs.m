@@ -1,7 +1,9 @@
 function [Fields] = loadbagmsgs(msgs,Fname)
         index = 1;
+        Fields = [];
         for ii = 1:length(msgs)
             % Loop through detections
+
             for jj = 1:length(msgs{ii}.Detections)
                 Dist_ang = regexp(Fname,'\w*_\w*_._','split');
                 DAdbl = str2double(Dist_ang(2));
@@ -27,4 +29,11 @@ function [Fields] = loadbagmsgs(msgs,Fname)
                 
             end
         end
+        
+        if isempty(Fields)
+            fprintf('%s has no detections.\nPress a key. \n',Fname)
+            pause
+            Fields = zeros(1,8);
+        end
+          
 end

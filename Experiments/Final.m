@@ -6,7 +6,10 @@ clc
 close all
 
 
-load('Ex2struct')
-% run('Ex3bagload')
-% run('Ex4bagload')
+load('Data/Ex2struct')
+load('Data/Ex2structtab')
+load('Data/Ex3bagload')
+load('Data/Ex4bagload')
+
+Ex2.T = Ex2Tab.T;
 % run('Ex5bagload')

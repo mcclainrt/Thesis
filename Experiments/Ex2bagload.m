@@ -4,10 +4,12 @@
 %% Structure set-up
 
 Ex2.P = struct('T1',zeros(1,8),'T2',zeros(1,8),'T3',zeros(1,8),'T4',zeros(1,8));
-% Ex2.P.T1 = struct('1',0,'1.5',0,'2',0,'2.5',0);
+
 Ex2.T = struct('T1',zeros(1,8),'T2',zeros(1,8),'T3',zeros(1,8),'T4',zeros(1,8));
-%Ex2.V1 = struct('T1',0,'T2',0,'T3',0,'T4',0);
+
 Ex2.V1 = struct('T1',zeros(1,8),'T2',zeros(1,8),'T3',zeros(1,8),'T4',zeros(1,8));
+
+Ex2.V2 = struct('T1',zeros(1,8),'T2',zeros(1,8),'T3',zeros(1,8),'T4',zeros(1,8));
 
 %% Loop restructuring 
 
