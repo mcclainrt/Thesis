@@ -165,6 +165,7 @@ for ind=1:size(Ex2.T.T1,1)
     end
 end
 
-clearvars -except Ex2
-Ex2 = Ex2Tab
+Ex2Tab = Ex2;
+clearvars -except Ex2Tab
+
 save('./Data/Ex2structTab')
