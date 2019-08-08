@@ -18,7 +18,7 @@ Ex2.V1 = struct('T1',zeros(1,8),'T2',zeros(1,8),'T3',zeros(1,8),'T4',zeros(1,8))
 % extract the false tags and count them, could use sort? what other data
 % options does matlab have? there has to be functions
 
-Prefix = 'Ex2/bags';
+Prefix = 'Ex2/bags/';
 filein = dir(Prefix);
 numfile=length(filein);
 append = 0;
@@ -44,54 +44,96 @@ for i=1:numfile
                     case '2'
                         loaded = loadbagmsgs(msgs,Fname);
                         Ex2.P.T2 = cat(1,Ex2.P.T2,loaded);
+                        if Ex2.P.T2(1)==0
+                            Ex2.P.T2(1,:)=[];
+                        end
                     case '3'
                         loaded = loadbagmsgs(msgs,Fname);
                         Ex2.P.T3 = cat(1,Ex2.P.T3,loaded);
+                        if Ex2.P.T3(1)==0
+                            Ex2.P.T3(1,:)=[];
+                        end
                     case '4'
                         loaded = loadbagmsgs(msgs,Fname);
                         Ex2.P.T4 = cat(1,Ex2.P.T4,loaded);
+                        if Ex2.P.T4(1)==0
+                            Ex2.P.T4(1,:)=[];
+                        end
                 end
             case 'T'
                 switch Namecell{3}
                     case '1'
                         loaded = loadbagmsgs(msgs,Fname);
                         Ex2.T.T1 = cat(1,Ex2.T.T1,loaded);
+                        if Ex2.T.T1(1)==0
+                            Ex2.T.T1(1,:)=[];
+                        end
                     case '2'
                         loaded = loadbagmsgs(msgs,Fname);
                         Ex2.T.T2 = cat(1,Ex2.T.T2,loaded);
+                        if Ex2.T.T2(1)==0
+                            Ex2.T.T2(1,:)=[];
+                        end
                     case '3'
                         loaded = loadbagmsgs(msgs,Fname);
                         Ex2.T.T3 = cat(1,Ex2.T.T3,loaded);
+                        if Ex2.T.T3(1)==0
+                            Ex2.T.T3(1,:)=[];
+                        end
                     case '4'
                         loaded = loadbagmsgs(msgs,Fname);
                         Ex2.T.T4 = cat(1,Ex2.T.T4,loaded);
+                        if Ex2.T.T4(1)==0
+                            Ex2.T.T4(1,:)=[];
+                        end
                 end
             case 'V1'
                 switch Namecell{3}
                     case '1'
                         loaded = loadbagmsgs(msgs,Fname);
                         Ex2.V1.T1 = cat(1,Ex2.V1.T1,loaded);
+                        if Ex2.V1.T1(1)==0
+                            Ex2.V1.T1(1,:)=[];
+                        end
                     case '2'
                         loaded = loadbagmsgs(msgs,Fname);
                         Ex2.V1.T2 = cat(1,Ex2.V1.T2,loaded);
+                        if Ex2.V1.T2(1)==0
+                            Ex2.V1.T2(1,:)=[];
+                        end
                     case '3'
                         loaded = loadbagmsgs(msgs,Fname);
                         Ex2.V1.T3 = cat(1,Ex2.V1.T3,loaded);
+                        if Ex2.V1.T3(1)==0
+                            Ex2.V1.T3(1,:)=[];
+                        end
                     case '4'
                         loaded = loadbagmsgs(msgs,Fname);
                         Ex2.V1.T4 = cat(1,Ex2.V1.T4,loaded);
+                        if Ex2.V1.T4(1)==0
+                            Ex2.V1.T4(1,:)=[];
+                        end
                 end
             case 'V2'
                 switch Namecell{3}
                     case '1'
                         loaded = loadbagmsgs(msgs,Fname);
                         Ex2.V2.T1 = cat(1,Ex2.V2.T1,loaded);
+                        if Ex2.V2.T1(1)==0
+                            Ex2.V2.T1(1,:)=[];
+                        end
                     case '2'
                         loaded = loadbagmsgs(msgs,Fname);
                         Ex2.V2.T2 = cat(1,Ex2.V2.T2,loaded);
+                        if Ex2.V2.T2(1)==0
+                            Ex2.V2.T2(1,:)=[];
+                        end
                     case '3'
                         loaded = loadbagmsgs(msgs,Fname);
                         Ex2.V2.T3 = cat(1,Ex2.V2.T3,loaded);
+                        if Ex2.V2.T3(1)==0
+                            Ex2.V2.T3(1,:)=[];
+                        end
                     case '4'
                         loaded = loadbagmsgs(msgs,Fname);
                         Ex2.V2.T4 = cat(1,Ex2.V2.T4,loaded);
@@ -125,4 +167,4 @@ end
 
 clearvars -except Ex2
 
-save('Ex2struct')
+save('Data/Ex2struct')
