@@ -18,7 +18,7 @@ Ex2.V1 = struct('T1',zeros(1,8),'T2',zeros(1,8),'T3',zeros(1,8),'T4',zeros(1,8))
 % extract the false tags and count them, could use sort? what other data
 % options does matlab have? there has to be functions
 
-Prefix = 'Ex2/bags';
+Prefix = 'Ex2/bags/Tablet/';
 filein = dir(Prefix);
 numfile=length(filein);
 append = 0;
@@ -125,4 +125,4 @@ end
 
 clearvars -except Ex2
 
-save('Ex2struct')
+save('Ex2structTab')
