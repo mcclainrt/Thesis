@@ -28,7 +28,7 @@ for k = 1:length(dists)
     Tcount = size(true,1);
     Ocount = size(others,1);
     % Remove outliers
-    [A, outind] = rmoutliers(true(:,5));
+    [~, outind] = rmoutliers(true(:,6));
     true_out = true(~outind,:);
     
     % Error bars
@@ -60,12 +60,17 @@ for k = 1:length(angs1)
     Tcount = size(true,1);
     Ocount = size(others,1);
     % Remove outliers
-    [A, outind] = rmoutliers(true(:,5));
+    [~, outind] = rmoutliers(true(:,7));
     true_out = true(~outind,:);
     
-    % Error bars
-    errval2(k,:) = std(true(:,6));
-    errval_out2(k,:) = std(true_out(:,6));
+    % mean vals
+    meanval_nO2(k,:) = mean(180-abs(true_out(:,7)));    
+    
+    % Error bars - I need to figure out how to actually ge the angle from
+    % this or just look at tag detection rate at the different angles vice
+    % accuracy
+    errval2(k,:) = std(180-abs(true(:,7)));
+    errval_out2(k,:) = std(180-abs(true_out(:,7)));
 
     
     % Percentage of True Positive hits and False Poitive hits over 10 sec
@@ -76,7 +81,7 @@ for k = 1:length(angs1)
     IDrate2(k,1:2) = [T_hits, F_hits];
 
 end
-Results.Test2 = [angs1', errval2, errval_out2, IDrate2];
+Results.Test2 = [angs1', errval2, errval_out2, meanval_nO2, IDrate2];
 
 for k = 1:length(angs2)
     
@@ -92,12 +97,15 @@ for k = 1:length(angs2)
     Tcount = size(true,1);
     Ocount = size(others,1);
     % Remove outliers
-    [A, outind] = rmoutliers(true(:,5));
+    [~, outind] = rmoutliers(true(:,7));
     true_out = true(~outind,:);
     
+    % mean vals
+    meanval_nO3(k,:) = mean(180-abs(true_out(:,7)));
+    
     % Error bars
-    errval3(k,:) = std(true(:,6));
-    errval_out3(k,:) = std(true_out(:,6));
+    errval3(k,:) = std(180-abs(true(:,7)));
+    errval_out3(k,:) = std(180-abs(true_out(:,7)));
 
     
     % Percentage of True Positive hits and False Poitive hits over 10 sec
@@ -108,7 +116,7 @@ for k = 1:length(angs2)
     IDrate3(k,1:2) = [T_hits, F_hits];
 
 end
-Results.Test3 = [angs2', errval3, errval_out3, IDrate3];
+Results.Test3 = [angs2', errval3, errval_out3, meanval_nO3, IDrate3];
 
 for k = 1:length(angs3)
     
@@ -124,12 +132,15 @@ for k = 1:length(angs3)
     Tcount = size(true,1);
     Ocount = size(others,1);
     % Remove outliers
-    [A, outind] = rmoutliers(true(:,5));
+    [~, outind] = rmoutliers(true(:,7));
     true_out = true(~outind,:);
     
+    % mean vals
+    meanval_nO4(k,:) = mean(180-abs(true_out(:,7)));
+    
     % Error bars
-    errval4(k,:) = std(true(:,6));
-    errval_out4(k,:) = std(true_out(:,6));
+    errval4(k,:) = std(180-abs(true(:,7)));
+    errval_out4(k,:) = std(180-abs(true_out(:,7)));
 
     
     % Percentage of True Positive hits and False Poitive hits over 10 sec
@@ -140,4 +151,4 @@ for k = 1:length(angs3)
     IDrate4(k,1:2) = [T_hits, F_hits];
 
 end
-Results.Test4 = [angs3', errval4, errval_out4, IDrate4];
+Results.Test4 = [angs3', errval4, errval_out4, meanval_nO4, IDrate4];

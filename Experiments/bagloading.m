@@ -1,17 +1,12 @@
 % Loads one Experiment at a time
 
-function [structout] = bagloading(directory)
-% needed?
-structout.P = struct('Test1',zeros(1,9),'Test2',zeros(1,9),'Test3',zeros(1,9),'Test4',zeros(1,9));
+function [stOUT] = bagloading(directory)
 
-structout.T = struct('Test1',zeros(1,9),'Test2',zeros(1,9),'Test3',zeros(1,9),'Test4',zeros(1,9));
-
-structout.V1 = struct('Test1',zeros(1,9),'Test2',zeros(1,9),'Test3',zeros(1,9),'Test4',zeros(1,9));
-
-structout.V2 = struct('Test1',zeros(1,9),'Test2',zeros(1,9),'Test3',zeros(1,9),'Test4',zeros(1,9));
 Prefix = directory;
 filein = dir(Prefix);
 numfile=length(filein);
+stOUT = struct;
+
 
 for i=1:numfile
     [Fpath,Fname,Fext]=fileparts(filein(i).name);
@@ -22,11 +17,21 @@ for i=1:numfile
         msgs = readMessages(bag_select);
         Namecell = strsplit(Fname,'_');
         loaded = loadbagmsgs(msgs,Fname);
-        structout.(Namecell{2}).(['Test' Namecell{3}]) = cat(1,structout.(Namecell{2}).(['Test' Namecell{3}]),loaded); % is it worth it to take "cat" out?
-        if structout.(Namecell{2}).(['Test' Namecell{3}])(1)==0 % is there an easier way to do this?
-                            structout.(Namecell{2}).(['Test' Namecell{3}])(1,:)=[];
+        if ~isfield(stOUT,[Namecell{2}])
+            stOUT.(Namecell{2})=struct;
         end
+        if ~isfield(stOUT.(Namecell{2}),['Test' Namecell{3}])
+            stOUT.(Namecell{2}).(['Test' Namecell{3}]) = [];
+        end
+        stOUT.(Namecell{2}).(['Test' Namecell{3}]) = [stOUT.(Namecell{2}).(['Test' Namecell{3}]);loaded]; 
     end
 end
 
-save(strcat('Data/',Namecell{1},'struct'), 'structout')
+Tags = fieldnames(stOUT);
+for b = 1:numel(Tags)
+    for ind=1:size(stOUT.(Tags{b}).Test1,1)
+        if stOUT.(Tags{b}).Test1(ind,1) > 10
+            stOUT.(Tags{b}).Test1(ind,1) = stOUT.(Tags{b}).Test1(ind,1)/10;
+        end
+    end
+end

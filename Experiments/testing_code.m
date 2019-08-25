@@ -334,555 +334,73 @@ legend('Origin', 'Odom', 'AMCL Pose', 'Goal Pose');
 % Save figure
 saveas(gcf, '../images/rviz_goals.png');
 
+%%
+
+directory = 'Ex3/';
+
+structout.P = struct('Test1',[],'Test2',[],'Test3',[],'Test4',[]);
+
+structout.T = struct('Test1',[],'Test2',[],'Test3',[],'Test4',[]);
+
+structout.V1 = struct('Test1',[],'Test2',[],'Test3',[],'Test4',[]);
+
+structout.V2 = struct('Test1',[],'Test2',[],'Test3',[],'Test4',[]);
+
+structout = struct;
+
+Prefix = directory;
+filein = dir(Prefix);
+numfile=length(filein);
+
+for i=1:numfile
+    [Fpath,Fname,Fext]=fileparts(filein(i).name);
+    if strcmp('.bag',Fext)
+        relfilename = strcat(Prefix,filein(i).name);
+        Bag = rosbag(relfilename);
+        bag_select = select(Bag,'Topic','/tag_detections');
+        msgs = readMessages(bag_select);
+        Namecell = strsplit(Fname,'_');
+        loaded = loadbagmsgs(msgs,Fname);
+        if ~isfield(structout,[Namecell{2}])
+            structout.(Namecell{2})=struct;
+        end
+        if ~isfield(structout.Namecell{2},['Test' Namecell{3}])
+            structout.(Namecell{2}).(['Test' Namecell{3}]) = [];
+        end
+        structout.(Namecell{2}).(['Test' Namecell{3}]) = [structout.(Namecell{2}).(['Test' Namecell{3}]),loaded]; % is it worth it to take "cat" out?
+    end
+end
+
 %% Trial code
 
-%% This is skipping lines becasue of the index variable
-% for i=1:numfile
-%     [Fpath,Fname,Fext]=fileparts(filein(i).name);
-%     if strcmp('.bag',Fext)
-%         relfilename = strcat(Prefix,filein(i).name);
-%         Bag = rosbag(relfilename);
-%         bag_select = select(Bag,'Topic','/tag_detections');
-%         msgs = readMessages(bag_select);
-%         if contains(Fname,'P')
-%             if contains(Fname,'_1_')
-%                 index = size(Ex2.P.T1,1);
-%                 for ii = 1:length(msgs)
-%                     % Loop through detections
-%                     for jj = 1:length(msgs{ii}.Detections)
-%                         %if i <= numfile %not sure why I had this in here,
-%                         %may not need it
-%                             Dist_ang = regexp(Fname,'\w*_\w*_._','split');
-%                             DAdbl = str2double(Dist_ang(2));
-%                             field1 = double(msgs{ii}.Detections(jj).Id);
-%                             field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
-%                             field3 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.Y;
-%                             field4 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.Z;
-%                             field5 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.X;
-%                             field6 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.Y;
-%                             field7 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.Z;
-%                             field8 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.W;
-% 
-%                             Ex2(1).P(1).T1(index,1:9) = [DAdbl,field1,field2,field3,field4,field5,field6,field7,field8];
-%                             
-%                             quats = Ex2.P.T1(index,5:8);
-%                             eulangs = quat2eul(quats);
-%                             Xdeg = eulangs(:,3)*180/pi;
-%                             Ydeg = eulangs(:,2)*180/pi;
-%                             Zdeg = eulangs(:,1)*180/pi;
-%                             Ex2.P.T1(index,9:11) = [Xdeg,Ydeg,Zdeg];
-%                             
-%                             index = index + 1;
-%                         %end
-%                     end
-%                 end
-%                     
-%             elseif contains(Fname,'_2_')
-%                 index = length(Ex2.P.T2);
-%                 for ii = 1:length(msgs)
-%                     % Loop through detections
-%                     for jj = 1:length(msgs{ii}.Detections)
-%                         if i <= numfile
-%                             
-%                             Dist_ang = regexp(Fname,'\w*_\w*_._','split');
-%                             DAdbl = str2double(Dist_ang(2));
-%                             field1 = double(msgs{ii}.Detections(jj).Id);
-%                             field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
-%                             field3 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.Y;
-%                             field4 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.Z;
-%                             field5 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.X;
-%                             field6 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.Y;
-%                             field7 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.Z;
-%                             field8 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.W;
-% 
-%                             Ex2(1).P(1).T2(index,1:9) = [DAdbl,field1,field2,field3,field4,field5,field6,field7,field8];
-%                             
-%                             quats = Ex2.P.T2(index,5:8);
-%                             eulangs = quat2eul(quats);
-%                             Xdeg = eulangs(:,3)*180/pi;
-%                             Ydeg = eulangs(:,2)*180/pi;
-%                             Zdeg = eulangs(:,1)*180/pi;
-%                             Ex2.P.T2(index,9:11) = [Xdeg,Ydeg,Zdeg];
-%                             
-%                             index = index + 1;
-%                         end
-%                     end
-%                 end
-%                     
-%             elseif contains(Fname,'_3_')
-%                 index = length(Ex2.P.T3);
-%                 for ii = 1:length(msgs)
-%                     % Loop through detections
-%                     for jj = 1:length(msgs{ii}.Detections)
-%                         if i <= numfile
-%                             
-%                             Dist_ang = regexp(Fname,'\w*_\w*_._','split');
-%                             DAdbl = str2double(Dist_ang(2));
-%                             field1 = double(msgs{ii}.Detections(jj).Id);
-%                             field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
-%                             field3 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.Y;
-%                             field4 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.Z;
-%                             field5 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.X;
-%                             field6 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.Y;
-%                             field7 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.Z;
-%                             field8 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.W;
-% 
-%                             Ex2(1).P(1).T3(index,1:9) = [DAdbl,field1,field2,field3,field4,field5,field6,field7,field8];
-%                             
-%                             quats = Ex2.P.T3(index,5:8);
-%                             eulangs = quat2eul(quats);
-%                             Xdeg = eulangs(:,3)*180/pi;
-%                             Ydeg = eulangs(:,2)*180/pi;
-%                             Zdeg = eulangs(:,1)*180/pi;
-%                             Ex2.P.T3(index,9:11) = [Xdeg,Ydeg,Zdeg];
-%                             
-%                             index = index + 1;
-%                         end
-%                     end
-%                 end
-%                     
-%             elseif contains(Fname,'_4_')
-%                 index = length(Ex2.P.T4);
-%                 for ii = 1:length(msgs)
-%                     % Loop through detections
-%                     for jj = 1:length(msgs{ii}.Detections)
-%                         if i <= numfile
-%                             
-%                             Dist_ang = regexp(Fname,'\w*_\w*_._','split');
-%                             DAdbl = str2double(Dist_ang(2));
-%                             field1 = double(msgs{ii}.Detections(jj).Id);
-%                             field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
-%                             field3 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.Y;
-%                             field4 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.Z;
-%                             field5 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.X;
-%                             field6 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.Y;
-%                             field7 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.Z;
-%                             field8 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.W;
-% 
-%                             Ex2(1).P(1).T4(index,1:9) = [DAdbl,field1,field2,field3,field4,field5,field6,field7,field8];
-%                             
-%                             quats = Ex2.P.T4(index,5:8);
-%                             eulangs = quat2eul(quats);
-%                             Xdeg = eulangs(:,3)*180/pi;
-%                             Ydeg = eulangs(:,2)*180/pi;
-%                             Zdeg = eulangs(:,1)*180/pi;
-%                             Ex2.P.T4(index,9:11) = [Xdeg,Ydeg,Zdeg];
-%                             
-%                             index = index + 1;
-%                         end
-%                     end
-%                 end
-%             end
-%                        
-%         elseif contains(Fname,'V1')
-%             if contains(Fname,'_1_')
-%                 index = length(Ex2.V1.T1);
-%                 for ii = 1:length(msgs)
-%                     % Loop through detections
-%                     for jj = 1:length(msgs{ii}.Detections)
-%                         if i <= numfile
-%                             
-%                             Dist_ang = regexp(Fname,'\w*_\w*_._','split');
-%                             DAdbl = str2double(Dist_ang(2));
-%                             field1 = double(msgs{ii}.Detections(jj).Id);
-%                             field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
-%                             field3 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.Y;
-%                             field4 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.Z;
-%                             field5 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.X;
-%                             field6 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.Y;
-%                             field7 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.Z;
-%                             field8 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.W;
-% 
-%                             Ex2(1).V1(1).T1(index,1:9) = [DAdbl,field1,field2,field3,field4,field5,field6,field7,field8];
-%                                                         
-%                             quats = Ex2.V1.T1(index,5:8);
-%                             eulangs = quat2eul(quats);
-%                             Xdeg = eulangs(:,3)*180/pi;
-%                             Ydeg = eulangs(:,2)*180/pi;
-%                             Zdeg = eulangs(:,1)*180/pi;
-%                             Ex2.V1.T1(index,9:11) = [Xdeg,Ydeg,Zdeg];
-%                             
-%                             index = index + 1;
-%                         end
-%                     end
-%                 end
-% 
-%             elseif contains(Fname,'_2_')
-%                 index = length(Ex2.V1.T2);
-%                 for ii = 1:length(msgs)
-%                     % Loop through detections
-%                     for jj = 1:length(msgs{ii}.Detections)
-%                         if i <= numfile
-%                             
-%                             Dist_ang = regexp(Fname,'\w*_\w*_._','split');
-%                             DAdbl = str2double(Dist_ang(2));
-%                             field1 = double(msgs{ii}.Detections(jj).Id);
-%                             field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
-%                             field3 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.Y;
-%                             field4 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.Z;
-%                             field5 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.X;
-%                             field6 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.Y;
-%                             field7 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.Z;
-%                             field8 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.W;
-% 
-%                             Ex2(1).V1(1).T2(index,1:9) = [DAdbl,field1,field2,field3,field4,field5,field6,field7,field8];
-%                             
-%                             quats = Ex2.V1.T2(index,5:8);
-%                             eulangs = quat2eul(quats);
-%                             Xdeg = eulangs(:,3)*180/pi;
-%                             Ydeg = eulangs(:,2)*180/pi;
-%                             Zdeg = eulangs(:,1)*180/pi;
-%                             Ex2.V1.T2(index,9:11) = [Xdeg,Ydeg,Zdeg];
-%                             
-%                             index = index + 1;
-%                         end
-%                     end
-%                 end
-% 
-%             elseif contains(Fname,'_3_')
-%                 index = length(Ex2.V1.T3);
-%                 for ii = 1:length(msgs)
-%                     % Loop through detections
-%                     for jj = 1:length(msgs{ii}.Detections)
-%                         if i <= numfile
-%                             
-%                             Dist_ang = regexp(Fname,'\w*_\w*_._','split');
-%                             DAdbl = str2double(Dist_ang(2));
-%                             field1 = double(msgs{ii}.Detections(jj).Id);
-%                             field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
-%                             field3 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.Y;
-%                             field4 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.Z;
-%                             field5 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.X;
-%                             field6 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.Y;
-%                             field7 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.Z;
-%                             field8 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.W;
-% 
-%                             Ex2(1).V1(1).T3(index,1:9) = [DAdbl,field1,field2,field3,field4,field5,field6,field7,field8];
-%                             
-%                             quats = Ex2.V1.T3(index,5:8);
-%                             eulangs = quat2eul(quats);
-%                             Xdeg = eulangs(:,3)*180/pi;
-%                             Ydeg = eulangs(:,2)*180/pi;
-%                             Zdeg = eulangs(:,1)*180/pi;
-%                             Ex2.V1.T3(index,9:11) = [Xdeg,Ydeg,Zdeg];
-%                             
-%                             index = index + 1;
-%                         end
-%                     end
-%                 end
-% 
-%             elseif contains(Fname,'_4_')
-%                 index = length(Ex2.V1.T4);
-%                 for ii = 1:length(msgs)
-%                     % Loop through detections
-%                     for jj = 1:length(msgs{ii}.Detections)
-%                         if i <= numfile
-%                             
-%                             Dist_ang = regexp(Fname,'\w*_\w*_._','split');
-%                             DAdbl = str2double(Dist_ang(2));
-%                             field1 = double(msgs{ii}.Detections(jj).Id);
-%                             field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
-%                             field3 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.Y;
-%                             field4 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.Z;
-%                             field5 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.X;
-%                             field6 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.Y;
-%                             field7 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.Z;
-%                             field8 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.W;
-% 
-%                             Ex2(1).V1(1).T4(index,1:9) = [DAdbl,field1,field2,field3,field4,field5,field6,field7,field8];
-%                             
-%                             quats = Ex2.V1.T4(index,5:8);
-%                             eulangs = quat2eul(quats);
-%                             Xdeg = eulangs(:,3)*180/pi;
-%                             Ydeg = eulangs(:,2)*180/pi;
-%                             Zdeg = eulangs(:,1)*180/pi;
-%                             Ex2.V1.T4(index,9:11) = [Xdeg,Ydeg,Zdeg];
-%                             
-%                             index = index + 1;
-%                         end
-%                     end
-%                 end
-%             end
-%             
-%         elseif contains(Fname,'T')
-%             if contains(Fname,'_1_')
-%                 index = length(Ex2.T.T1);
-%                 for ii = 1:length(msgs)
-%                     % Loop through detections
-%                     for jj = 1:length(msgs{ii}.Detections)
-%                         if i <= numfile
-%                             
-%                             Dist_ang = regexp(Fname,'\w*_\w*_._','split');
-%                             DAdbl = str2double(Dist_ang(2));
-%                             field1 = double(msgs{ii}.Detections(jj).Id);
-%                             field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
-%                             field3 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.Y;
-%                             field4 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.Z;
-%                             field5 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.X;
-%                             field6 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.Y;
-%                             field7 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.Z;
-%                             field8 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.W;
-% 
-%                             Ex2(1).T(1).T1(index,1:9) = [DAdbl,field1,field2,field3,field4,field5,field6,field7,field8];
-%                             
-%                             quats = Ex2.T.T1(index,5:8);
-%                             eulangs = quat2eul(quats);
-%                             Xdeg = eulangs(:,3)*180/pi;
-%                             Ydeg = eulangs(:,2)*180/pi;
-%                             Zdeg = eulangs(:,1)*180/pi;
-%                             Ex2.T.T1(index,9:11) = [Xdeg,Ydeg,Zdeg];
-%                             
-%                             index = index + 1;
-%                         end
-%                     end
-%                 end
-% 
-%             elseif contains(Fname,'_2_')
-%                 index = length(Ex2.T.T2);
-%                 for ii = 1:length(msgs)
-%                     % Loop through detections
-%                     for jj = 1:length(msgs{ii}.Detections)
-%                         if i <= numfile
-%                             
-%                             Dist_ang = regexp(Fname,'\w*_\w*_._','split');
-%                             DAdbl = str2double(Dist_ang(2));
-%                             field1 = double(msgs{ii}.Detections(jj).Id);
-%                             field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
-%                             field3 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.Y;
-%                             field4 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.Z;
-%                             field5 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.X;
-%                             field6 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.Y;
-%                             field7 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.Z;
-%                             field8 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.W;
-% 
-%                             Ex2(1).T(1).T2(index,1:9) = [DAdbl,field1,field2,field3,field4,field5,field6,field7,field8];
-%                             
-%                             quats = Ex2.T.T2(index,5:8);
-%                             eulangs = quat2eul(quats);
-%                             Xdeg = eulangs(:,3)*180/pi;
-%                             Ydeg = eulangs(:,2)*180/pi;
-%                             Zdeg = eulangs(:,1)*180/pi;
-%                             Ex2.T.T2(index,9:11) = [Xdeg,Ydeg,Zdeg];
-%                             
-%                             index = index + 1;
-%                         end
-%                     end
-%                 end
-% 
-%             elseif contains(Fname,'_3_')
-%                 index = length(Ex2.T.T3);
-%                 for ii = 1:length(msgs)
-%                     % Loop through detections
-%                     for jj = 1:length(msgs{ii}.Detections)
-%                         if i <= numfile
-%                             Dist_ang = regexp(Fname,'\w*_\w*_._','split');
-%                             DAdbl = str2double(Dist_ang(2));
-%                             field1 = double(msgs{ii}.Detections(jj).Id);
-%                             field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
-%                             field3 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.Y;
-%                             field4 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.Z;
-%                             field5 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.X;
-%                             field6 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.Y;
-%                             field7 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.Z;
-%                             field8 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.W;
-% 
-%                             Ex2(1).T(1).T3(index,1:9) = [DAdbl,field1,field2,field3,field4,field5,field6,field7,field8];
-%                             
-%                             quats = Ex2.T.T3(index,5:8);
-%                             eulangs = quat2eul(quats);
-%                             Xdeg = eulangs(:,3)*180/pi;
-%                             Ydeg = eulangs(:,2)*180/pi;
-%                             Zdeg = eulangs(:,1)*180/pi;
-%                             Ex2.T.T3(index,9:11) = [Xdeg,Ydeg,Zdeg];
-%                             
-%                             index = index + 1;
-%                         end
-%                     end
-%                 end
-% 
-%             elseif contains(Fname,'_4_')
-%                 index = length(Ex2.T.T4);
-%                 for ii = 1:length(msgs)
-%                     % Loop through detections
-%                     for jj = 1:length(msgs{ii}.Detections)
-%                         if i <= numfile
-%                             
-%                             Dist_ang = regexp(Fname,'\w*_\w*_._','split');
-%                             DAdbl = str2double(Dist_ang(2));
-%                             field1 = double(msgs{ii}.Detections(jj).Id);
-%                             field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
-%                             field3 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.Y;
-%                             field4 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.Z;
-%                             field5 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.X;
-%                             field6 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.Y;
-%                             field7 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.Z;
-%                             field8 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.W;
-% 
-%                             Ex2(1).T(1).T4(index,1:9) = [DAdbl,field1,field2,field3,field4,field5,field6,field7,field8];
-%                             
-%                             quats = Ex2.T.T4(index,5:8);
-%                             eulangs = quat2eul(quats);
-%                             Xdeg = eulangs(:,3)*180/pi;
-%                             Ydeg = eulangs(:,2)*180/pi;
-%                             Zdeg = eulangs(:,1)*180/pi;
-%                             Ex2.T.T4(index,9:11) = [Xdeg,Ydeg,Zdeg];
-%                             
-%                             index = index + 1;
-%                         end
-%                     end
-%                 end
-%             end           
-%         end
-%     end
-% end
+stuct1 = struct('A',1,'B',0);
+stuct2 = struct('C',1,'D',0);
+name = [fieldnames(stuct1); fieldnames(stuct2)]
+nargin
 
+%%
+clear all
+Data = struct;
+imports = input('Which arrays would you like to import?\n (You can enter 0-7, an array [] or 999 for all)\n');
+if (999>imports(1) && (imports(1)>0))
+    for k = 1:numel(imports)
+        dirs{k,:} = ['Ex' num2str(imports(k))];
+    end
+elseif imports == 999
+    imports = 1:7;
+    for k = 1:numel(imports)
+        dirs{k,:} = ['Ex' num2str(imports(k))];
+    end
+elseif imports == 0
+end
 
-%% Bag loading and message reading
+for m = 1:numel(dirs)
+    if ~isfield(Data,dirs{m})
+        Data.(dirs{m})=struct;
+    end
+    Data.(dirs{m}) = bagloading(char(strcat(dirs{m},'/')));
+end
 
-% Prefix = 'Ex2/bags/';
-% % Prefix = 'BagTests/';
-% filein = dir(Prefix);
-% % relfilename = strcat(Prefix,filein(5).name);
-% numfile=length(filein);
-% index = 1;
-% for i=1:numfile
-%     [Fpath,Fname,Fext]=fileparts(filein(i).name);
-%     if strcmp('.bag',Fext)
-%         relfilename = strcat(Prefix,filein(i).name);
-%         Bag = rosbag(relfilename);
-%         bag_select = select(Bag,'Topic','/tag_detections');
-%         msgs = readMessages(bag_select);
-%         if contains(Fname,'P')
-%             for ii = 1:length(msgs)
-%                 % Loop through detections
-%                 for jj = 1:length(msgs{ii}.Detections)
-%                     if contains(Fname,'_1_')
-%                         if i <= numfile
-%                             Dist_ang = regexp(Fname,'\w*_\w*_._','split');
-%                             field1 = msgs{ii}.Detections(jj).Id;
-%                             field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
-%                             Ex2(1).P(1).T1(index,:) = [Dist_ang(2),field1,field2];
-%                             index = index + 1;
-%                         end
-%                     
-%                     elseif contains(Fname,'_2_')
-%                         if i <= numfile
-%                             Dist_ang = regexp(Fname,'\w*_\w*_._','split');
-%                             field1 = msgs{ii}.Detections(jj).Id;
-%                             field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
-%                             Ex2(1).P(1).T2(index,:) = [Dist_ang(2),field1,field2];
-%                             index = index + 1;
-%                         end                        
-%                     
-%                     elseif contains(Fname,'_3_')
-%                         if i <= numfile
-%                             Dist_ang = regexp(Fname,'\w*_\w*_._','split');
-%                             field1 = msgs{ii}.Detections(jj).Id;
-%                             field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
-%                             Ex2(1).P(1).T3(index,:) = [Dist_ang(2),field1,field2];
-%                             index = index + 1;
-%                         end                        
-%                     
-%                     elseif contains(Fname,'_4_')
-%                         if i <= numfile
-%                             Dist_ang = regexp(Fname,'\w*_\w*_._','split');
-%                             field1 = msgs{ii}.Detections(jj).Id;
-%                             field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
-%                             Ex2(1).P(1).T4(index,:) = [Dist_ang(2),field1,field2];
-%                             index = index + 1;
-%                         end                        
-%                     end
-%                 end
-%             end
-%         
-%         elseif contains(Fname,'V1')
-%             for ii = 1:length(msgs)
-%                 % Loop through detections
-%                 for jj = 1:length(msgs{ii}.Detections)
-%                     if contains(Fname,'_1_')
-%                         if i <= numfile
-%                             Dist_ang = regexp(Fname,'\w*_\w*_._','split');
-%                             field1 = msgs{ii}.Detections(jj).Id;
-%                             field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
-%                             Ex2(1).V(1).T1(index,:) = [Dist_ang(2),field1,field2];
-%                             index = index + 1;
-%                         end
-%                     
-%                     elseif contains(Fname,'_2_')
-%                         if i <= numfile
-%                             Dist_ang = regexp(Fname,'\w*_\w*_._','split');
-%                             field1 = msgs{ii}.Detections(jj).Id;
-%                             field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
-%                             Ex2(1).V(1).T2(index,:) = [Dist_ang(2),field1,field2];
-%                             index = index + 1;
-%                         end                        
-%                     
-%                     elseif contains(Fname,'_3_')
-%                         if i <= numfile
-%                             Dist_ang = regexp(Fname,'\w*_\w*_._','split');
-%                             field1 = msgs{ii}.Detections(jj).Id;
-%                             field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
-%                             Ex2(1).V(1).T3(index,:) = [Dist_ang(2),field1,field2];
-%                             index = index + 1;
-%                         end                        
-%                     
-%                     elseif contains(Fname,'_4_')
-%                         if i <= numfile
-%                             Dist_ang = regexp(Fname,'\w*_\w*_._','split');
-%                             field1 = msgs{ii}.Detections(jj).Id;
-%                             field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
-%                             Ex2(1).V(1).T4(index,:) = [Dist_ang(2),field1,field2];
-%                             index = index + 1;
-%                         end                        
-%                     end
-%                 end
-%             end
-%         
-%         elseif contains(Fname,'T')
-%             for ii = 1:length(msgs)
-%                 % Loop through detections
-%                 for jj = 1:length(msgs{ii}.Detections)
-%                     if contains(Fname,'_1_')
-%                         if i <= numfile
-%                             Dist_ang = regexp(Fname,'\w*_\w*_._','split');
-%                             field1 = msgs{ii}.Detections(jj).Id;
-%                             field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
-%                             Ex2(1).T(1).T1(index,:) = [Dist_ang(2),field1,field2];
-%                             index = index + 1;
-%                         end
-%                     
-%                     elseif contains(Fname,'_2_')
-%                         if i <= numfile
-%                             Dist_ang = regexp(Fname,'\w*_\w*_._','split');
-%                             field1 = msgs{ii}.Detections(jj).Id;
-%                             field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
-%                             Ex2(1).T(1).T2(index,:) = [Dist_ang(2),field1,field2];
-%                             index = index + 1;
-%                         end                        
-%                     
-%                     elseif contains(Fname,'_3_')
-%                         if i <= numfile
-%                             Dist_ang = regexp(Fname,'\w*_\w*_._','split');
-%                             field1 = msgs{ii}.Detections(jj).Id;
-%                             field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
-%                             Ex2(1).T(1).T3(index,:) = [Dist_ang(2),field1,field2];
-%                             index = index + 1;
-%                         end                        
-%                     
-%                     elseif contains(Fname,'_4_')
-%                         if i <= numfile
-%                             Dist_ang = regexp(Fname,'\w*_\w*_._','split');
-%                             field1 = msgs{ii}.Detections(jj).Id;
-%                             field2 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Position.X;
-%                             Ex2(1).T(1).T4(index,:) = [Dist_ang(2),field1,field2];
-%                             index = index + 1;
-%                         end                        
-%                     end
-%                 end
-%             end
-%         end
-%     end
-% end
 
 %%
 % msgs = readMessages(bag_select);

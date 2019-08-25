@@ -1,32 +1,99 @@
 %% The final product
 % Contains code that is "verified"
-% requires that "Load_all" be ran prior
+% this assumes that bag files for each experiment ar in separate
+% directories, if they are all in one directory then this will not work
+% properly
 
 clear all
 clc
 close all
 
-% load('Data/Ex1struct')
-% load('Data/Ex2struct')
-% load('Data/Ex2structtab') % will remove when I transfer bag files
-load('Data/Ex3struct')
-Ex3 = structout;
-load('Data/Ex4struct')
-Ex4 = structout; % should find a way to fix this
-% load('Data/Ex5struct')
-% load('Data/Ex6struct')
-% load('Data/Ex7struct')
+% 
+% Check if mat file exists in current directory
+if isfile('Data/AllBags.mat')
+    load('Data/AllBags.mat')
+    availEx = fieldnames(Data);
+    fprintf('Available Experiments:\n', availEx{:})
+    fprintf('%s\n', availEx{:})
+    
+    prompt = ['\nWhat arrays would you like to load/reload?\n' ... 
+    '(You can enter 0-7, an array [], or 999 for all)\n'];
+    imports = input(prompt);
+    if imports~=0
+        if (999>imports(1) && (imports(1)>0))
+            for k = 1:numel(imports)
+                dirs{k,:} = ['Ex' num2str(imports(k))];
+            end
+        elseif imports == 999
+            imports = 1:7;
+            for k = 1:numel(imports)
+                dirs{k,:} = ['Ex' num2str(imports(k))];
+            end
+        end
+        
+        for m = 1:numel(dirs)
+            if ~isfield(Data,dirs{m})
+                Data.(dirs{m})=struct;
+            end
+            Data.(dirs{m}) = bagloading(char(strcat(dirs{m},'/')));
+        end
+    end
 
-% Ex2.T = Ex2Tab.T;% will remove when I transfer bag files
-% clearvars Ex2Tab% will remove when I transfer bag files
+else
+    Data = struct;
+    prompt = ['Which arrays would you like to import?\n' ... 
+    '(You can enter 0-7, an array [], or 999 for all)\n'];
+    imports = input(prompt);
+    if imports~=0
+        if (999>imports(1) && (imports(1)>0))
+            for k = 1:numel(imports)
+                dirs{k,:} = ['Ex' num2str(imports(k))];
+            end
+        elseif imports == 999
+            imports = 1:7;
+            for k = 1:numel(imports)
+                dirs{k,:} = ['Ex' num2str(imports(k))];
+            end
+        end
+        
+        for m = 1:numel(dirs)
+            if ~isfield(Data,dirs{m})
+                Data.(dirs{m})=struct;
+            end
+            Data.(dirs{m}) = bagloading(char(strcat(dirs{m},'/')));
+        end
+    end
 
+end
+
+clearvars -except Data
+save('Data/AllBags.mat')
+
+
+if verLessThan('matlab','9.5')
+    % -- Code to run in MATLAB R2018a and earlier here --
+    fprintf('Please use a newer version of MATLAB to continue\')
+
+else
+    exps = fieldnames(Data);
+    for k = 1:numel(exps)
+        tags = fieldnames(Data.(exps{k}));
+        for m = 1:numel(tags)
+            if tags{m} == 'P'
+                tagID = 5;
+            else tagID = 7;
+            end
+            Data.(exps{k}).Results.(tags{m}) = structparse(Data.(exps{k}).(tags{m}),tagID);
+        end
+    end
+end
 % Ex2.Results.P = structparse(Ex2.P,5);
 % Ex2.Results.V1 = structparse(Ex2.V1,5);
 % Ex2.Results.T = structparse(Ex2.T,5);
 
- Ex3.Results.V2 = structparse(Ex3.V2,5);
- Ex3.Results.V1 = structparse(Ex3.V1,5);
- Ex3.Results.T = structparse(Ex3.T,5);
+%  Ex3.Results.V2 = structparse(Ex3.V2,5);
+%  Ex3.Results.V1 = structparse(Ex3.V1,5);
+%  Ex3.Results.T = structparse(Ex3.T,5);
 
 
-plotresults(Ex3)
+% plotresults(Ex3)
