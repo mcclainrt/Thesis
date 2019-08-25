@@ -16,7 +16,7 @@ if isfile('Data/AllBags.mat')
     fprintf('Available Experiments:\n', availEx{:})
     fprintf('%s\n', availEx{:})
     
-    prompt = ['\nWhat arrays would you like to load/reload?\n' ... 
+    prompt = ['\nWhat Experiments would you like to load/reload?\n' ... 
     '(You can enter 0-7, an array [], or 999 for all)\n'];
     imports = input(prompt);
     if imports~=0
@@ -41,7 +41,7 @@ if isfile('Data/AllBags.mat')
 
 else
     Data = struct;
-    prompt = ['Which arrays would you like to import?\n' ... 
+    prompt = ['Which Experiments would you like to import?\n' ... 
     '(You can enter 0-7, an array [], or 999 for all)\n'];
     imports = input(prompt);
     if imports~=0
@@ -87,6 +87,9 @@ else
         end
     end
 end
+
+save('Data/all_results.mat', 'Data')
+
 % Ex2.Results.P = structparse(Ex2.P,5);
 % Ex2.Results.V1 = structparse(Ex2.V1,5);
 % Ex2.Results.T = structparse(Ex2.T,5);
