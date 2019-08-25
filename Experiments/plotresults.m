@@ -1,7 +1,7 @@
 function plotresults(Struct1)
 %Need to finish this
 names = fieldnames(Struct1.Results);
-Tests = {'T1' 'T2' 'T3' 'T4'};
+Tests = {'Test1' 'Test2' 'Test3' 'Test4'};
 
 for h = 1:length(Tests)
     figure

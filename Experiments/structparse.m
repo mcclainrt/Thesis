@@ -1,5 +1,7 @@
 function [Results] = structparse(Structure, tagID)
 
+% May be able to make this dynamic with structure names?
+
 time = 10;
 
 %https://www.mathworks.com/matlabcentral/answers/224877-how-to-extract-rows-based-on-column-values-in-a-matrix
@@ -15,8 +17,8 @@ angs3 = [10 20 30 35 40 45];
 for k = 1:length(dists)
     
     % Pull set of data out for each distance
-    evalind = Structure.T1(:,1) == dists(k);
-    eval = Structure.T1(evalind,:);
+    evalind = Structure.Test1(:,1) == dists(k);
+    eval = Structure.Test1(evalind,:);
     
     % Pull the correct tag ids
     trueind = eval(:,2) == tagID;
@@ -42,13 +44,13 @@ for k = 1:length(dists)
     IDrate(k,1:2) = [T_hits, F_hits];
 
 end
-Results.T1 = [dists', errval, errval_out, IDrate];
+Results.Test1 = [dists', errval, errval_out, IDrate];
 
 for k = 1:length(angs1)
     
     % Pull set of data out for each distance
-    evalind = Structure.T2(:,1) == angs1(k);
-    eval = Structure.T2(evalind,:);
+    evalind = Structure.Test2(:,1) == angs1(k);
+    eval = Structure.Test2(evalind,:);
     
     % Pull the correct tag ids
     trueind = eval(:,2) == tagID;
@@ -74,13 +76,13 @@ for k = 1:length(angs1)
     IDrate2(k,1:2) = [T_hits, F_hits];
 
 end
-Results.T2 = [angs1', errval2, errval_out2, IDrate2];
+Results.Test2 = [angs1', errval2, errval_out2, IDrate2];
 
 for k = 1:length(angs2)
     
     % Pull set of data out for each distance
-    evalind = Structure.T3(:,1) == angs2(k);
-    eval = Structure.T3(evalind,:);
+    evalind = Structure.Test3(:,1) == angs2(k);
+    eval = Structure.Test3(evalind,:);
     
     % Pull the correct tag ids
     trueind = eval(:,2) == tagID;
@@ -106,13 +108,13 @@ for k = 1:length(angs2)
     IDrate3(k,1:2) = [T_hits, F_hits];
 
 end
-Results.T3 = [angs2', errval3, errval_out3, IDrate3];
+Results.Test3 = [angs2', errval3, errval_out3, IDrate3];
 
 for k = 1:length(angs3)
     
     % Pull set of data out for each distance
-    evalind = Structure.T4(:,1) == angs3(k);
-    eval = Structure.T4(evalind,:);
+    evalind = Structure.Test4(:,1) == angs3(k);
+    eval = Structure.Test4(evalind,:);
     
     % Pull the correct tag ids
     trueind = eval(:,2) == tagID;
@@ -138,4 +140,4 @@ for k = 1:length(angs3)
     IDrate4(k,1:2) = [T_hits, F_hits];
 
 end
-Results.T4 = [angs3', errval4, errval_out4, IDrate4];
+Results.Test4 = [angs3', errval4, errval_out4, IDrate4];
