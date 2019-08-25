@@ -144,7 +144,7 @@ for ind=1:size(Ex2.T.T1,1)
 end
 
 %% Haven't done anything below this
-load('Ex2struct')
+% load('Ex2struct')
 time = 10;
 
 %https://www.mathworks.com/matlabcentral/answers/224877-how-to-extract-rows-based-on-column-values-in-a-matrix
@@ -153,40 +153,106 @@ time = 10;
 
 % Extract each set, then true and false, then count
 dists = [1 1.5 2 2.5 3 3.5 4 4.5 5 5.5 6];
-errors = zeros(length(dists), 1);
-%true = zeros(1,8);
-plot1.P.true = [];
-
-
-for k = 1:length(dists)
+% errors = zeros(length(dists), 1);
+% %true = zeros(1,8);
+% plot1.P.true = [];
+% 
+% 
+% for k = 1:length(dists)
+%     
+%     % Pull set of data out for each distance
+%     evalind = Ex2.P.T1(:,1) == dists(k);
+%     eval = Ex2.P.T1(evalind,:);
+%     
+%     % Pull the correct tag ids
+%     trueind = eval(:,2) == 5;
+%     true = eval(trueind,:);
+%     others = eval(~trueind,:);
+%     % counts trues
+%     Tcount = size(true,1);
+%     Ocount = size(others,1);
+%     % Remove outliers
+%     [A, outind] = rmoutliers(true(:,5));
+%     true_out = true(~outind,:);
+%     % calculate error of trues
+%     SE = (dists(k)-true_out(:,5)).^2;
+%     RMSE(k,1) = sqrt(mean(SE));
+%     % calculate detections over 10 seconds
+%     
+%     % Percentage of True Positive hits and False Poitive hits over 10 sec
+%     rate = 10; % the topic publishing rate, need to record some and average
+%     T_hits = Tcount/(rate*10);
+%     F_hits = Ocount/(rate*10);
+%     
+%     IDrate(k,1:3) = [dists(k), T_hits, F_hits];
+%     
+%     plot1.P.true = cat(1,plot1.P.true,true); % save errors
+%     falseind = eval(:,2) ~= 5; 
+%     false = eval(falseind,:);
+%     % count falses
+%     % error(k) = 
+%     
+%     errval(k) = std(true(:,6));
+%     errval_out(k) = std(true_out(:,6));
+% 
+% end
+angs1 = [10 20 30 35 40 45 50 55 60 65 70 75];
+angs2 = [10 20 30 35 40 45 50 55 60 65 70 75];
+angs3 = [10 20 30 35 40 45];
+Structure = Ex2.P;
+tagID = 5;
+time = 10;
+for k = 1:length(angs3)
     
-    evalind = Ex2.P.T1(:,1) == dists(k);
-    eval = Ex2.P.T1(evalind,:);
+    % Pull set of data out for each distance
+    evalind = Structure.T4(:,1) == angs3(k);
+    eval = Structure.T4(evalind,:);
     
-    trueind = eval(:,2) == 5;
+    % Pull the correct tag ids
+    trueind = eval(:,2) == tagID;
     true = eval(trueind,:);
+    others = eval(~trueind,:);
     % counts trues
     Tcount = size(true,1);
+    Ocount = size(others,1);
+    % Remove outliers
     [A, outind] = rmoutliers(true(:,5));
     true_out = true(~outind,:);
-    % calculate error of trues
-    SE = (dists(k)-true_out(:,5)).^2;
-    RMSE(k,1) = sqrt(mean(SE));
-    % calculate detections over 10 seconds
     
-    plot1.P.true = cat(1,plot1.P.true,true); % save errors
-    falseind = eval(:,2) ~= 5; 
-    false = eval(falseind,:);
-    % count falses
-    % error(k) = 
+    % Error bars
+    errval(k,:) = std(true(:,6));
+    errval_out(k,:) = std(true_out(:,6));
+
+    
+    % Percentage of True Positive hits and False Poitive hits over 10 sec
+    rate = 10; % the topic publishing rate, need to record some and average
+    T_hits = Tcount/(rate*time);
+    F_hits = Ocount/(rate*time);
+    
+    IDrate(k,1:2) = [T_hits, F_hits];
 
 end
+Results.T4 = [angs3', errval, errval_out, IDrate];
 
-plot(dists,RMSE)
+Ex2.Results.P = structparse(Ex2.P,5);
+errorbar(Ex2.Results.P.T1(:,1),Ex2.Results.P.T1(:,1),Ex2.Results.P.T1(:,2))
+errorbar(Ex2.Results.P.T1(:,1),Ex2.Results.P.T1(:,1),Ex2.Results.P.T1(:,3))
 
-false = Ex2.P.T1(:,2) ~= 5
-Ex2.P.T1(false,:)
+figure
+plot(Ex2.Results.P.T1(:,1),Ex2.Results.P.T1(:,4),Ex2.Results.P.T1(:,1),Ex2.Results.P.T1(:,5))
 
+% false = Ex2.P.T1(:,2) ~= 5;
+% Ex2.P.T1(false,:)
+Struct1 = Ex2;
+names = fieldnames(Struct1.Results);
+Tests = [{'T1'} {'T2'} {'T3'} {'T4'}];
+
+for h = 1:length(Tests)
+    for k = 1:length(names)
+        vals = getfield(Struct1.Results,names{k},Tests{h});
+        errorbar(vals(:,1),vals(:,1),vals(:,2))
+    end
+end
 
 
     

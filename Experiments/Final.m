@@ -5,14 +5,20 @@ clear all
 clc
 close all
 
-
+load('Data/Ex1struct')
 load('Data/Ex2struct')
 load('Data/Ex2structtab')
 load('Data/Ex3struct')
 load('Data/Ex4struct')
-load('Data/Ex5struct')
-load('Data/Ex6struct')
-load('Data/Ex7struct')
+% load('Data/Ex5struct')
+% load('Data/Ex6struct')
+% load('Data/Ex7struct')
 
 Ex2.T = Ex2Tab.T;
 clearvars Ex2Tab
+
+Ex2.Results.P = structparse(Ex2.P,5);
+Ex2.Results.V1 = structparse(Ex2.V1,5);
+Ex2.Results.T = structparse(Ex2.T,5);
+
+plotresults(Ex2)

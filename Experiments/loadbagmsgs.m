@@ -17,13 +17,16 @@ function [Fields] = loadbagmsgs(msgs,Fname)
                 field9 = msgs{ii}.Detections(jj).Pose.Pose.Pose.Orientation.W;
 
                 Fields(index,1:5) = [DAdbl,field2,field3,field4,field5];
+                
+                TotalDist = sqrt(field3^2+field4^2+field5^2);
+                Fields(index,6) = TotalDist;
 
                 quats = [field9,field6,field7,field8];
                 eulangs = quat2eul(quats);
                 Xdeg = eulangs(:,3)*180/pi;
                 Ydeg = eulangs(:,2)*180/pi;
                 Zdeg = eulangs(:,1)*180/pi;
-                Fields(index,6:8) = [Xdeg,Ydeg,Zdeg];
+                Fields(index,7:9) = [Xdeg,Ydeg,Zdeg];
 
                 index = index + 1;
                 
@@ -33,7 +36,7 @@ function [Fields] = loadbagmsgs(msgs,Fname)
         if isempty(Fields)
             fprintf('%s has no detections.\nPress a key. \n',Fname)
             pause
-            Fields = zeros(1,8);
+            Fields = zeros(1,9);
         end
           
 end

@@ -3,13 +3,13 @@
 clear all
 %% Structure set-up
 
-Ex3.P = struct('T1',zeros(1,8),'T2',zeros(1,8),'T3',zeros(1,8),'T4',zeros(1,8));
+Ex3.P = struct('T1',zeros(1,9),'T2',zeros(1,9),'T3',zeros(1,9),'T4',zeros(1,9));
 
-Ex3.T = struct('T1',zeros(1,8),'T2',zeros(1,8),'T3',zeros(1,8),'T4',zeros(1,8));
+Ex3.T = struct('T1',zeros(1,9),'T2',zeros(1,9),'T3',zeros(1,9),'T4',zeros(1,9));
 
-Ex3.V1 = struct('T1',zeros(1,8),'T2',zeros(1,8),'T3',zeros(1,8),'T4',zeros(1,8));
+Ex3.V1 = struct('T1',zeros(1,9),'T2',zeros(1,9),'T3',zeros(1,9),'T4',zeros(1,9));
 
-Ex3.V2 = struct('T1',zeros(1,8),'T2',zeros(1,8),'T3',zeros(1,8),'T4',zeros(1,8));
+Ex3.V2 = struct('T1',zeros(1,9),'T2',zeros(1,9),'T3',zeros(1,9),'T4',zeros(1,9));
 
 %% Loop restructuring 
 
@@ -170,4 +170,4 @@ end
 
 clearvars -except Ex3
 
-save('Data/Ex3struct')
+save(['Data/' Namecell{1} 'struct'])

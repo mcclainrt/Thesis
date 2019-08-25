@@ -3,13 +3,13 @@
 
 %% Structure set-up
 
-Ex2.P = struct('T1',zeros(1,8),'T2',zeros(1,8),'T3',zeros(1,8),'T4',zeros(1,8));
+Ex2.P = struct('T1',zeros(1,9),'T2',zeros(1,9),'T3',zeros(1,9),'T4',zeros(1,9));
 
-Ex2.T = struct('T1',zeros(1,8),'T2',zeros(1,8),'T3',zeros(1,8),'T4',zeros(1,8));
+Ex2.T = struct('T1',zeros(1,9),'T2',zeros(1,9),'T3',zeros(1,9),'T4',zeros(1,9));
 
-Ex2.V1 = struct('T1',zeros(1,8),'T2',zeros(1,8),'T3',zeros(1,8),'T4',zeros(1,8));
+Ex2.V1 = struct('T1',zeros(1,9),'T2',zeros(1,9),'T3',zeros(1,9),'T4',zeros(1,9));
 
-Ex2.V2 = struct('T1',zeros(1,8),'T2',zeros(1,8),'T3',zeros(1,8),'T4',zeros(1,8));
+Ex2.V2 = struct('T1',zeros(1,9),'T2',zeros(1,9),'T3',zeros(1,9),'T4',zeros(1,9));
 
 %% Loop restructuring 
 
