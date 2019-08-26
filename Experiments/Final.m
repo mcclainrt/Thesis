@@ -87,9 +87,10 @@ else
             Data.(exps{k}).Results.(tags{m}) = structparse(Data.(exps{k}).(tags{m}),tagID);
         end
     end
-end
 
 save('Data/all_results.mat', 'Data')
+
+end
 
 % Ex2.Results.P = structparse(Ex2.P,5);
 % Ex2.Results.V1 = structparse(Ex2.V1,5);
