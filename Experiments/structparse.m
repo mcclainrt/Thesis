@@ -3,7 +3,7 @@ function [Results] = structparse(Structure, tagID, EXname, tagtype)
 % May be able to make this dynamic with structure names?
 
 time = 10;
-rate = 2.5; % the topic publishing rate, need to record some and average
+rate = 2.452; % the topic publishing rate, need to record some and average
 TestsAvail = fieldnames(Structure);
 
 %https://www.mathworks.com/matlabcentral/answers/224877-how-to-extract-rows-based-on-column-values-in-a-matrix
