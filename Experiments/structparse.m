@@ -3,6 +3,7 @@ function [Results] = structparse(Structure, tagID)
 % May be able to make this dynamic with structure names?
 
 time = 10;
+rate = 2.5; % the topic publishing rate, need to record some and average
 
 %https://www.mathworks.com/matlabcentral/answers/224877-how-to-extract-rows-based-on-column-values-in-a-matrix
 
@@ -37,7 +38,6 @@ for k = 1:length(dists)
 
     
     % Percentage of True Positive hits and False Poitive hits over 10 sec
-    rate = 10; % the topic publishing rate, need to record some and average
     T_hits = Tcount/(rate*time);
     F_hits = Ocount/(rate*time);
     
@@ -74,7 +74,6 @@ for k = 1:length(angs1)
 
     
     % Percentage of True Positive hits and False Poitive hits over 10 sec
-    rate = 10; % the topic publishing rate, need to record some and average
     T_hits = Tcount/(rate*time);
     F_hits = Ocount/(rate*time);
     
@@ -109,7 +108,6 @@ for k = 1:length(angs2)
 
     
     % Percentage of True Positive hits and False Poitive hits over 10 sec
-    rate = 10; % the topic publishing rate, need to record some and average
     T_hits = Tcount/(rate*time);
     F_hits = Ocount/(rate*time);
     
@@ -144,7 +142,6 @@ for k = 1:length(angs3)
 
     
     % Percentage of True Positive hits and False Poitive hits over 10 sec
-    rate = 10; % the topic publishing rate, need to record some and average
     T_hits = Tcount/(rate*time);
     F_hits = Ocount/(rate*time);
     
