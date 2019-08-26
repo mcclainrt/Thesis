@@ -72,7 +72,7 @@ save('Data/AllBags.mat')
 
 if verLessThan('matlab','9.5')
     % -- Code to run in MATLAB R2018a and earlier here --
-    fprintf('Please use a newer version of MATLAB to continue\')
+    fprintf('Please use a newer version of MATLAB to continue \n')
 
 else
     exps = fieldnames(Data);
