@@ -1,9 +1,10 @@
-function [Results] = structparse(Structure, tagID)
+function [Results] = structparse(Structure, tagID, EXname, tagtype)
 
 % May be able to make this dynamic with structure names?
 
 time = 10;
 rate = 2.5; % the topic publishing rate, need to record some and average
+TestsAvail = fieldnames(Structure);
 
 %https://www.mathworks.com/matlabcentral/answers/224877-how-to-extract-rows-based-on-column-values-in-a-matrix
 
@@ -16,7 +17,10 @@ angs2 = [10 20 30 35 40 45 50 55 60];
 angs3 = [10 20 30 35 40 45];
 
 for k = 1:length(dists)
-    
+    if ~contains(TestsAvail,'Test1')
+        fprintf('No Test 1 available in %s %s \n', EXname, tagtype)
+        return
+    end
     % Pull set of data out for each distance
     evalind = Structure.Test1(:,1) == dists(k);
     eval = Structure.Test1(evalind,:);
@@ -47,7 +51,10 @@ end
 Results.Test1 = [dists', errval, errval_out, IDrate];
 
 for k = 1:length(angs1)
-    
+    if ~contains(TestsAvail,'Test2')
+        fprintf('No Test 2 available in %s %s \n', EXname, tagtype)
+        return
+    end
     % Pull set of data out for each distance
     evalind = Structure.Test2(:,1) == angs1(k);
     eval = Structure.Test2(evalind,:);
@@ -83,7 +90,10 @@ end
 Results.Test2 = [angs1', errval2, errval_out2, meanval_nO2, IDrate2];
 
 for k = 1:length(angs2)
-    
+    if ~contains(TestsAvail,'Test3')
+        fprintf('No Test 3 available in %s %s \n', EXname, tagtype)
+        return
+    end
     % Pull set of data out for each distance
     evalind = Structure.Test3(:,1) == angs2(k);
     eval = Structure.Test3(evalind,:);
@@ -117,7 +127,10 @@ end
 Results.Test3 = [angs2', errval3, errval_out3, meanval_nO3, IDrate3];
 
 for k = 1:length(angs3)
-    
+    if ~contains(TestsAvail,'Test4')
+        fprintf('No Test 4 available in %s %s \n', EXname, tagtype)
+        return
+    end
     % Pull set of data out for each distance
     evalind = Structure.Test4(:,1) == angs3(k);
     eval = Structure.Test4(evalind,:);

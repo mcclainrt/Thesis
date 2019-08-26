@@ -79,12 +79,12 @@ else
     for k = 1:numel(exps)
         tags = fieldnames(Data.(exps{k}));
         for m = 1:numel(tags)
-            if tags{m} == 'V1' || tags{m} == 'V2'
+            if tags{m} == 'V1' | tags{m} == 'V2'
                 tagID = 7;
             else
                 tagID = 5;
             end
-            Data.(exps{k}).Results.(tags{m}) = structparse(Data.(exps{k}).(tags{m}),tagID);
+            Data.(exps{k}).Results.(tags{m}) = structparse(Data.(exps{k}).(tags{m}),tagID,exps{k},tags{m});
         end
     end
 
