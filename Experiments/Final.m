@@ -81,8 +81,10 @@ else
     for k = 1:numel(exps)
         tags = fieldnames(Data.(exps{k}));
         for m = 1:numel(tags)
-            if tags{m} == 'V1' | tags{m} == 'V2'
+            if contains(tags{m},'V1') | contains(tags{m},'V2')
                 tagID = 7;
+            elseif contains(tags{m},'Date')
+                break
             else
                 tagID = 5;
             end
