@@ -35,3 +35,9 @@ for b = 1:numel(Tags)
         end
     end
 end
+
+if ~isfield(stOUT,'Date')
+    stOUT.Date=struct;
+end
+stOUT.Date = clock;
+

@@ -13,8 +13,10 @@ close all
 if isfile('Data/AllBags.mat')
     load('Data/AllBags.mat')
     availEx = fieldnames(Data);
-    fprintf('Available Experiments:\n', availEx{:})
-    fprintf('%s\n', availEx{:})
+    fprintf('Available Experiments:\n')
+    for k = 1:numel(availEx)
+        fprintf('%s Loaded: %i/%i %i:%i\n', availEx{k}, Data.(availEx{k}).Date(2:5))
+    end
     
     prompt = ['\nWhat Experiments would you like to load/reload?\n' ... 
     '(You can enter 0-7, an array [], or 999 for all)\n'];
