@@ -75,26 +75,42 @@ save('Data/AllBags.mat')
 if verLessThan('matlab','9.5')
     % -- Code to run in MATLAB R2018a and earlier here --
     fprintf('Please use a newer version of MATLAB to continue \n')
-
-else
-    exps = fieldnames(Data);
-    for k = 1:numel(exps)
-        tags = fieldnames(Data.(exps{k}));
-        for m = 1:numel(tags)
-            if contains(tags{m},'V1') | contains(tags{m},'V2')
-                tagID = 7;
-            elseif contains(tags{m},'Date')
-                break
-            else
-                tagID = 5;
-            end
-            Data.(exps{k}).Results.(tags{m}) = structparse(Data.(exps{k}).(tags{m}),tagID,exps{k},tags{m});
-        end
-    end
-
-save('Data/all_results.mat', 'Data')
+    return
 
 end
+
+% Results and Filtering calculations
+exps = fieldnames(Data);
+for k = 1:numel(exps)
+    tags = fieldnames(Data.(exps{k}));
+    for m = 1:numel(tags)
+        if contains(tags{m},'V1') | contains(tags{m},'V2')
+            tagID = 7;
+        elseif contains(tags{m},'Date')
+            break
+        else
+            tagID = 5;
+        end
+        Data.(exps{k}).Filtered.(tags{m}) = tagfilter(Data.(exps{k}).(tags{m}),tagID);
+        %Data.(exps{k}).Results.(tags{m}) = resultcalcs(Data.(exps{k}).(tags{m}),tagID,exps{k},tags{m});
+    end
+end
+
+%save('Data/all_results.mat', 'Data')
+
+% plot points, x = known dist y = measured, line through mean? and compare
+% paper in air, vinyl in air, tablet in air
+% vinyl in air and in air dark(1 and 2 lights) and offset (1/2 lights),
+% tablet in air and dark, 
+% ambient air (all tags) and ambient water (all tags)
+% vinyl in water and in water dark(1 and 2 lights) and offset (1/2 lights),
+% tablet in water and dark, 
+% tablet in dark vs vinyl in dark air and both in water
+
+
+plot(Data.Ex2.Filtered.V1.Test1(:,1),Data.Ex2.Filtered.V1.Test1(:,6),'*')
+
+
 
 % Ex2.Results.P = structparse(Ex2.P,5);
 % Ex2.Results.V1 = structparse(Ex2.V1,5);
