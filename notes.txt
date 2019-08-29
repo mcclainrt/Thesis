@@ -39,6 +39,9 @@ camera cal in image_pipeline pack
 	rosrun usb_cam usb_cam_node
 	
 	rosrun camera_calibration cameracalibrator.py --size 8x6 --square 0.0025 image:=/usb_cam/image_raw camera:=/usb_cam
+
+
+Lux fpor ex5 80 at rov 100 at tag
 	
 	"size is number of interior corners of board, square is size of single sqaure on board in meters
 
