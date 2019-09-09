@@ -1,0 +1,31 @@
+9 sep:
+
+Available Experiments:
+Ex1 Loaded: 8/27 9:58
+Ex2 Loaded: 8/27 9:59
+Ex3 Loaded: 8/27 10:0
+Ex4 Loaded: 8/27 10:0
+Ex5 Loaded: 9/6 10:26
+Ex6 Loaded: 9/6 11:3
+
+What Experiments would you like to load/reload?
+(You can enter 0-7, an array [], or 999 for all)
+6
+Ex6_V1_1_3 has no detections.
+Press a key. 
+Ex6_V1_1_35 has no detections.
+Press a key. 
+Ex6_V1_1_4 has no detections.
+Press a key. 
+Ex6_V1_1_45 has no detections.
+Press a key. 
+Ex6_V1_1_5 has no detections.
+Press a key. 
+Ex6_V1_2_70 has no detections.
+Press a key. 
+Ex6_V1_2_75 has no detections.
+Press a key. 
+Ex6_V2_3_30 has no detections.
+Press a key. 
+Ex6_V2_3_35 has no detections.
+Press a key. 
