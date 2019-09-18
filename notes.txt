@@ -228,3 +228,14 @@ https://nimbus.unl.edu/2016/06/exporting-ros-bag-files-to-matlab-v2-0/
 big issue is naming the variables that are being imported without making them dynamic which isn't great
 
 apriltags2_ros/AprilTagDetectionArray.msg and apriltags2_ros/AprilTagDetection.msg
+
+
+----------------------------------------------
+
+NIWC is Ex7
+
+lights = test 1
+no lights = test 2
+5 = .5 meters
+
+test 3 is deep test
