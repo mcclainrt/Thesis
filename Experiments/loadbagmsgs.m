@@ -27,6 +27,8 @@ function [Fields] = loadbagmsgs(msgs,Fname)
                 Ydeg = eulangs(:,2)*180/pi;
                 Zdeg = eulangs(:,1)*180/pi;
                 Fields(index,7:9) = [Xdeg,Ydeg,Zdeg];
+                
+                Fields(index,10) = msgs{ii}.Detections(jj).Pose.Header.Stamp.Sec;
 
                 index = index + 1;
                 

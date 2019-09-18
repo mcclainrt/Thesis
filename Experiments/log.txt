@@ -8,9 +8,26 @@ Ex4 Loaded: 8/27 10:0
 Ex5 Loaded: 9/6 10:26
 Ex6 Loaded: 9/6 11:3
 
-What Experiments would you like to load/reload?
-(You can enter 0-7, an array [], or 999 for all)
-6
+
+
+Ex6_T_2_50 has no detections.
+Press a key. 
+Ex6_T_2_55 has no detections.
+Press a key. 
+Ex6_T_2_60 has no detections.
+Press a key. 
+Ex6_T_2_65 has no detections.
+Press a key. 
+Ex6_T_3_35 has no detections.
+Press a key. 
+Ex6_T_3_40 has no detections.
+Press a key. 
+Ex6_T_3_45 has no detections.
+Press a key. 
+Ex6_T_3_50 has no detections.
+Press a key. 
+Ex6_T_3_55 has no detections.
+Press a key. 
 Ex6_V1_1_3 has no detections.
 Press a key. 
 Ex6_V1_1_35 has no detections.
@@ -29,3 +46,4 @@ Ex6_V2_3_30 has no detections.
 Press a key. 
 Ex6_V2_3_35 has no detections.
 Press a key. 
+Please use a n
