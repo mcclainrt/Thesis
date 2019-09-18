@@ -238,4 +238,18 @@ lights = test 1
 no lights = test 2
 5 = .5 meters
 
+
+https://ksimek.github.io/2013/08/13/intrinsic/ - cam file
 test 3 is deep test
+
+
+single image is not outputting the pose? no timestamp or anything
+a way to run video through a continuous?
+
+for writing:
+talk about debug images from test 3, show the clustering and the thresholding and then sampling
+show how the lighting makes it sample incorrectly
+the lighting shapes
+all dependant on exposure, brightness contrast etc.
+how does april tags do its stuff?
+take debug images from my screen grabs of other tests
