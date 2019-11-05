@@ -1,4 +1,4 @@
-function [Filtered] = tagfilter(Structure, tagID)
+function [Filtered] = tagfilter(Structure) % removed tagID
 
 TestsAvail = fieldnames(Structure);
 
@@ -10,6 +10,15 @@ for v = 1:numel(TestsAvail)
     if ~isfield(Filtered,[TestsAvail{v}])
         Filtered.(TestsAvail{v}) = [];
     end
-    
-    Filtered.(TestsAvail{v}) = Structure.(TestsAvail{v})(Structure.(TestsAvail{v})(:,2) == tagID,:);
+    tagID = unique(Structure.(TestsAvail{v})(:,2)); % added
+    Tags = {};
+    for u = 1:numel(tagID)
+        Tags(u,1) = {"Tag_" + tagID(u)};
+    end
+    for q = 1:numel(Tags)
+        if ~isfield(Filtered.(TestsAvail{v}),[Tags{q}])
+            Filtered.(TestsAvail{v}).(Tags{q}) = [];
+        end
+        Filtered.(TestsAvail{v}).(Tags{q}) = Structure.(TestsAvail{v})(Structure.(TestsAvail{v})(:,2) == tagID(q),:);
+    end
 end

@@ -46,4 +46,24 @@ Ex6_V2_3_30 has no detections.
 Press a key. 
 Ex6_V2_3_35 has no detections.
 Press a key. 
-Please use a n
+
+Warning: No Detection at Ex5, V1, Test4 
+> In testPLOT (line 150) 
+Warning: No Detection at Ex6, V1, Test3 
+> In testPLOT (line 115) 
+Warning: No Detection at Ex6, T, Test4 
+> In testPLOT (line 150) 
+Warning: No Detection at Ex6, V1, Test4 
+> In testPLOT (line 150) 
+Warning: No Detection at Ex6, V2, Test4 
+> In testPLOT (line 150) 
+Warning: No Detection at Ex5, V1, Test4 
+> In testPLOT (line 305) 
+Warning: No Detection at Ex6, V1, Test3 
+> In testPLOT (line 272) 
+Warning: No Detection at Ex6, T, Test4 
+> In testPLOT (line 305) 
+Warning: No Detection at Ex6, V1, Test4 
+> In testPLOT (line 305) 
+Warning: No Detection at Ex6, V2, Test4 
+> In testPLOT (line 305) 

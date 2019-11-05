@@ -1,22 +1,16 @@
-function [Results] = resultcalcs(Structure)
+function [Results] = resultcalcs(Structure, baselineTAGID)
 
 % May be able to make this dynamic with structure names?
+% 
+% time = 10;
+% rate = 2.452; % the topic publishing rate, need to record some and average
 
-time = 10;
-rate = 2.452; % the topic publishing rate, need to record some and average
 TestsAvail = fieldnames(Structure);
 
-%https://www.mathworks.com/matlabcentral/answers/224877-how-to-extract-rows-based-on-column-values-in-a-matrix
-
-%T1s
-
-% Extract each set, then true and false, then count
-
-dists = [1 1.5 2 2.5 3 3.5 4 4.5 5 5.5 6];
-angs1 = [10 20 30 35 40 45 50 55 60 65 70 75];
-angs2 = [10 20 30 35 40 45 50 55 60];
-angs3 = [10 20 30 35 40 45];
-
+% dists = [1 1.5 2 2.5 3 3.5 4 4.5 5 5.5 6];
+% angs1 = [10 20 30 35 40 45 50 55 60 65 70 75];
+% angs2 = [10 20 30 35 40 45 50 55 60];
+% angs3 = [10 20 30 35 40 45];
 
 Results = struct();
 
@@ -25,44 +19,77 @@ for v = 1:numel(TestsAvail)
         Results.(TestsAvail{v}) = [];
     end
     
-    knowns = unique(Structure.(TestsAvail{v})(:,1));
+    Tagids = fieldnames(Structure.(TestsAvail{v}));
     
-    switch TestsAvail{v}
-        case 'Test1'
-            for k = 1:numel(knowns)
-                evalind = Structure.(TestsAvail{v})(:,1) == knowns(k);
-                eval = Structure.Test1(evalind,:);
-                
-                % counts trues
-                Tcount(k,:) = size(true,1);
-
-                % Remove outliers
-                [~, outind] = rmoutliers(eval(:,6));
-                eval_out = eval(~outind,:);
-
-                % Error bars
-                errval(k,:) = std(eval(:,6));
-                meanval(k,:) = mean(eval(:,6));
-                errval_out(k,:) = std(eval_out(:,6));
-                meanval_out(k,:) = mean(eval_out(:,6));
-
-
-                % Percentage of True Positive hits and False Poitive hits over 10 sec
-                
-
-                %IDrate(k,1:2) = [Tcount, F_hits];
-
-            end
-            Results.(TestsAvail{v}) = [knowns,  errval, meanval, errval_out, meanval_out, Tcount];
+    for q = 1:numel(Tagids)
+        knowns = unique(Structure.(TestsAvail{v}).(Tagids{q})(:,1));
+        
+        for k = 1:numel(knowns)
+            evalind = Structure.(TestsAvail{v}).(Tagids{q})(:,1) == knowns(k);
+            eval = Structure.(TestsAvail{v}).(Tagids{q})(evalind,:);
             
+            % Remove outliers
+            [~, outind] = rmoutliers(eval(:,6)); % uses 3 MADs
+            eval_out = eval(~outind,:);
+
+            % Error bars
+            errval(k,:) = std(eval(:,6));
+            meanval(k,:) = mean(eval(:,6));
+            errval_out(k,:) = std(eval_out(:,6));
+            meanval_out(k,:) = mean(eval_out(:,6));
             
-    
-        case 'Test2'
-            
-        case 'Test3'
-            
-        case 'Test4'
+            % ID Percentage
+            hits(k,:) = size(eval,1);
+            hits_O(k,:) = size(eval_out,1);
+            base(k,:) = baselineTAGID;
+            IDper(k,:) = (size(eval_out,1)/baselineTAGID)*100;
+
+
+            % Percentage of True Positive hits and False Poitive hits over 10 sec
+
+
+            %IDrate(k,1:2) = [Tcount, F_hits];
+        end
+            Results.(TestsAvail{v}).(Tagids{q}) = [knowns, errval, meanval, errval_out, meanval_out, hits, hits_O, base, IDper];
+            clearvars knowns errval meanval errval_out meanval_out hits hits_O base IDper
     end
+    
+%     switch TestsAvail{v}
+%         case 'Test1'
+%             for k = 1:numel(knowns)
+%                 evalind = Structure.(TestsAvail{v})(:,1) == knowns(k);
+%                 eval = Structure.Test1(evalind,:);
+%                 
+%                 % counts trues
+%                 Tcount(k,:) = size(true,1);
+% 
+%                 % Remove outliers
+%                 [~, outind] = rmoutliers(eval(:,6));
+%                 eval_out = eval(~outind,:);
+% 
+%                 % Error bars
+%                 errval(k,:) = std(eval(:,6));
+%                 meanval(k,:) = mean(eval(:,6));
+%                 errval_out(k,:) = std(eval_out(:,6));
+%                 meanval_out(k,:) = mean(eval_out(:,6));
+% 
+% 
+%                 % Percentage of True Positive hits and False Poitive hits over 10 sec
+%                 
+% 
+%                 %IDrate(k,1:2) = [Tcount, F_hits];
+% 
+%             end
+%             Results.(TestsAvail{v}) = [knowns,  errval, meanval, errval_out, meanval_out, Tcount];
+%             
+%             
+%     
+%         case 'Test2'
+%             
+%         case 'Test3'
+%             
+%         case 'Test4'
+%     end
 end
             
 %     evalind = Structure.Test1(:,1) == dists(k);
