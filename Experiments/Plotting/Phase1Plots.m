@@ -1,5 +1,5 @@
 % PHASE I
-close  all
+% close  all
 % Only addition would be to make each tag same color for all plots
 
 %% Test 1
@@ -28,7 +28,9 @@ hold off
 % Set the background color to white
 set(gcf,'color','w');
 fprintf('PhaseI_Test1 = %s \n',Tsave)
-eval(sprintf('export_fig PhaseI_Test1 -png -r300 -painters'))
+if exportfigs == 1
+    eval(sprintf('export_fig PhaseI_Test1 -png -r300 -painters'))
+end
 
 % Without outliers
 
@@ -49,8 +51,9 @@ hold off
 % Set the background color to white
 set(gcf,'color','w');
 fprintf('PhaseI_Test1S = %s \n',Tsave)
-eval(sprintf('export_fig PhaseI_Test1S -png -r300 -painters'))
-
+if exportfigs == 1
+    eval(sprintf('export_fig PhaseI_Test1S -png -r300 -painters'))
+end
 %% Test 2
 
 TR = Data.Ex1.Results.P.Test2;
@@ -65,8 +68,8 @@ for k = 1:numel(Plnames)
 end
 gcf();
 legend('Location','SW')
-Tsave = 'Detections vs Angle without False Positives 6 meters In Air, Ambient Lighting';
-title({'Detections vs Angle without False Positives'; '6 meters In Air, Ambient Lighting'})
+Tsave = 'Detections vs Angle without False Positives 6 Meters, In Air, Ambient Lighting';
+title({'Detections vs Angle without False Positives'; '6 Meters, In Air, Ambient Lighting'})
 xlabel('Known Angle (deg)')
 ylabel('Detections')
 grid on
@@ -74,7 +77,9 @@ hold off
 % Set the background color to white
 set(gcf,'color','w');
 fprintf('PhaseI_Test2 = %s \n',Tsave)
-eval(sprintf('export_fig PhaseI_Test2 -png -r300 -painters'))
+if exportfigs == 1
+    eval(sprintf('export_fig PhaseI_Test2 -png -r300 -painters'))
+end
 
 % Without outliers
 figure
@@ -85,8 +90,8 @@ for k = 1:numel(Plnames)
 end
 gcf();
 legend('Location','SW')
-Tsave = 'Detections vs Angle without False Positives 6 meters In Air, Ambient Lighting';
-title({'Detections vs Angle without False Positives'; '6 meters In Air, Ambient Lighting'})
+Tsave = 'Detections vs Angle without False Positives 6 Meters, In Air, Ambient Lighting';
+title({'Detections vs Angle without False Positives'; '6 Meters, In Air, Ambient Lighting'})
 xlabel('Known Angle (deg)')
 ylabel('Detections')
 grid on
@@ -94,7 +99,9 @@ hold off
 % Set the background color to white
 set(gcf,'color','w');
 fprintf('PhaseI_Test2S = %s \n',Tsave)
-eval(sprintf('export_fig PhaseI_Test2S -png -r300 -painters'))
+if exportfigs == 1
+    eval(sprintf('export_fig PhaseI_Test2S -png -r300 -painters'))
+end
 
 %% Test 3
 
@@ -110,8 +117,8 @@ for k = 1:numel(Plnames)
 end
 gcf();
 legend('Location','SW')
-Tsave = 'Detections vs Angle with False Positives 4 meters In Air, Ambient Lighting';
-title({'Detections vs Angle with False Positives'; '4 meters In Air, Ambient Lighting'})
+Tsave = 'Detections vs Angle with False Positives 4 Meters, In Air, Ambient Lighting';
+title({'Detections vs Angle with False Positives'; '4 Meters, In Air, Ambient Lighting'})
 xlabel('Known Angle (deg)')
 ylabel('Detections')
 grid on
@@ -119,7 +126,9 @@ hold off
 % Set the background color to white
 set(gcf,'color','w');
 fprintf('PhaseI_Test3 = %s \n',Tsave)
-eval(sprintf('export_fig PhaseI_Test3 -png -r300 -painters'))
+if exportfigs == 1
+    eval(sprintf('export_fig PhaseI_Test3 -png -r300 -painters'))
+end
 
 % Without outliers
 figure
@@ -130,8 +139,8 @@ for k = 1:numel(Plnames)
 end
 gcf();
 legend('Location','SW')
-Tsave = 'Detections vs Angle without False Positives 4 meters In Air, Ambient Lighting';
-title({'Detections vs Angle without False Positives'; '4 meters In Air, Ambient Lighting'})
+Tsave = 'Detections vs Angle without False Positives 4 Meters, In Air, Ambient Lighting';
+title({'Detections vs Angle without False Positives'; '4 Meters, In Air, Ambient Lighting'})
 xlabel('Known Angle (deg)')
 ylabel('Detections')
 grid on
@@ -139,7 +148,9 @@ hold off
 % Set the background color to white
 set(gcf,'color','w');
 fprintf('PhaseI_Test3S = %s \n',Tsave)
-eval(sprintf('export_fig PhaseI_Test3S -png -r300 -painters'))
+if exportfigs == 1
+    eval(sprintf('export_fig PhaseI_Test3S -png -r300 -painters'))
+end
 
 %% Test 4
 
@@ -155,8 +166,8 @@ for k = 1:numel(Plnames)
 end
 gcf();
 legend('Location','SW')
-Tsave = 'Detections vs Angle with False Positives 2 meters In Air, Ambient Lighting';
-title({'Detections vs Angle with False Positives'; '2 meters In Air, Ambient Lighting'})
+Tsave = 'Detections vs Angle with False Positives 2 Meters, In Air, Ambient Lighting';
+title({'Detections vs Angle with False Positives'; '2 Meters, In Air, Ambient Lighting'})
 xlabel('Known Angle (deg)')
 ylabel('Detections')
 grid on
@@ -164,7 +175,9 @@ hold off
 % Set the background color to white
 set(gcf,'color','w');
 fprintf('PhaseI_Test4 = %s \n',Tsave)
-eval(sprintf('export_fig PhaseI_Test4 -png -r300 -painters'))
+if exportfigs == 1
+    eval(sprintf('export_fig PhaseI_Test4 -png -r300 -painters'))
+end
 
 % Without outliers
 figure
@@ -175,8 +188,8 @@ for k = 1:numel(Plnames)
 end
 gcf();
 legend('Location','SW')
-Tsave = 'Detections vs Angle without False Positives 2 meters In Air, Ambient Lighting';
-title({'Detections vs Angle without False Positives'; '2 meters In Air, Ambient Lighting'})
+Tsave = 'Detections vs Angle without False Positives 2 Meters, In Air, Ambient Lighting';
+title({'Detections vs Angle without False Positives'; '2 Meters, In Air, Ambient Lighting'})
 xlabel('Known Angle (deg)')
 ylabel('Detections')
 grid on
@@ -184,4 +197,6 @@ hold off
 % Set the background color to white
 set(gcf,'color','w');
 fprintf('PhaseI_Test4S = %s \n',Tsave)
-eval(sprintf('export_fig PhaseI_Test4S -png -r300 -painters'))
+if exportfigs == 1
+    eval(sprintf('export_fig PhaseI_Test4S -png -r300 -painters'))
+end
