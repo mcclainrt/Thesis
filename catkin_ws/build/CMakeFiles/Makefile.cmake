@@ -36,6 +36,8 @@ set(CMAKE_MAKEFILE_DEPENDS
   "image_pipeline/stereo_image_proc/catkin_generated/package.cmake"
   "udpvid/catkin_generated/ordered_paths.cmake"
   "udpvid/catkin_generated/package.cmake"
+  "usb_cam/catkin_generated/ordered_paths.cmake"
+  "usb_cam/catkin_generated/package.cmake"
   "/home/rtmcclai/thesis/Thesis/catkin_ws/devel/share/apriltags2/cmake/apriltags2Config-version.cmake"
   "/home/rtmcclai/thesis/Thesis/catkin_ws/devel/share/apriltags2/cmake/apriltags2Config.cmake"
   "/home/rtmcclai/thesis/Thesis/catkin_ws/devel/share/apriltags2_ros/cmake/apriltags2_ros-msg-paths.cmake"
@@ -70,6 +72,8 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/rtmcclai/thesis/Thesis/catkin_ws/src/image_pipeline/stereo_image_proc/package.xml"
   "/home/rtmcclai/thesis/Thesis/catkin_ws/src/udpvid/CMakeLists.txt"
   "/home/rtmcclai/thesis/Thesis/catkin_ws/src/udpvid/package.xml"
+  "/home/rtmcclai/thesis/Thesis/catkin_ws/src/usb_cam/CMakeLists.txt"
+  "/home/rtmcclai/thesis/Thesis/catkin_ws/src/usb_cam/package.xml"
   "/opt/ros/kinetic/share/OpenCV-3.3.1-dev/OpenCVConfig-version.cmake"
   "/opt/ros/kinetic/share/OpenCV-3.3.1-dev/OpenCVConfig.cmake"
   "/opt/ros/kinetic/share/OpenCV-3.3.1-dev/OpenCVModules-release.cmake"
@@ -347,6 +351,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "apriltags2_ros/apriltags2_ros/CMakeFiles/CMakeDirectoryInformation.cmake"
   "image_pipeline/image_rotate/CMakeFiles/CMakeDirectoryInformation.cmake"
   "udpvid/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "usb_cam/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
@@ -494,4 +499,6 @@ set(CMAKE_DEPEND_INFO_FILES
   "image_pipeline/image_rotate/CMakeFiles/image_rotate_gencfg.dir/DependInfo.cmake"
   "image_pipeline/image_rotate/CMakeFiles/image_rotate.dir/DependInfo.cmake"
   "image_pipeline/image_rotate/CMakeFiles/image_rotate_exe.dir/DependInfo.cmake"
+  "usb_cam/CMakeFiles/usb_cam.dir/DependInfo.cmake"
+  "usb_cam/CMakeFiles/usb_cam_node.dir/DependInfo.cmake"
   )

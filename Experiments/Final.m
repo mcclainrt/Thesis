@@ -85,8 +85,6 @@ else
 
 end
 
-
-
 %%
 if verLessThan('matlab','9.5')
     % -- Code to run in MATLAB R2018a and earlier here --

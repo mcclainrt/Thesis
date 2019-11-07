@@ -246,3 +246,12 @@
 /home/rtmcclai/thesis/Thesis/catkin_ws/build/udpvid/CMakeFiles/install/local.dir
 /home/rtmcclai/thesis/Thesis/catkin_ws/build/udpvid/CMakeFiles/test.dir
 /home/rtmcclai/thesis/Thesis/catkin_ws/build/udpvid/CMakeFiles/edit_cache.dir
+/home/rtmcclai/thesis/Thesis/catkin_ws/build/usb_cam/CMakeFiles/list_install_components.dir
+/home/rtmcclai/thesis/Thesis/catkin_ws/build/usb_cam/CMakeFiles/install.dir
+/home/rtmcclai/thesis/Thesis/catkin_ws/build/usb_cam/CMakeFiles/rebuild_cache.dir
+/home/rtmcclai/thesis/Thesis/catkin_ws/build/usb_cam/CMakeFiles/edit_cache.dir
+/home/rtmcclai/thesis/Thesis/catkin_ws/build/usb_cam/CMakeFiles/test.dir
+/home/rtmcclai/thesis/Thesis/catkin_ws/build/usb_cam/CMakeFiles/usb_cam.dir
+/home/rtmcclai/thesis/Thesis/catkin_ws/build/usb_cam/CMakeFiles/usb_cam_node.dir
+/home/rtmcclai/thesis/Thesis/catkin_ws/build/usb_cam/CMakeFiles/install/local.dir
+/home/rtmcclai/thesis/Thesis/catkin_ws/build/usb_cam/CMakeFiles/install/strip.dir
