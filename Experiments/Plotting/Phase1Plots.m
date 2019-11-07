@@ -15,9 +15,9 @@ for k = 1:numel(Plnames)
     
 end
 gcf();
-legend('Location','SW')
+legend('Location','NE')
 Tsave = 'Detections vs Distance with False Positives In Air, Ambient Lighting';
-title({'Detections vs Distance with False Positives'; 'In Air, Ambient Lighting'})
+%title({'Detections vs Distance with False Positives'; 'In Air, Ambient Lighting'})
 xlabel('Known Dist (m)')
 % xticks([0:.5:6]);
 ylabel('Detections')
@@ -41,9 +41,9 @@ for k = 1:numel(Plnames)
     
 end
 gcf();
-legend('Location','SW')
+legend('Location','NE')
 Tsave = 'Detections vs Distance without False Positives In Air, Ambient Lighting';
-title({'Detections vs Distance without False Positives'; 'In Air, Ambient Lighting'})
+%title({'Detections vs Distance without False Positives'; 'In Air, Ambient Lighting'})
 xlabel('Known Dist (m)')
 ylabel('Detections')
 grid on
@@ -54,7 +54,7 @@ fprintf('PhaseI_Test1S = %s \n',Tsave)
 if exportfigs == 1
     eval(sprintf('export_fig PhaseI_Test1S -png -r300 -painters'))
 end
-%% Test 2
+%% Test 2 - this is at 6 meters unlike the other experiments
 
 TR = Data.Ex1.Results.P.Test2;
 
@@ -67,9 +67,9 @@ for k = 1:numel(Plnames)
     
 end
 gcf();
-legend('Location','SW')
-Tsave = 'Detections vs Angle without False Positives 6 Meters, In Air, Ambient Lighting';
-title({'Detections vs Angle without False Positives'; '6 Meters, In Air, Ambient Lighting'})
+legend('Location','NE')
+Tsave = 'Detections vs Angle without False Positives at 6 Meters, In Air, Ambient Lighting';
+%title({'Detections vs Angle without False Positives'; '6 Meters, In Air, Ambient Lighting'})
 xlabel('Known Angle (deg)')
 ylabel('Detections')
 grid on
@@ -89,9 +89,9 @@ for k = 1:numel(Plnames)
     
 end
 gcf();
-legend('Location','SW')
-Tsave = 'Detections vs Angle without False Positives 6 Meters, In Air, Ambient Lighting';
-title({'Detections vs Angle without False Positives'; '6 Meters, In Air, Ambient Lighting'})
+legend('Location','NE')
+Tsave = 'Detections vs Angle without False Positives at 2 Meters, In Air, Ambient Lighting';
+%title({'Detections vs Angle without False Positives'; '2 Meters, In Air, Ambient Lighting'})
 xlabel('Known Angle (deg)')
 ylabel('Detections')
 grid on
@@ -116,9 +116,9 @@ for k = 1:numel(Plnames)
     
 end
 gcf();
-legend('Location','SW')
-Tsave = 'Detections vs Angle with False Positives 4 Meters, In Air, Ambient Lighting';
-title({'Detections vs Angle with False Positives'; '4 Meters, In Air, Ambient Lighting'})
+legend('Location','NE')
+Tsave = 'Detections vs Angle with False Positives at 4 Meters, In Air, Ambient Lighting';
+%title({'Detections vs Angle with False Positives'; '4 Meters, In Air, Ambient Lighting'})
 xlabel('Known Angle (deg)')
 ylabel('Detections')
 grid on
@@ -138,9 +138,9 @@ for k = 1:numel(Plnames)
     
 end
 gcf();
-legend('Location','SW')
-Tsave = 'Detections vs Angle without False Positives 4 Meters, In Air, Ambient Lighting';
-title({'Detections vs Angle without False Positives'; '4 Meters, In Air, Ambient Lighting'})
+legend('Location','NE')
+Tsave = 'Detections vs Angle without False Positives at 4 Meters, In Air, Ambient Lighting';
+%title({'Detections vs Angle without False Positives'; '4 Meters, In Air, Ambient Lighting'})
 xlabel('Known Angle (deg)')
 ylabel('Detections')
 grid on
@@ -152,7 +152,7 @@ if exportfigs == 1
     eval(sprintf('export_fig PhaseI_Test3S -png -r300 -painters'))
 end
 
-%% Test 4
+%% Test 4 - this is at 2 meters unlike the other experiments
 
 TR = Data.Ex1.Results.P.Test4;
 
@@ -165,9 +165,9 @@ for k = 1:numel(Plnames)
     
 end
 gcf();
-legend('Location','SW')
-Tsave = 'Detections vs Angle with False Positives 2 Meters, In Air, Ambient Lighting';
-title({'Detections vs Angle with False Positives'; '2 Meters, In Air, Ambient Lighting'})
+legend('Location','NE')
+Tsave = 'Detections vs Angle with False Positives at 2 Meters, In Air, Ambient Lighting';
+%title({'Detections vs Angle with False Positives'; '2 Meters, In Air, Ambient Lighting'})
 xlabel('Known Angle (deg)')
 ylabel('Detections')
 grid on
@@ -187,9 +187,9 @@ for k = 1:numel(Plnames)
     
 end
 gcf();
-legend('Location','SW')
-Tsave = 'Detections vs Angle without False Positives 2 Meters, In Air, Ambient Lighting';
-title({'Detections vs Angle without False Positives'; '2 Meters, In Air, Ambient Lighting'})
+legend('Location','NE')
+Tsave = 'Detections vs Angle without False Positives at 6 Meters, In Air, Ambient Lighting';
+%title({'Detections vs Angle without False Positives'; '6 Meters, In Air, Ambient Lighting'})
 xlabel('Known Angle (deg)')
 ylabel('Detections')
 grid on
