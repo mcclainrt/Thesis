@@ -253,3 +253,6 @@ the lighting shapes
 all dependant on exposure, brightness contrast etc.
 how does april tags do its stuff?
 take debug images from my screen grabs of other tests
+
+split video using _ in 2 sec increment
+bash file to loop through all images and and run single detection
