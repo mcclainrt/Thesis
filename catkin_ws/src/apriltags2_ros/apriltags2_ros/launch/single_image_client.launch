@@ -15,10 +15,11 @@
     <param name="image_save_path" type="str" value="$(arg image_save_path)" />
 
     <!-- Camera intrinsic parameters -->
-    <param name="fx" type="double" value="652.7934615847107" />
-    <param name="fy" type="double" value="653.9480389077635" />
-    <param name="cx" type="double" value="307.1288710375904" />
-    <param name="cy" type="double" value="258.7823279214385" />
+    <!-- Changed these to underwater camera -->
+    <param name="fx" type="double" value="1078.211947" />
+    <param name="fy" type="double" value="1079.930773" />
+    <param name="cx" type="double" value="1022.850864" />
+    <param name="cy" type="double" value="556.221611" />
 
   </node>
 

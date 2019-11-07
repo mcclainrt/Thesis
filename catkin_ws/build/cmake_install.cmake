@@ -128,6 +128,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/rtmcclai/thesis/Thesis/catkin_ws/build/apriltags2_ros/apriltags2_ros/cmake_install.cmake")
   include("/home/rtmcclai/thesis/Thesis/catkin_ws/build/image_pipeline/image_rotate/cmake_install.cmake")
   include("/home/rtmcclai/thesis/Thesis/catkin_ws/build/udpvid/cmake_install.cmake")
+  include("/home/rtmcclai/thesis/Thesis/catkin_ws/build/usb_cam/cmake_install.cmake")
 
 endif()
 
