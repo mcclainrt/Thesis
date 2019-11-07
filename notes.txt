@@ -261,7 +261,7 @@ bash file to loop through all images and and run single detection
 --------------------------------------
 retest
 
-6 - V1 - T1 - 3 to 5
-T3 and 4 if able
-V2 - T1 - 3 to 5
-T3 - 30 - 60
+6 - V1 - T1 - 3 to 5: 5 - zeros
+T3 and 4 if able:  4 zeros
+V2 - T1 - 3 to 5: good
+T3 - 30 - 60: good

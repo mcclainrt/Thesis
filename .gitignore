@@ -5,7 +5,7 @@ camera/
 camtry.sdp
 catkin_ws/src/image_pipeline/
 catkin_ws/src/video_stream_opencv/
-catkin_ws/src/usb_cam/
+
 catkin_ws/devel/
 catkin_ws/build/
 Archive/
