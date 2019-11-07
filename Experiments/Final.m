@@ -22,8 +22,8 @@ if isfile('Data/all_results.mat')
             fprintf('%s Loaded: %i/%i %i:%i\n', availEx{k}, Data.(availEx{k}).Date(2:5))
         end
     
-    elseif isfile('Data/AllBags.mat')
-        load('Data/AllBags.mat')
+    elseif isfile('Data/AllBags_new.mat')
+        load('Data/AllBags_new.mat')
         availEx = fieldnames(Data);
         fprintf('Available Experiments:\n')
         for k = 1:numel(availEx)
@@ -56,9 +56,42 @@ if isfile('Data/all_results.mat')
         end
     end
 
+elseif isfile('Data/AllBags_new.mat')
+    load('Data/AllBags_new.mat')
+    availEx = fieldnames(Data);
+    fprintf('Available Experiments:\n')
+    for k = 1:numel(availEx)
+        fprintf('%s Loaded: %i/%i %i:%i\n', availEx{k}, Data.(availEx{k}).Date(2:5))
+    end
+
+    prompt = ['\nWhat Experiments would you like to load/reload?\n' ... 
+    '(You can enter 0-7, an array [], or 999 for all)\n'];
+    imports = input(prompt);
+    if imports~=0
+        if (999>imports(1) && (imports(1)>0))
+            for k = 1:numel(imports)
+                dirs{k,:} = ['Ex' num2str(imports(k))];
+            end
+        elseif imports == 999
+            imports = 1:7;
+            for k = 1:numel(imports)
+                dirs{k,:} = ['Ex' num2str(imports(k))];
+            end
+        end
+
+        for m = 1:numel(dirs)
+            if ~isfield(Data,dirs{m})
+                Data.(dirs{m})=struct;
+            end
+            Data.(dirs{m}) = bagloading(char(strcat(dirs{m},'/')));
+        end
+        clearvars -except Data
+        save('Data/AllBags_new.mat')
+    end
+   
 else
     Data = struct;
-    prompt = ['Which Experiments would you like to import?\n' ... 
+    prompt = ['No Data available. Which Experiments would you like to import?\n' ... 
     '(You can enter 0-7, an array [], or 999 for all)\n'];
     imports = input(prompt);
     if imports~=0

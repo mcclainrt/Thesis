@@ -23,7 +23,7 @@ for i=1:numfile
         if ~isfield(stOUT.(Namecell{2}),['Test' Namecell{3}])
             stOUT.(Namecell{2}).(['Test' Namecell{3}]) = [];
         end
-        stOUT.(Namecell{2}).(['Test' Namecell{3}]) = [stOUT.(Namecell{2}).(['Test' Namecell{3}]);loaded]; 
+        stOUT.(Namecell{2}).(['Test' Namecell{3}]) = [stOUT.(Namecell{2}).(['Test' Namecell{3}]);loaded];
     end
 end
 

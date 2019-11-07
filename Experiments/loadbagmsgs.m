@@ -38,7 +38,7 @@ function [Fields] = loadbagmsgs(msgs,Fname)
         if isempty(Fields)
             fprintf('%s has no detections.\nPress a key. \n',Fname)
             pause
-            Fields = zeros(1,9);
+            Fields = zeros(1,10);
         end
           
 end

@@ -256,3 +256,12 @@ take debug images from my screen grabs of other tests
 
 split video using _ in 2 sec increment
 bash file to loop through all images and and run single detection
+
+
+--------------------------------------
+retest
+
+6 - V1 - T1 - 3 to 5
+T3 and 4 if able
+V2 - T1 - 3 to 5
+T3 - 30 - 60
