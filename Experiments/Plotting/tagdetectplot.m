@@ -343,7 +343,7 @@ for k = 1:numel(EXPname)
     TESTtype = EXPtype;
     TESTtitle = 'Known Dist';
     xLBL = 'Known Dist (m)';
-    yLBL = 'Detections';
+    yLBL = 'Position Error (m)';
 
     for m = 1:numel(AFMname)
         switch AFMname{m}
@@ -377,8 +377,8 @@ end
 
 gcf();
 legend('Location','NW')
-Tsave = ['Detections vs ', TESTtitle, ' with False Positives, All Scenarios'];
-title({['Detections vs ', TESTtitle, ' with False Positives']; 'All Scenarios'})
+Tsave = ['Position Error vs ', TESTtitle, ' with False Positives, All Scenarios'];
+title({['Position Error vs ', TESTtitle, ' with False Positives']; 'All Scenarios'})
 xlabel(xLBL)
 ylabel(yLBL)
 grid on
@@ -412,7 +412,7 @@ for k = 1:numel(EXPname)
     TESTtype = EXPtype;
     TESTtitle = 'Known Dist';
     xLBL = 'Known Dist (m)';
-    yLBL = 'Detections';
+    yLBL = 'Position Error (m)';
 
     for m = 1:numel(AFMname)
         switch AFMname{m}
@@ -446,8 +446,8 @@ end
 
 gcf();
 legend('Location','NW')
-Tsave = ['Detections vs ', TESTtitle, ' without False Positives, All Scenarios'];
-title({['Detections vs ', TESTtitle, ' without False Positives']; 'All Scenarios'})
+Tsave = ['Position Error vs ', TESTtitle, ' without False Positives, All Scenarios'];
+title({['Position Error vs ', TESTtitle, ' without False Positives']; 'All Scenarios'})
 xlabel(xLBL)
 ylabel(yLBL)
 grid on
