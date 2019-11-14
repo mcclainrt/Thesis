@@ -1,16 +1,16 @@
 close all
 
 EXPname = fieldnames(Data);
-%% raw each exp
+%% raw detects each exp
 for k = 1:numel(EXPname)
     if contains(EXPname{k},'Ex1') | contains(EXPname{k},'Ex4') | contains(EXPname{k},'Ex7')
         continue
     else
         switch EXPname{k}
             case 'Ex2'
-                EXPtype = ' In Air, Ambient';
+                EXPtype = ' Open Air, Ambient';
             case 'Ex3'
-                EXPtype = ' In Air, Dark';
+                EXPtype = ' Open Air, Dark';
             case 'Ex5'
                 EXPtype = ' In Water, Ambient';
             case 'Ex6'
@@ -94,16 +94,16 @@ for k = 1:numel(EXPname)
         end  
     end
 end
-%% smoothed each exp
+%% smoothed detects each exp
 for k = 1:numel(EXPname)
     if contains(EXPname{k},'Ex1') | contains(EXPname{k},'Ex4') | contains(EXPname{k},'Ex7')
         continue
     else
         switch EXPname{k}
             case 'Ex2'
-                EXPtype = ' In Air, Ambient';
+                EXPtype = ' Open Air, Ambient';
             case 'Ex3'
-                EXPtype = ' In Air, Dark';
+                EXPtype = ' Open Air, Dark';
             case 'Ex5'
                 EXPtype = ' In Water, Ambient';
             case 'Ex6'
@@ -186,7 +186,9 @@ for k = 1:numel(EXPname)
         end  
     end
 end
-%% Raw each Exp
+
+
+%% Raw detects ALL Exp
 EXPname = {'Ex2'; 'Ex3'; 'Ex5'; 'Ex6'};
 figure
 hold on
@@ -194,9 +196,9 @@ for k = 1:numel(EXPname)
     
     switch EXPname{k}
         case 'Ex2'
-            EXPtype = ' In Air, Ambient';
+            EXPtype = ' Open Air, Ambient';
         case 'Ex3'
-            EXPtype = ' In Air, Dark';
+            EXPtype = ' Open Air, Dark';
         case 'Ex5'
             EXPtype = ' In Water, Ambient';
         case 'Ex6'
@@ -254,7 +256,7 @@ if exportfigs == 1
     eval(sprintf('export_fig AllDetect_AFM -png -r300 -painters'))
 end
 
-%% Smooth each Exp
+%% Smooth detects All Exp
 EXPname = {'Ex2'; 'Ex3'; 'Ex5'; 'Ex6'};
 figure
 hold on
@@ -262,9 +264,9 @@ for k = 1:numel(EXPname)
     
     switch EXPname{k}
         case 'Ex2'
-            EXPtype = ' In Air, Ambient';
+            EXPtype = ' Open Air, Ambient';
         case 'Ex3'
-            EXPtype = ' In Air, Dark';
+            EXPtype = ' Open Air, Dark';
         case 'Ex5'
             EXPtype = ' In Water, Ambient';
         case 'Ex6'
@@ -321,7 +323,7 @@ fprintf('AllDetect_AFM_S = %s \n',Tsave)
 if exportfigs == 1
     eval(sprintf('export_fig AllDetect_AFM_S -png -r300 -painters'))
 end
-%% Raw Error bars each Exp
+%% Raw Error bars ALL Exp
 
 EXPname = {'Ex2'; 'Ex3'; 'Ex5'; 'Ex6'};
 figure
@@ -330,9 +332,9 @@ for k = 1:numel(EXPname)
     
     switch EXPname{k}
         case 'Ex2'
-            EXPtype = ' In Air, Ambient';
+            EXPtype = ' Open Air, Ambient';
         case 'Ex3'
-            EXPtype = ' In Air, Dark';
+            EXPtype = ' Open Air, Dark';
         case 'Ex5'
             EXPtype = ' In Water, Ambient';
         case 'Ex6'
@@ -343,7 +345,7 @@ for k = 1:numel(EXPname)
     TESTtype = EXPtype;
     TESTtitle = 'Known Dist';
     xLBL = 'Known Dist (m)';
-    yLBL = 'Position Error (m)';
+    yLBL = 'Distance Error (m)';
 
     for m = 1:numel(AFMname)
         switch AFMname{m}
@@ -377,8 +379,8 @@ end
 
 gcf();
 legend('Location','NW')
-Tsave = ['Position Error vs ', TESTtitle, ' with False Positives, All Scenarios'];
-title({['Position Error vs ', TESTtitle, ' with False Positives']; 'All Scenarios'})
+Tsave = ['Distance Error vs ', TESTtitle, ' with False Positives, All Scenarios'];
+title({['Distance Error vs ', TESTtitle, ' with False Positives']; 'All Scenarios'})
 xlabel(xLBL)
 ylabel(yLBL)
 grid on
@@ -390,7 +392,7 @@ if exportfigs == 1
     eval(sprintf('export_fig AllError_AFM_ -png -r300 -painters'))
 end
 
-%% Smooth Error bars each Exp
+%% Smooth Error bars All Exp
 
 EXPname = {'Ex2'; 'Ex3'; 'Ex5'; 'Ex6'};
 figure
@@ -399,9 +401,9 @@ for k = 1:numel(EXPname)
     
     switch EXPname{k}
         case 'Ex2'
-            EXPtype = ' In Air, Ambient';
+            EXPtype = ' Open Air, Ambient';
         case 'Ex3'
-            EXPtype = ' In Air, Dark';
+            EXPtype = ' Open Air, Dark';
         case 'Ex5'
             EXPtype = ' In Water, Ambient';
         case 'Ex6'
@@ -412,7 +414,7 @@ for k = 1:numel(EXPname)
     TESTtype = EXPtype;
     TESTtitle = 'Known Dist';
     xLBL = 'Known Dist (m)';
-    yLBL = 'Position Error (m)';
+    yLBL = 'Distance Error (m)';
 
     for m = 1:numel(AFMname)
         switch AFMname{m}
@@ -446,8 +448,8 @@ end
 
 gcf();
 legend('Location','NW')
-Tsave = ['Position Error vs ', TESTtitle, ' without False Positives, All Scenarios'];
-title({['Position Error vs ', TESTtitle, ' without False Positives']; 'All Scenarios'})
+Tsave = ['Distance Error vs ', TESTtitle, ' without False Positives, All Scenarios'];
+title({['Distance Error vs ', TESTtitle, ' without False Positives']; 'All Scenarios'})
 xlabel(xLBL)
 ylabel(yLBL)
 grid on

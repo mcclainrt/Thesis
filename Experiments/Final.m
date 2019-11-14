@@ -14,6 +14,8 @@ if isfile('Data/all_results.mat')
     prompt = ['Results data available. Would you like to use old data?\n' ... 
     ' (Enter 1 - yes or 0 - no)\n'];
     loadresults = input(prompt);
+    load('Data/all_results.mat')
+    save('Data/all_results_old.mat','Data')
     if loadresults == 1
         load('Data/all_results.mat')
         availEx = fieldnames(Data);
@@ -156,9 +158,9 @@ end
 
 fprintf('Results: \n Knowns, STD_w/outliers, mean val w/outliers, STD without, meanval without, Tag Count with, Tag count without, Baseline used, Id percent \n')
 
-save('Data/all_results.mat', 'Data')
-
 errorcolumn
+
+save('Data/all_results.mat', 'Data')
 
 exportfigs = 0;
 

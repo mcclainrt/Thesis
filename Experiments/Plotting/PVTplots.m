@@ -59,7 +59,7 @@ for k = 1:numel(EXPname)
         gcf();
         legend('Location','NW')
         Tsave = ['Measured Distance vs Known Distance with False Positives' EXPtype];
-        title({'Measured Distance vs Known Distance with False Positives'; EXPtype})
+        %title({'Measured Distance vs Known Distance with False Positives'; EXPtype})
         xlabel('Known Dist (m)')
         ylabel('Measured Dist (m)')
         grid on
@@ -112,7 +112,6 @@ for k = 1:numel(EXPname)
         figure
         hold on            
         for m = 1:numel(AFMname)
-            switch AFMname{m}
             switch AFMname{m}
                 case 'P'
                     TagType = 'Paper Tag';

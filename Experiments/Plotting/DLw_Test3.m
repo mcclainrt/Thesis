@@ -4,7 +4,7 @@ try
     figure
     hold on
     plot(Data.Ex5.Filtered.V1.Test3.Tag_7(:,1),180-abs(Data.Ex5.Filtered.V1.Test3.Tag_7(:,7)),'*','DisplayName','AFM Detections Ambient')
-    %plot(Data.Ex6.Filtered.V1.Test3.Tag_7(:,1),180-abs(Data.Ex6.Filtered.V1.Test3.Tag_7(:,7)),'*','DisplayName','AFM-1 Detections Dark')
+    plot(Data.Ex6.Filtered.V1.Test3.Tag_7(:,1),180-abs(Data.Ex6.Filtered.V1.Test3.Tag_7(:,7)),'*','DisplayName','AFM-1 Detections Dark')
     plot(Data.Ex6.Filtered.V2.Test3.Tag_7(:,1),180-abs(Data.Ex6.Filtered.V2.Test3.Tag_7(:,7)),'*','DisplayName','AFM-2 Detections Dark')
 
     gcf();
@@ -30,7 +30,7 @@ try
     figure
     hold on
     plot(Data.Ex5.Smoothed.V1.Test3.Tag_7(:,1),180-abs(Data.Ex5.Smoothed.V1.Test3.Tag_7(:,7)),'*','DisplayName','AFM Detections Ambient')
-    %plot(Data.Ex6.Smoothed.V1.Test3.Tag_7(:,1),180-abs(Data.Ex6.Smoothed.V1.Test3.Tag_7(:,7)),'*','DisplayName','AFM-1 Detections Dark')
+    plot(Data.Ex6.Smoothed.V1.Test3.Tag_7(:,1),180-abs(Data.Ex6.Smoothed.V1.Test3.Tag_7(:,7)),'*','DisplayName','AFM-1 Detections Dark')
     plot(Data.Ex6.Smoothed.V2.Test3.Tag_7(:,1),180-abs(Data.Ex6.Smoothed.V2.Test3.Tag_7(:,7)),'*','DisplayName','AFM-2 Detections Dark')
 
     gcf();

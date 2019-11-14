@@ -1,4 +1,6 @@
 % close all
+
+%% AFM with FP
 tests = 'Test1';
 try
     figure
@@ -12,7 +14,7 @@ try
     Tsave = 'Measured Distance vs Known Distance with False Positives In Air, Ambient vs Dark';
     title({'Measured Distance vs Known Distance with False Positives'; 'In Air, Ambient vs Dark'})
     xlabel('Known Dist (m)')
-    ylabel('Measured Dist (m)')
+    ylabel('Error (m)')
     grid on
     hold off
     % Set the background color to white
@@ -26,6 +28,8 @@ catch
     legend('Location','NW')
 end
 
+%% AFM no FP
+
 try
     figure
     hold on
@@ -38,7 +42,7 @@ try
     Tsave = 'Measured Distance vs Known Distance without False Positives In Air, Ambient vs Dark';
     title({'Measured Distance vs Known Distance without False Positives'; 'In Air, Ambient vs Dark'})
     xlabel('Known Dist (m)')
-    ylabel('Measured Dist (m)')
+    ylabel('Error (m)')
     grid on
     hold off
     % Set the background color to white
@@ -53,7 +57,7 @@ catch
 end
 
 
-%%
+%% Tablet with FP
 
 try
     figure
@@ -66,7 +70,7 @@ try
     Tsave = 'Measured Distance vs Known Distance with False Positives In Air, Ambient vs Dark';
     title({'Measured Distance vs Known Distance with False Positives'; 'In Air, Ambient vs Dark'})
     xlabel('Known Dist (m)')
-    ylabel('Measured Dist (m)')
+    ylabel('Error (m)')
     grid on
     hold off
     % Set the background color to white
@@ -80,6 +84,8 @@ catch
     legend('Location','NW')
 end
 
+%% Tablet no FP
+
 try
     figure
     hold on
@@ -91,7 +97,7 @@ try
     Tsave = 'Measured Distance vs Known Distance without False Positives In Air, Ambient vs Dark';
     title({'Measured Distance vs Known Distance without False Positives'; 'In Air, Ambient vs Dark'})
     xlabel('Known Dist (m)')
-    ylabel('Measured Dist (m)')
+    ylabel('Error (m)')
     grid on
     hold off
     % Set the background color to white

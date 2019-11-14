@@ -35,7 +35,7 @@ for k = 1:numel(EXPname)
                     ID = 'Tag_5';
                 case 'V1'
                     if EXPname{k} == 'Ex2' | EXPname{k} == 'Ex5' 
-                        TagType = 'AFM'
+                        TagType = 'AFM';
                     else
                         TagType = 'AFM-1';
                     end
@@ -61,7 +61,7 @@ for k = 1:numel(EXPname)
         Tsave = ['Measured Distance vs Known Distance with False Positives' EXPtype];
         title({'Measured Distance vs Known Distance with False Positives'; EXPtype})
         xlabel('Known Dist (m)')
-        ylabel('Measured Dist (m)')
+        ylabel('Error (m)')
         grid on
         hold off
         % Set the background color to white
@@ -252,12 +252,12 @@ for k = 1:numel(EXPname)
         Tsave = ['Measured Distance vs Known Distance without False Positives' EXPtype];
         title({'Measured Distance vs Known Distance without False Positives'; EXPtype})
         xlabel('Known Dist (m)')
-        ylabel('Measured Dist (m)')
+        ylabel('Error (m)')
         grid on
         hold off
         % Set the background color to white
         set(gcf,'color','w');
-        fprintf('PVTerror_%s_Test1 = %s \n',EXPname{k},Tsave)
+        fprintf('PVTerror_%s_Test1S = %s \n',EXPname{k},Tsave)
         if exportfigs == 1
         eval(sprintf('export_fig PVTerror_%s_Test1S -png -r300 -painters',EXPname{k}))
         end
