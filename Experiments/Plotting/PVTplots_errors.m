@@ -61,7 +61,7 @@ for k = 1:numel(EXPname)
         gcf();
         legend('Location','NW')
         Tsave = ['Measured Distance vs Known Distance with False Positives' EXPtype];
-        %title({'Measured Distance vs Known Distance with False Positives'; EXPtype})
+        %%title({'Measured Distance vs Known Distance with False Positives'; EXPtype})
         xlabel('Known Distance (m)')
         ylabel('Distance Error(m)')
         grid on
@@ -128,7 +128,7 @@ for k = 1:numel(EXPname)
         gcf();
         legend('Location','NW')
         Tsave = ['Measured Distance vs Known Distance without False Positives' EXPtype];
-        %title({'Measured Distance vs Known Distance without False Positives'; EXPtype})
+        %%title({'Measured Distance vs Known Distance without False Positives'; EXPtype})
         xlabel('Known Distance (m)')
         ylabel('Distance Error (m)')
         grid on

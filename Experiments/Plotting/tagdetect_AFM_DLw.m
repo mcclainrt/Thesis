@@ -55,7 +55,7 @@ end
 gcf();
 legend('Location','NW')
 Tsave = ['Detections vs ', TESTtitle, ' with False Positives, Water LD'];
-title({['Detections vs ', TESTtitle, ' with False Positives']; 'Water LD'})
+%title({['Detections vs ', TESTtitle, ' with False Positives']; 'Water LD'})
 xlabel(xLBL)
 ylabel(yLBL)
 grid on
@@ -124,7 +124,7 @@ end
 gcf();
 legend('Location','NW')
 Tsave = ['Detections vs ', TESTtitle, ' without False Positives, Water LD'];
-title({['Detections vs ', TESTtitle, ' without False Positives']; 'Water LD'})
+%title({['Detections vs ', TESTtitle, ' without False Positives']; 'Water LD'})
 xlabel(xLBL)
 ylabel(yLBL)
 grid on
@@ -192,7 +192,7 @@ end
 gcf();
 legend('Location','NW')
 Tsave = ['Distance Error vs ', TESTtitle, ' with False Positives, Water LD'];
-title({['Distance Error vs ', TESTtitle, ' with False Positives']; 'Water LD'})
+%title({['Distance Error vs ', TESTtitle, ' with False Positives']; 'Water LD'})
 xlabel(xLBL)
 ylabel(yLBL)
 grid on
@@ -261,7 +261,7 @@ end
 gcf();
 legend('Location','NW')
 Tsave = ['Distance Error vs ', TESTtitle, ' without False Positives, Water LD'];
-title({['Distance Error vs ', TESTtitle, ' without False Positives']; 'Water LD'})
+%title({['Distance Error vs ', TESTtitle, ' without False Positives']; 'Water LD'})
 xlabel(xLBL)
 ylabel(yLBL)
 grid on
@@ -330,7 +330,7 @@ end
 gcf();
 legend('Location','NW')
 Tsave = ['Detections vs ', TESTtitle, ' with False Positives, Water LD'];
-title({['Detections vs ', TESTtitle, ' with False Positives']; 'Water LD'})
+%title({['Detections vs ', TESTtitle, ' with False Positives']; 'Water LD'})
 xlabel(xLBL)
 ylabel(yLBL)
 grid on
@@ -399,7 +399,7 @@ end
 gcf();
 legend('Location','NW')
 Tsave = ['Detections vs ', TESTtitle, ' without False Positives, Water LD'];
-title({['Detections vs ', TESTtitle, ' without False Positives']; 'Water LD'})
+%title({['Detections vs ', TESTtitle, ' without False Positives']; 'Water LD'})
 xlabel(xLBL)
 ylabel(yLBL)
 grid on

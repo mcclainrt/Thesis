@@ -17,7 +17,7 @@ end
 gcf();
 legend('Location','NE')
 Tsave = 'Detections vs Distance with False Positives In Air, Ambient Lighting';
-%title({'Detections vs Distance with False Positives'; 'In Air, Ambient Lighting'})
+%%title({'Detections vs Distance with False Positives'; 'In Air, Ambient Lighting'})
 xlabel('Known Distance (m)')
 % xticks([0:.5:6]);
 ylabel('Detections')
@@ -43,7 +43,7 @@ end
 gcf();
 legend('Location','NE')
 Tsave = 'Detections vs Distance without False Positives In Air, Ambient Lighting';
-%title({'Detections vs Distance without False Positives'; 'In Air, Ambient Lighting'})
+%%title({'Detections vs Distance without False Positives'; 'In Air, Ambient Lighting'})
 xlabel('Known Distance (m)')
 ylabel('Detections')
 grid on
@@ -69,7 +69,7 @@ end
 gcf();
 legend('Location','NE')
 Tsave = 'Detections vs Angle without False Positives at 6 Meters, In Air, Ambient Lighting';
-%title({'Detections vs Angle without False Positives'; '6 Meters, In Air, Ambient Lighting'})
+%%title({'Detections vs Angle without False Positives'; '6 Meters, In Air, Ambient Lighting'})
 xlabel('Known Angle (deg)')
 ylabel('Detections')
 grid on
@@ -91,7 +91,7 @@ end
 gcf();
 legend('Location','NE')
 Tsave = 'Detections vs Angle without False Positives at 2 Meters, In Air, Ambient Lighting';
-%title({'Detections vs Angle without False Positives'; '2 Meters, In Air, Ambient Lighting'})
+%%title({'Detections vs Angle without False Positives'; '2 Meters, In Air, Ambient Lighting'})
 xlabel('Known Angle (deg)')
 ylabel('Detections')
 grid on
@@ -118,7 +118,7 @@ end
 gcf();
 legend('Location','NE')
 Tsave = 'Detections vs Angle with False Positives at 4 Meters, In Air, Ambient Lighting';
-%title({'Detections vs Angle with False Positives'; '4 Meters, In Air, Ambient Lighting'})
+%%title({'Detections vs Angle with False Positives'; '4 Meters, In Air, Ambient Lighting'})
 xlabel('Known Angle (deg)')
 ylabel('Detections')
 grid on
@@ -140,7 +140,7 @@ end
 gcf();
 legend('Location','NE')
 Tsave = 'Detections vs Angle without False Positives at 4 Meters, In Air, Ambient Lighting';
-%title({'Detections vs Angle without False Positives'; '4 Meters, In Air, Ambient Lighting'})
+%%title({'Detections vs Angle without False Positives'; '4 Meters, In Air, Ambient Lighting'})
 xlabel('Known Angle (deg)')
 ylabel('Detections')
 grid on
@@ -167,7 +167,7 @@ end
 gcf();
 legend('Location','NE')
 Tsave = 'Detections vs Angle with False Positives at 2 Meters, In Air, Ambient Lighting';
-%title({'Detections vs Angle with False Positives'; '2 Meters, In Air, Ambient Lighting'})
+%%title({'Detections vs Angle with False Positives'; '2 Meters, In Air, Ambient Lighting'})
 xlabel('Known Angle (deg)')
 ylabel('Detections')
 grid on
@@ -189,7 +189,7 @@ end
 gcf();
 legend('Location','NE')
 Tsave = 'Detections vs Angle without False Positives at 6 Meters, In Air, Ambient Lighting';
-%title({'Detections vs Angle without False Positives'; '6 Meters, In Air, Ambient Lighting'})
+%%title({'Detections vs Angle without False Positives'; '6 Meters, In Air, Ambient Lighting'})
 xlabel('Known Angle (deg)')
 ylabel('Detections')
 grid on

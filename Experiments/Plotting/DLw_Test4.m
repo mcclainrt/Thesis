@@ -10,7 +10,7 @@ try
     gcf();
     legend('Location','NW')
     Tsave = ['Measured Angle vs Known Angle with False Positives At 6 Meters, In Water, Ambient vs Dark'];
-    title({'Measured Angle vs Known Angle with False Positives'; 'At 6 Meters, In Water, Ambient vs Dark'})
+    %title({'Measured Angle vs Known Angle with False Positives'; 'At 6 Meters, In Water, Ambient vs Dark'})
     xlabel('Known Angle (deg)')
     ylabel('Measured Angle (deg)')
     grid on
@@ -36,7 +36,7 @@ try
     gcf();
     legend('Location','NW')
     Tsave = ['Measured Angle vs Known Angle without False Positives At 6 Meters, In Water, Ambient vs Dark'];
-    title({'Measured Angle vs Known Angle without False Positives'; 'At 6 Meters, In Water, Ambient vs Dark'})
+    %title({'Measured Angle vs Known Angle without False Positives'; 'At 6 Meters, In Water, Ambient vs Dark'})
     xlabel('Known Angle (deg)')
     ylabel('Measured Angle (deg)')
     grid on
@@ -64,7 +64,7 @@ try
     gcf();
     legend('Location','NW')
     Tsave = ['Measured Angle vs Known Angle with False Positives At 6 Meters, In Water, Ambient vs Dark'];
-    title({'Measured Angle vs Known Angle with False Positives'; 'At 6 Meters, In Water, Ambient vs Dark'})
+    %title({'Measured Angle vs Known Angle with False Positives'; 'At 6 Meters, In Water, Ambient vs Dark'})
     xlabel('Known Angle (deg)')
     ylabel('Measured Angle (deg)')
     grid on
@@ -89,7 +89,7 @@ try
     gcf();
     legend('Location','NW')
     Tsave = ['Measured Angle vs Known Angle without False Positives At 6 Meters, In Water, Ambient vs Dark'];
-    title({'Measured Angle vs Known Angle without False Positives'; 'At 6 Meters, In Water, Ambient vs Dark'})
+    %title({'Measured Angle vs Known Angle without False Positives'; 'At 6 Meters, In Water, Ambient vs Dark'})
     xlabel('Known Angle (deg)')
     ylabel('Measured Angle (deg)')
     grid on

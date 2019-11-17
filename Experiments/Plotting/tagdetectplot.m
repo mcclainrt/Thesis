@@ -80,7 +80,7 @@ for k = 1:numel(EXPname)
             gcf();
             legend('Location','NW')
             Tsave = ['Detections vs ', TESTtitle, ' with False Positives', TESTtype];
-            title({['Detections vs ', TESTtitle, ' with False Positives']; TESTtype})
+            %title({['Detections vs ', TESTtitle, ' with False Positives']; TESTtype})
             xlabel(xLBL)
             ylabel(yLBL)
             grid on
@@ -172,7 +172,7 @@ for k = 1:numel(EXPname)
             gcf();
             legend('Location','NW')
             Tsave = ['Detections vs ', TESTtitle, ' without False Positives', TESTtype];
-            title({['Detections vs ', TESTtitle, ' without False Positives']; TESTtype})
+            %title({['Detections vs ', TESTtitle, ' without False Positives']; TESTtype})
             xlabel(xLBL)
             ylabel(yLBL)
             grid on
@@ -244,7 +244,7 @@ end
 gcf();
 legend('Location','NW')
 Tsave = ['Detections vs ', TESTtitle, ' with False Positives, All Scenarios'];
-title({['Detections vs ', TESTtitle, ' with False Positives']; 'All Scenarios'})
+%title({['Detections vs ', TESTtitle, ' with False Positives']; 'All Scenarios'})
 xlabel(xLBL)
 ylabel(yLBL)
 grid on
@@ -312,7 +312,7 @@ end
 gcf();
 legend('Location','NW')
 Tsave = ['Detections vs ', TESTtitle, ' without False Positives, All Scenarios'];
-title({['Detections vs ', TESTtitle, ' without False Positives']; 'All Scenarios'})
+%title({['Detections vs ', TESTtitle, ' without False Positives']; 'All Scenarios'})
 xlabel(xLBL)
 ylabel(yLBL)
 grid on
@@ -380,7 +380,7 @@ end
 gcf();
 legend('Location','NW')
 Tsave = ['Distance Error vs ', TESTtitle, ' with False Positives, All Scenarios'];
-title({['Distance Error vs ', TESTtitle, ' with False Positives']; 'All Scenarios'})
+%title({['Distance Error vs ', TESTtitle, ' with False Positives']; 'All Scenarios'})
 xlabel(xLBL)
 ylabel(yLBL)
 grid on
@@ -449,7 +449,7 @@ end
 gcf();
 legend('Location','NW')
 Tsave = ['Distance Error vs ', TESTtitle, ' without False Positives, All Scenarios'];
-title({['Distance Error vs ', TESTtitle, ' without False Positives']; 'All Scenarios'})
+%title({['Distance Error vs ', TESTtitle, ' without False Positives']; 'All Scenarios'})
 xlabel(xLBL)
 ylabel(yLBL)
 grid on

@@ -12,7 +12,7 @@ plot(NIWC.APRIL_L_1(:,2),NIWC.APRIL_L_1(:,1),'*','DisplayName','AprilTag (Scenar
 gcf();
 legend('Location','NW')
 Tsave = 'Measured Distance vs Timestamp';
-title('Measured Distance vs Timestamp')
+%title('Measured Distance vs Timestamp')
 xlabel('Timestamp (s)')
 ylabel('Measured Distance (m)')
 grid  on
@@ -34,7 +34,7 @@ plot(NIWC.APRIL_L_5(:,2),NIWC.APRIL_L_5(:,1),'*','DisplayName','AprilTag (Scenar
 gcf();
 legend('Location','NW')
 Tsave = 'Measured Distance vs Timestamp';
-title('Measured Distance vs Timestamp')
+%title('Measured Distance vs Timestamp')
 xlabel('Timestamp (s)')
 ylabel('Measured Distance (m)')
 grid on
@@ -56,7 +56,7 @@ plot(NIWC.meanA_L(:,1),NIWC.meanA_L(:,2),'*','DisplayName','AprilTag (Scenario 2
 gcf();
 legend('Location','NW')
 Tsave = 'Mean Measured Distance vs Estimated Distance';
-title('Mean Measured Distance vs Estimated Distance')
+%title('Mean Measured Distance vs Estimated Distance')
 xlabel('Estimated Distance (m)')
 ylabel('Measured Distance (m)')
 grid minor

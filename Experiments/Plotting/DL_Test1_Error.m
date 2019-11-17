@@ -12,7 +12,7 @@ try
     gcf();
     legend('Location','NW')
     Tsave = 'Measured Distance vs Known Distance with False Positives In Air, Ambient vs Dark';
-    title({'Measured Distance vs Known Distance with False Positives'; 'In Air, Ambient vs Dark'})
+    %title({'Measured Distance vs Known Distance with False Positives'; 'In Air, Ambient vs Dark'})
     xlabel('Known Distance (m)')
     ylabel('Error (m)')
     grid on
@@ -40,7 +40,7 @@ try
     gcf();
     legend('Location','NW')
     Tsave = 'Measured Distance vs Known Distance without False Positives In Air, Ambient vs Dark';
-    title({'Measured Distance vs Known Distance without False Positives'; 'In Air, Ambient vs Dark'})
+    %title({'Measured Distance vs Known Distance without False Positives'; 'In Air, Ambient vs Dark'})
     xlabel('Known Distance (m)')
     ylabel('Error (m)')
     grid on
@@ -68,7 +68,7 @@ try
     gcf();
     legend('Location','NW')
     Tsave = 'Measured Distance vs Known Distance with False Positives In Air, Ambient vs Dark';
-    title({'Measured Distance vs Known Distance with False Positives'; 'In Air, Ambient vs Dark'})
+    %title({'Measured Distance vs Known Distance with False Positives'; 'In Air, Ambient vs Dark'})
     xlabel('Known Distance (m)')
     ylabel('Error (m)')
     grid on
@@ -95,7 +95,7 @@ try
     gcf();
     legend('Location','NW')
     Tsave = 'Measured Distance vs Known Distance without False Positives In Air, Ambient vs Dark';
-    title({'Measured Distance vs Known Distance without False Positives'; 'In Air, Ambient vs Dark'})
+    %title({'Measured Distance vs Known Distance without False Positives'; 'In Air, Ambient vs Dark'})
     xlabel('Known Distance (m)')
     ylabel('Error (m)')
     grid on
