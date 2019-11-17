@@ -11,14 +11,14 @@ figure
 hold on
 for k = 1:numel(Plnames)
     
-    plot(TR.(Plnames{k})(:,1),TR.(Plnames{k})(:,6),'-*','DisplayName',string(join([split(Plnames{k},'_')','Detections'])))
+    plot(TR.(Plnames{k})(:,1),TR.(Plnames{k})(:,6),'-*','DisplayName',string(join([split(Plnames{k},'_')'])))
     
 end
 gcf();
 legend('Location','NE')
 Tsave = 'Detections vs Distance with False Positives In Air, Ambient Lighting';
 %title({'Detections vs Distance with False Positives'; 'In Air, Ambient Lighting'})
-xlabel('Known Dist (m)')
+xlabel('Known Distance (m)')
 % xticks([0:.5:6]);
 ylabel('Detections')
 % yticks([0:.5:6]);
@@ -37,14 +37,14 @@ end
 figure
 hold on
 for k = 1:numel(Plnames)
-    plot(TR.(Plnames{k})(:,1),TR.(Plnames{k})(:,7),'-*','DisplayName',string(join([split(Plnames{k},'_')','Detections'])))
+    plot(TR.(Plnames{k})(:,1),TR.(Plnames{k})(:,7),'-*','DisplayName',string(join([split(Plnames{k},'_')'])))
     
 end
 gcf();
 legend('Location','NE')
 Tsave = 'Detections vs Distance without False Positives In Air, Ambient Lighting';
 %title({'Detections vs Distance without False Positives'; 'In Air, Ambient Lighting'})
-xlabel('Known Dist (m)')
+xlabel('Known Distance (m)')
 ylabel('Detections')
 grid on
 hold off
@@ -63,7 +63,7 @@ Plnames = fieldnames(TR);
 figure
 hold on
 for k = 1:numel(Plnames)
-    plot(TR.(Plnames{k})(:,1),TR.(Plnames{k})(:,6),'-*','DisplayName',string(join([split(Plnames{k},'_')','Detections'])))
+    plot(TR.(Plnames{k})(:,1),TR.(Plnames{k})(:,6),'-*','DisplayName',string(join([split(Plnames{k},'_')'])))
     
 end
 gcf();
@@ -85,7 +85,7 @@ end
 figure
 hold on
 for k = 1:numel(Plnames)
-    plot(TR.(Plnames{k})(:,1),TR.(Plnames{k})(:,7),'-*','DisplayName',string(join([split(Plnames{k},'_')','Detections'])))
+    plot(TR.(Plnames{k})(:,1),TR.(Plnames{k})(:,7),'-*','DisplayName',string(join([split(Plnames{k},'_')'])))
     
 end
 gcf();
@@ -112,7 +112,7 @@ Plnames = fieldnames(TR);
 figure
 hold on
 for k = 1:numel(Plnames)
-    plot(TR.(Plnames{k})(:,1),TR.(Plnames{k})(:,6),'-*','DisplayName',string(join([split(Plnames{k},'_')','Detections'])))
+    plot(TR.(Plnames{k})(:,1),TR.(Plnames{k})(:,6),'-*','DisplayName',string(join([split(Plnames{k},'_')'])))
     
 end
 gcf();
@@ -134,7 +134,7 @@ end
 figure
 hold on
 for k = 1:numel(Plnames)
-    plot(TR.(Plnames{k})(:,1),TR.(Plnames{k})(:,7),'-*','DisplayName',string(join([split(Plnames{k},'_')','Detections'])))
+    plot(TR.(Plnames{k})(:,1),TR.(Plnames{k})(:,7),'-*','DisplayName',string(join([split(Plnames{k},'_')'])))
     
 end
 gcf();
@@ -161,7 +161,7 @@ Plnames = fieldnames(TR);
 figure
 hold on
 for k = 1:numel(Plnames)
-    plot(TR.(Plnames{k})(:,1),TR.(Plnames{k})(:,6),'-*','DisplayName',string(join([split(Plnames{k},'_')','Detections'])))
+    plot(TR.(Plnames{k})(:,1),TR.(Plnames{k})(:,6),'-*','DisplayName',string(join([split(Plnames{k},'_')'])))
     
 end
 gcf();
@@ -183,7 +183,7 @@ end
 figure
 hold on
 for k = 1:numel(Plnames)
-    plot(TR.(Plnames{k})(:,1),TR.(Plnames{k})(:,7),'-*','DisplayName',string(join([split(Plnames{k},'_')','Detections'])))
+    plot(TR.(Plnames{k})(:,1),TR.(Plnames{k})(:,7),'-*','DisplayName',string(join([split(Plnames{k},'_')'])))
     
 end
 gcf();

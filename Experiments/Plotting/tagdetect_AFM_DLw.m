@@ -18,8 +18,8 @@ for k = 1:numel(EXPname)
     
     AFMname = {'V1';'V2'};
     TESTtype = EXPtype;
-    TESTtitle = 'Known Dist';
-    xLBL = 'Known Dist (m)';
+    TESTtitle = 'Known Distance';
+    xLBL = 'Known Distance (m)';
     yLBL = 'Detections';
 
     for m = 1:numel(AFMname)
@@ -87,8 +87,8 @@ for k = 1:numel(EXPname)
     
     AFMname = {'V1';'V2'};
     TESTtype = EXPtype;
-    TESTtitle = 'Known Dist';
-    xLBL = 'Known Dist (m)';
+    TESTtitle = 'Known Distance';
+    xLBL = 'Known Distance (m)';
     yLBL = 'Detections';
 
     for m = 1:numel(AFMname)
@@ -155,8 +155,8 @@ for k = 1:numel(EXPname)
     
     AFMname = {'V1';'V2'};
     TESTtype = EXPtype;
-    TESTtitle = 'Known Dist';
-    xLBL = 'Known Dist (m)';
+    TESTtitle = 'Known Distance';
+    xLBL = 'Known Distance (m)';
     yLBL = 'Distance Error (m)';
 
     for m = 1:numel(AFMname)
@@ -224,8 +224,8 @@ for k = 1:numel(EXPname)
     
     AFMname = {'V1';'V2'};
     TESTtype = EXPtype;
-    TESTtitle = 'Known Dist';
-    xLBL = 'Known Dist (m)';
+    TESTtitle = 'Known Distance';
+    xLBL = 'Known Distance (m)';
     yLBL = 'Distance Error (m)';
 
     for m = 1:numel(AFMname)

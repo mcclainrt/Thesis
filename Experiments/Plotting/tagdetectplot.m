@@ -23,8 +23,8 @@ for k = 1:numel(EXPname)
             switch Testname{n}
                 case 'Test1'
                     TESTtype = EXPtype;
-                    TESTtitle = 'Known Dist';
-                    xLBL = 'Known Dist (m)';
+                    TESTtitle = 'Known Distance';
+                    xLBL = 'Known Distance (m)';
                     yLBL = 'Detections';
                 case 'Test2'
                     TESTtype = ['At 2 Meters,' EXPtype];
@@ -70,7 +70,7 @@ for k = 1:numel(EXPname)
 
 
                 try
-                    plot(Data.(EXPname{k}).Results.(AFMname{m}).(Testname{n}).(ID)(:,1),Data.(EXPname{k}).Results.(AFMname{m}).(Testname{n}).(ID)(:,6),'-*','DisplayName',[TagType ' Detections'])
+                    plot(Data.(EXPname{k}).Results.(AFMname{m}).(Testname{n}).(ID)(:,1),Data.(EXPname{k}).Results.(AFMname{m}).(Testname{n}).(ID)(:,6),'-*','DisplayName',[TagType])
                 catch
                     warning(['Error - DID NOT COMPUTE', EXPname{k}, AFMname{m}, Testname{n}, ID]);
                     continue
@@ -116,8 +116,8 @@ for k = 1:numel(EXPname)
             switch Testname{n}
                 case 'Test1'
                     TESTtype = EXPtype;
-                    TESTtitle = 'Known Dist';
-                    xLBL = 'Known Dist (m)';
+                    TESTtitle = 'Known Distance';
+                    xLBL = 'Known Distance (m)';
                     yLBL = 'Detections';
                 case 'Test2'
                     TESTtype = ['At 2 Meters,' EXPtype];
@@ -162,7 +162,7 @@ for k = 1:numel(EXPname)
 
 
                 try
-                    plot(Data.(EXPname{k}).Results.(AFMname{m}).(Testname{n}).(ID)(:,1),Data.(EXPname{k}).Results.(AFMname{m}).(Testname{n}).(ID)(:,7),'-*','DisplayName',[TagType ' Detections'])
+                    plot(Data.(EXPname{k}).Results.(AFMname{m}).(Testname{n}).(ID)(:,1),Data.(EXPname{k}).Results.(AFMname{m}).(Testname{n}).(ID)(:,7),'-*','DisplayName',[TagType])
                 catch
                     warning(['Error - DID NOT COMPUTE', EXPname{k}, AFMname{m}, Testname{n}, ID]);
                     continue
@@ -207,8 +207,8 @@ for k = 1:numel(EXPname)
     
     AFMname = {'V1';'V2'};
     TESTtype = EXPtype;
-    TESTtitle = 'Known Dist';
-    xLBL = 'Known Dist (m)';
+    TESTtitle = 'Known Distance';
+    xLBL = 'Known Distance (m)';
     yLBL = 'Detections';
 
     for m = 1:numel(AFMname)
@@ -275,8 +275,8 @@ for k = 1:numel(EXPname)
     
     AFMname = {'V1';'V2'};
     TESTtype = EXPtype;
-    TESTtitle = 'Known Dist';
-    xLBL = 'Known Dist (m)';
+    TESTtitle = 'Known Distance';
+    xLBL = 'Known Distance (m)';
     yLBL = 'Detections';
 
     for m = 1:numel(AFMname)
@@ -343,8 +343,8 @@ for k = 1:numel(EXPname)
     
     AFMname = {'V1';'V2'};
     TESTtype = EXPtype;
-    TESTtitle = 'Known Dist';
-    xLBL = 'Known Dist (m)';
+    TESTtitle = 'Known Distance';
+    xLBL = 'Known Distance (m)';
     yLBL = 'Distance Error (m)';
 
     for m = 1:numel(AFMname)
@@ -412,8 +412,8 @@ for k = 1:numel(EXPname)
     
     AFMname = {'V1';'V2'};
     TESTtype = EXPtype;
-    TESTtitle = 'Known Dist';
-    xLBL = 'Known Dist (m)';
+    TESTtitle = 'Known Distance';
+    xLBL = 'Known Distance (m)';
     yLBL = 'Distance Error (m)';
 
     for m = 1:numel(AFMname)

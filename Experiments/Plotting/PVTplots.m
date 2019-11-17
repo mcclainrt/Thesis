@@ -60,8 +60,8 @@ for k = 1:numel(EXPname)
         legend('Location','NW')
         Tsave = ['Measured Distance vs Known Distance with False Positives' EXPtype];
         %title({'Measured Distance vs Known Distance with False Positives'; EXPtype})
-        xlabel('Known Dist (m)')
-        ylabel('Measured Dist (m)')
+        xlabel('Known Distance (m)')
+        ylabel('Measured Distance (m)')
         grid on
         hold off
         % Set the background color to white
@@ -257,8 +257,8 @@ for k = 1:numel(EXPname)
         legend('Location','NW')
         Tsave = ['Measured Distance vs Known Distance without False Positives' EXPtype];
         title({'Measured Distance vs Known Distance without False Positives'; EXPtype})
-        xlabel('Known Dist (m)')
-        ylabel('Measured Dist (m)')
+        xlabel('Known Distance (m)')
+        ylabel('Measured Distance (m)')
         grid on
         hold off
         % Set the background color to white

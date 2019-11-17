@@ -14,7 +14,7 @@ try
     legend('Location','NW')
     Tsave = 'Measured Distance vs Known Distance with False Positives In Water, Ambient vs Dark';
     title({'Measured Distance vs Known Distance with False Positives'; 'In Water, Ambient vs Dark'})
-    xlabel('Known Dist (m)')
+    xlabel('Known Distance (m)')
     ylabel('Error (m)')
     grid on
     hold off
@@ -42,7 +42,7 @@ try
     legend('Location','NW')
     Tsave = 'Measured Distance vs Known Distance without False Positives In Water, Ambient vs Dark';
     title({'Measured Distance vs Known Distance without False Positives'; 'In Water, Ambient vs Dark'})
-    xlabel('Known Dist (m)')
+    xlabel('Known Distance (m)')
     ylabel('Error (m)')
     grid on
     hold off
@@ -69,7 +69,7 @@ try
     legend('Location','NW')
     Tsave = 'Measured Distance vs Known Distance with False Positives In Water, Ambient vs Dark';
     title({'Measured Distance vs Known Distance with False Positives'; 'In Water, Ambient vs Dark'})
-    xlabel('Known Dist (m)')
+    xlabel('Known Distance (m)')
     ylabel('Error (m)')
     grid on
     hold off
@@ -96,7 +96,7 @@ try
     legend('Location','NW')
     Tsave = 'Measured Distance vs Known Distance without False Positives In Water, Ambient vs Dark';
     title({'Measured Distance vs Known Distance without False Positives'; 'In Water, Ambient vs Dark'})
-    xlabel('Known Dist (m)')
+    xlabel('Known Distance (m)')
     ylabel('Error (m)')
     grid on
     hold off

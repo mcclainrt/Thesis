@@ -14,7 +14,7 @@ legend('Location','NW')
 Tsave = 'Measured Distance vs Timestamp';
 title('Measured Distance vs Timestamp')
 xlabel('Timestamp (s)')
-ylabel('Measured Dist (m)')
+ylabel('Measured Distance (m)')
 grid  on
 hold off
 % Set the background color to white
@@ -36,7 +36,7 @@ legend('Location','NW')
 Tsave = 'Measured Distance vs Timestamp';
 title('Measured Distance vs Timestamp')
 xlabel('Timestamp (s)')
-ylabel('Measured Dist (m)')
+ylabel('Measured Distance (m)')
 grid on
 hold off
 % Set the background color to white
@@ -57,8 +57,8 @@ gcf();
 legend('Location','NW')
 Tsave = 'Mean Measured Distance vs Estimated Distance';
 title('Mean Measured Distance vs Estimated Distance')
-xlabel('Estimated Dist (m)')
-ylabel('Measured Dist (m)')
+xlabel('Estimated Distance (m)')
+ylabel('Measured Distance (m)')
 grid minor
 hold off
  axis([.4 1.1 .5 1.8])
