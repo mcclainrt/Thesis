@@ -162,6 +162,6 @@ errorcolumn
 
 save('Data/all_results.mat', 'Data')
 
-exportfigs = 0;
+exportfigs = 1;
 
 run('.\Plotting\AllPlot')
