@@ -1,6 +1,6 @@
 load('..\Data\NIWCsel')
 
-close all
+%close all
 
 figure
 hold on
@@ -18,7 +18,7 @@ ylabel('Measured Distance (m)')
 grid  on
 hold off
 % Set the background color to white
-set(gcf,'color','w');
+plotnorm()
 fprintf('NIWCsel_1m = %s \n',Tsave)
 if exportfigs == 1
     eval(sprintf('export_fig NIWCsel_1m -png -r300 -painters'))
@@ -40,7 +40,7 @@ ylabel('Measured Distance (m)')
 grid on
 hold off
 % Set the background color to white
-set(gcf,'color','w');
+plotnorm()
 fprintf('NIWCsel_5m = %s \n',Tsave)
 if exportfigs == 1
     eval(sprintf('export_fig NIWCsel_5m -png -r300 -painters'))
@@ -65,7 +65,7 @@ hold off
  xticks([.5 .75 1])
  yticks([.5 .75 1 1.25 1.5 1.75])
 % Set the background color to white
-set(gcf,'color','w');
+plotnorm()
 fprintf('NIWCsel_means = %s \n',Tsave)
 if exportfigs == 1
     eval(sprintf('export_fig NIWCsel_means -png -r300 -painters'))
