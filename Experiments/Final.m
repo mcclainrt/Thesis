@@ -158,10 +158,11 @@ end
 
 fprintf('Results: \n Knowns, STD_w/outliers, mean val w/outliers, STD without, meanval without, Tag Count with, Tag count without, Baseline used, Id percent \n')
 
+% Add error calculations to a new column in the data 
 errorcolumn
 
 save('Data/all_results.mat', 'Data')
 
-exportfigs = 1;
+exportfigs = 0; % If 1 then images will be saved to the Plotting folder.
 
 run('.\Plotting\AllPlot')

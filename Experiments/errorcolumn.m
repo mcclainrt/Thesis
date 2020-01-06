@@ -1,5 +1,8 @@
 close all
 
+% Subtracts the calculated distance from the known distance and saves this
+% "adjusted" distance in a new column
+
 EXPname = fieldnames(Data);
 
 for k = 1:numel(EXPname)
@@ -51,7 +54,8 @@ for k = 1:numel(EXPname)
         end  
     end
 end
-%%
+%% Same thing only done to the Results data vice the raw data
+
 for k = 1:numel(EXPname)
     if contains(EXPname{k},'Ex1') | contains(EXPname{k},'Ex4') | contains(EXPname{k},'Ex7')
         continue

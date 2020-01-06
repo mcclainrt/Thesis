@@ -1,5 +1,8 @@
 function [no_outliers] = outlier_removal(Structure)
 
+% Removes rows of data where the calculated distance is greater than 3 MADs
+% from the known distance
+
 TestsAvail = fieldnames(Structure);
 
 %https://www.mathworks.com/matlabcentral/answers/224877-how-to-extract-rows-based-on-column-values-in-a-matrix

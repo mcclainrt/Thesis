@@ -26,7 +26,7 @@ ylabel('Detections')
 grid on
 hold off
 % Set the background color to white
-set(gcf,'color','w');
+plotnorm()
 fprintf('PhaseI_Test1 = %s \n',Tsave)
 if exportfigs == 1
     eval(sprintf('export_fig PhaseI_Test1 -png -r300 -painters'))
@@ -49,7 +49,7 @@ ylabel('Detections')
 grid on
 hold off
 % Set the background color to white
-set(gcf,'color','w');
+plotnorm()
 fprintf('PhaseI_Test1S = %s \n',Tsave)
 if exportfigs == 1
     eval(sprintf('export_fig PhaseI_Test1S -png -r300 -painters'))
@@ -75,7 +75,7 @@ ylabel('Detections')
 grid on
 hold off
 % Set the background color to white
-set(gcf,'color','w');
+plotnorm()
 fprintf('PhaseI_Test2 = %s \n',Tsave)
 if exportfigs == 1
     eval(sprintf('export_fig PhaseI_Test2 -png -r300 -painters'))
@@ -97,7 +97,7 @@ ylabel('Detections')
 grid on
 hold off
 % Set the background color to white
-set(gcf,'color','w');
+plotnorm()
 fprintf('PhaseI_Test2S = %s \n',Tsave)
 if exportfigs == 1
     eval(sprintf('export_fig PhaseI_Test2S -png -r300 -painters'))
@@ -124,7 +124,7 @@ ylabel('Detections')
 grid on
 hold off
 % Set the background color to white
-set(gcf,'color','w');
+plotnorm()
 fprintf('PhaseI_Test3 = %s \n',Tsave)
 if exportfigs == 1
     eval(sprintf('export_fig PhaseI_Test3 -png -r300 -painters'))
@@ -146,7 +146,7 @@ ylabel('Detections')
 grid on
 hold off
 % Set the background color to white
-set(gcf,'color','w');
+plotnorm()
 fprintf('PhaseI_Test3S = %s \n',Tsave)
 if exportfigs == 1
     eval(sprintf('export_fig PhaseI_Test3S -png -r300 -painters'))
@@ -173,7 +173,7 @@ ylabel('Detections')
 grid on
 hold off
 % Set the background color to white
-set(gcf,'color','w');
+plotnorm()
 fprintf('PhaseI_Test4 = %s \n',Tsave)
 if exportfigs == 1
     eval(sprintf('export_fig PhaseI_Test4 -png -r300 -painters'))
@@ -195,7 +195,7 @@ ylabel('Detections')
 grid on
 hold off
 % Set the background color to white
-set(gcf,'color','w');
+plotnorm()
 fprintf('PhaseI_Test4S = %s \n',Tsave)
 if exportfigs == 1
     eval(sprintf('export_fig PhaseI_Test4S -png -r300 -painters'))

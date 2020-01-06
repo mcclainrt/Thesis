@@ -1,4 +1,4 @@
-% close all
+close all
 
 %% Absolute Error vs. known dist plots all deisgns (PVT Error)
 
@@ -454,12 +454,7 @@ for k = 1:numel(EXPname)
 end
 
 
-%% Tag detections
-
-
 %% Ambient/Dark comparison plots
-
-%% Test 1 Absolute Error Plots
 
 %% AFM with FP
 tests = 'Test1';
@@ -475,7 +470,7 @@ try
     Tsave = 'Measured Distance vs Known Distance with False Positives In Air, Ambient vs Dark';
     %title({'Measured Distance vs Known Distance with False Positives'; 'In Air, Ambient vs Dark'})
     xlabel('Known Distance (m)')
-    ylabel('Error (m)')
+    ylabel('Distance Error (m)')
     grid on
     hold off
     % Set the background color to white
@@ -503,7 +498,7 @@ try
     Tsave = 'Measured Distance vs Known Distance without False Positives In Air, Ambient vs Dark';
     %title({'Measured Distance vs Known Distance without False Positives'; 'In Air, Ambient vs Dark'})
     xlabel('Known Distance (m)')
-    ylabel('Error (m)')
+    ylabel('Distance Error (m)')
     grid on
     hold off
     % Set the background color to white
@@ -531,7 +526,7 @@ try
     Tsave = 'Measured Distance vs Known Distance with False Positives In Air, Ambient vs Dark';
     %title({'Measured Distance vs Known Distance with False Positives'; 'In Air, Ambient vs Dark'})
     xlabel('Known Distance (m)')
-    ylabel('Error (m)')
+    ylabel('Distance Error (m)')
     grid on
     hold off
     % Set the background color to white
@@ -558,7 +553,7 @@ try
     Tsave = 'Measured Distance vs Known Distance without False Positives In Air, Ambient vs Dark';
     %title({'Measured Distance vs Known Distance without False Positives'; 'In Air, Ambient vs Dark'})
     xlabel('Known Distance (m)')
-    ylabel('Error (m)')
+    ylabel('Distance Error (m)')
     grid on
     hold off
     % Set the background color to white
@@ -901,143 +896,6 @@ end
 
 %% Ambient Dark Detections comparison AFM
 
-%% Raw detects Light Dark AFM Air Test 1
-
-EXPname = {'Ex2'; 'Ex3'};
-figure
-hold on
-for k = 1:numel(EXPname)
-    
-    switch EXPname{k}
-        case 'Ex2'
-            EXPtype = ' Open Air, Ambient';
-        case 'Ex3'
-            EXPtype = ' Open Air, Dark';
-        case 'Ex5'
-            EXPtype = ' In Water, Ambient';
-        case 'Ex6'
-            EXPtype = ' In Water, Dark';
-    end
-    
-    AFMname = {'V1';'V2'};
-    TESTtype = EXPtype;
-    TESTtitle = 'Known Distance';
-    xLBL = 'Known Distance (m)';
-    yLBL = 'Detections';
-
-    for m = 1:numel(AFMname)
-        switch AFMname{m}
-            case 'P'
-                TagType = 'Paper Tag';
-                ID = 'Tag_5';
-            case 'V1'
-                if EXPname{k} == 'Ex2' | EXPname{k} == 'Ex5' 
-                    TagType = 'AFM';
-                else
-                    TagType = 'AFM-1';
-                end
-                ID = 'Tag_7';
-            case 'V2'
-                TagType = 'AFM-2';
-                ID = 'Tag_7';
-            case 'T'
-                TagType = 'Tablet';
-                ID = 'Tag_5';
-        end
-
-
-        try
-            plot(Data.(EXPname{k}).Results.(AFMname{m}).Test1.(ID)(:,1),Data.(EXPname{k}).Results.(AFMname{m}).Test1.(ID)(:,6),'-*','DisplayName',[TagType EXPtype])
-        catch
-            warning(['Error - DID NOT COMPUTE', EXPname{k}, AFMname{m}, 'Test1', ID]);
-            continue
-        end
-    end
-end
-
-gcf();
-legend('Location','NW')
-Tsave = ['Detections vs ', TESTtitle, ' with False Positives, Air LD'];
-%title({['Detections vs ', TESTtitle, ' with False Positives']; 'Air LD'})
-xlabel(xLBL)
-ylabel(yLBL)
-grid on
-hold off
-% Set the background color to white
-plotnorm()
-fprintf('DL_Detect_AFM = %s \n',Tsave)
-if exportfigs == 1
-    eval(sprintf('export_fig DL_Detect_AFM -png -r300 -painters'))
-end
-
-%% Smooth detects Light Dark AFM Air Test 1
-
-EXPname = {'Ex2'; 'Ex3'};
-figure
-hold on
-for k = 1:numel(EXPname)
-    
-    switch EXPname{k}
-        case 'Ex2'
-            EXPtype = ' Open Air, Ambient';
-        case 'Ex3'
-            EXPtype = ' Open Air, Dark';
-        case 'Ex5'
-            EXPtype = ' In Water, Ambient';
-        case 'Ex6'
-            EXPtype = ' In Water, Dark';
-    end
-    
-    AFMname = {'V1';'V2'};
-    TESTtype = EXPtype;
-    TESTtitle = 'Known Distance';
-    xLBL = 'Known Distance (m)';
-    yLBL = 'Detections';
-
-    for m = 1:numel(AFMname)
-        switch AFMname{m}
-            case 'P'
-                TagType = 'Paper Tag';
-                ID = 'Tag_5';
-            case 'V1'
-                if EXPname{k} == 'Ex2' | EXPname{k} == 'Ex5' 
-                    TagType = 'AFM';
-                else
-                    TagType = 'AFM-1';
-                end
-                ID = 'Tag_7';
-            case 'V2'
-                TagType = 'AFM-2';
-                ID = 'Tag_7';
-            case 'T'
-                TagType = 'Tablet';
-                ID = 'Tag_5';
-        end
-
-
-        try
-            plot(Data.(EXPname{k}).Results.(AFMname{m}).Test1.(ID)(:,1),Data.(EXPname{k}).Results.(AFMname{m}).Test1.(ID)(:,7),'-*','DisplayName',[TagType EXPtype])
-        catch
-            warning(['Error - DID NOT COMPUTE', EXPname{k}, AFMname{m}, 'Test1', ID]);
-            continue
-        end
-    end
-end
-
-gcf();
-legend('Location','NW')
-Tsave = ['Detections vs ', TESTtitle, ' without False Positives, Air LD'];
-%title({['Detections vs ', TESTtitle, ' without False Positives']; 'Air LD'})
-xlabel(xLBL)
-ylabel(yLBL)
-grid on
-hold off
-% Set the background color to white
-plotnorm()
-fprintf('DL_Detect_AFM_S = %s \n',Tsave)
-if exportfigs == 1
-    eval(sprintf('export_fig DL_Detect_AFM_S -png -r300 -painters'))
-end
 %% Raw Error bars Light Dark AFM Air Test 1
 
 EXPname = {'Ex2'; 'Ex3'};
@@ -1174,6 +1032,147 @@ plotnorm()
 fprintf('DL_Error_AFM_S = %s \n',Tsave)
 if exportfigs == 1
     eval(sprintf('export_fig DL_Error_AFM_S -png -r300 -painters'))
+end
+
+%% Raw detects Light Dark AFM Air Test 1
+% could add loop here to create plots for detections to compare the number
+% of detections for all tests vice just 1 and 2 for AFM in ambient and dark and end
+
+
+EXPname = {'Ex2'; 'Ex3'};
+figure
+hold on
+for k = 1:numel(EXPname)
+    
+    switch EXPname{k}
+        case 'Ex2'
+            EXPtype = ' Open Air, Ambient';
+        case 'Ex3'
+            EXPtype = ' Open Air, Dark';
+        case 'Ex5'
+            EXPtype = ' In Water, Ambient';
+        case 'Ex6'
+            EXPtype = ' In Water, Dark';
+    end
+    
+    AFMname = {'V1';'V2'};
+    TESTtype = EXPtype;
+    TESTtitle = 'Known Distance';
+    xLBL = 'Known Distance (m)';
+    yLBL = 'Detections';
+
+    for m = 1:numel(AFMname)
+        switch AFMname{m}
+            case 'P'
+                TagType = 'Paper Tag';
+                ID = 'Tag_5';
+            case 'V1'
+                if EXPname{k} == 'Ex2' | EXPname{k} == 'Ex5' 
+                    TagType = 'AFM';
+                else
+                    TagType = 'AFM-1';
+                end
+                ID = 'Tag_7';
+            case 'V2'
+                TagType = 'AFM-2';
+                ID = 'Tag_7';
+            case 'T'
+                TagType = 'Tablet';
+                ID = 'Tag_5';
+        end
+
+
+        try
+            plot(Data.(EXPname{k}).Results.(AFMname{m}).Test1.(ID)(:,1),Data.(EXPname{k}).Results.(AFMname{m}).Test1.(ID)(:,6),'-*','DisplayName',[TagType EXPtype])
+        catch
+            warning(['Error - DID NOT COMPUTE', EXPname{k}, AFMname{m}, 'Test1', ID]);
+            continue
+        end
+    end
+end
+
+gcf();
+legend('Location','NW')
+Tsave = ['Detections vs ', TESTtitle, ' with False Positives, Air LD'];
+%title({['Detections vs ', TESTtitle, ' with False Positives']; 'Air LD'})
+xlabel(xLBL)
+ylabel(yLBL)
+grid on
+hold off
+% Set the background color to white
+plotnorm()
+fprintf('DL_Detect_AFM = %s \n',Tsave)
+if exportfigs == 1
+    eval(sprintf('export_fig DL_Detect_AFM -png -r300 -painters'))
+end
+
+%% Smooth detects Light Dark AFM Air Test 1
+
+EXPname = {'Ex2'; 'Ex3'};
+figure
+hold on
+for k = 1:numel(EXPname)
+    
+    switch EXPname{k}
+        case 'Ex2'
+            EXPtype = ' Open Air, Ambient';
+        case 'Ex3'
+            EXPtype = ' Open Air, Dark';
+        case 'Ex5'
+            EXPtype = ' In Water, Ambient';
+        case 'Ex6'
+            EXPtype = ' In Water, Dark';
+    end
+    
+    AFMname = {'V1';'V2'};
+    TESTtype = EXPtype;
+    TESTtitle = 'Known Distance';
+    xLBL = 'Known Distance (m)';
+    yLBL = 'Detections';
+
+    for m = 1:numel(AFMname)
+        switch AFMname{m}
+            case 'P'
+                TagType = 'Paper Tag';
+                ID = 'Tag_5';
+            case 'V1'
+                if EXPname{k} == 'Ex2' | EXPname{k} == 'Ex5' 
+                    TagType = 'AFM';
+                else
+                    TagType = 'AFM-1';
+                end
+                ID = 'Tag_7';
+            case 'V2'
+                TagType = 'AFM-2';
+                ID = 'Tag_7';
+            case 'T'
+                TagType = 'Tablet';
+                ID = 'Tag_5';
+        end
+
+
+        try
+            plot(Data.(EXPname{k}).Results.(AFMname{m}).Test1.(ID)(:,1),Data.(EXPname{k}).Results.(AFMname{m}).Test1.(ID)(:,7),'-*','DisplayName',[TagType EXPtype])
+        catch
+            warning(['Error - DID NOT COMPUTE', EXPname{k}, AFMname{m}, 'Test1', ID]);
+            continue
+        end
+    end
+end
+
+gcf();
+legend('Location','NW')
+Tsave = ['Detections vs ', TESTtitle, ' without False Positives, Air LD'];
+%title({['Detections vs ', TESTtitle, ' without False Positives']; 'Air LD'})
+xlabel(xLBL)
+ylabel(yLBL)
+grid on
+hold off
+% Set the background color to white
+plotnorm()
+fprintf('DL_Detect_AFM_S = %s \n',Tsave)
+if exportfigs == 1
+    eval(sprintf('export_fig DL_Detect_AFM_S -png -r300 -painters'))
 end
 
 %% Raw detects Light Dark AFM Air Test 2
@@ -1314,146 +1313,9 @@ if exportfigs == 1
     eval(sprintf('export_fig DL_Detect2_AFM_S -png -r300 -painters'))
 end
 
-%% Ambient Dar Comparison detections Tablet
+%% Ambient Dark Comparison error bars(test 1) and detections Tablet
 
-%% Raw detects Light Dark Tab Air Test 1
-
-EXPname = {'Ex2'; 'Ex3'};
-figure
-hold on
-for k = 1:numel(EXPname)
-    
-    switch EXPname{k}
-        case 'Ex2'
-            EXPtype = ' Open Air, Ambient';
-        case 'Ex3'
-            EXPtype = ' Open Air, Dark';
-        case 'Ex5'
-            EXPtype = ' In Water, Ambient';
-        case 'Ex6'
-            EXPtype = ' In Water, Dark';
-    end
-    
-    AFMname = {'T'};
-    TESTtype = EXPtype;
-    TESTtitle = 'Known Distance';
-    xLBL = 'Known Distance (m)';
-    yLBL = 'Detections';
-
-    for m = 1:numel(AFMname)
-        switch AFMname{m}
-            case 'P'
-                TagType = 'Paper Tag';
-                ID = 'Tag_5';
-            case 'V1'
-                if EXPname{k} == 'Ex2' | EXPname{k} == 'Ex5' 
-                    TagType = 'AFM';
-                else
-                    TagType = 'AFM-1';
-                end
-                ID = 'Tag_7';
-            case 'V2'
-                TagType = 'AFM-2';
-                ID = 'Tag_7';
-            case 'T'
-                TagType = 'Tablet';
-                ID = 'Tag_5';
-        end
-
-
-        try
-            plot(Data.(EXPname{k}).Results.(AFMname{m}).Test1.(ID)(:,1),Data.(EXPname{k}).Results.(AFMname{m}).Test1.(ID)(:,6),'-*','DisplayName',[TagType EXPtype])
-        catch
-            warning(['Error - DID NOT COMPUTE', EXPname{k}, AFMname{m}, 'Test1', ID]);
-            continue
-        end
-    end
-end
-
-gcf();
-legend('Location','NW')
-Tsave = ['Detections vs ', TESTtitle, ' with False Positives, Air LD'];
-%title({['Detections vs ', TESTtitle, ' with False Positives']; 'Air LD'})
-xlabel(xLBL)
-ylabel(yLBL)
-grid on
-hold off
-% Set the background color to white
-plotnorm()
-fprintf('DL_Detect_AFM = %s \n',Tsave)
-if exportfigs == 1
-    eval(sprintf('export_fig DL_Detect_AFM -png -r300 -painters'))
-end
-
-%% Smooth detects Light Dark Tab Air Test 1
-
-EXPname = {'Ex2'; 'Ex3'};
-figure
-hold on
-for k = 1:numel(EXPname)
-    
-    switch EXPname{k}
-        case 'Ex2'
-            EXPtype = ' Open Air, Ambient';
-        case 'Ex3'
-            EXPtype = ' Open Air, Dark';
-        case 'Ex5'
-            EXPtype = ' In Water, Ambient';
-        case 'Ex6'
-            EXPtype = ' In Water, Dark';
-    end
-    
-    AFMname = {'T'};
-    TESTtype = EXPtype;
-    TESTtitle = 'Known Distance';
-    xLBL = 'Known Distance (m)';
-    yLBL = 'Detections';
-
-    for m = 1:numel(AFMname)
-        switch AFMname{m}
-            case 'P'
-                TagType = 'Paper Tag';
-                ID = 'Tag_5';
-            case 'V1'
-                if EXPname{k} == 'Ex2' | EXPname{k} == 'Ex5' 
-                    TagType = 'AFM';
-                else
-                    TagType = 'AFM-1';
-                end
-                ID = 'Tag_7';
-            case 'V2'
-                TagType = 'AFM-2';
-                ID = 'Tag_7';
-            case 'T'
-                TagType = 'Tablet';
-                ID = 'Tag_5';
-        end
-
-
-        try
-            plot(Data.(EXPname{k}).Results.(AFMname{m}).Test1.(ID)(:,1),Data.(EXPname{k}).Results.(AFMname{m}).Test1.(ID)(:,7),'-*','DisplayName',[TagType EXPtype])
-        catch
-            warning(['Error - DID NOT COMPUTE', EXPname{k}, AFMname{m}, 'Test1', ID]);
-            continue
-        end
-    end
-end
-
-gcf();
-legend('Location','NW')
-Tsave = ['Detections vs ', TESTtitle, ' without False Positives, Air LD'];
-%title({['Detections vs ', TESTtitle, ' without False Positives']; 'Air LD'})
-xlabel(xLBL)
-ylabel(yLBL)
-grid on
-hold off
-% Set the background color to white
-plotnorm()
-fprintf('DL_Detect_T_S = %s \n',Tsave)
-if exportfigs == 1
-    eval(sprintf('export_fig DL_Detect_T_S -png -r300 -painters'))
-end
-%% Raw Error bars Light Dark AFM Air Test 1
+%% Raw Error bars Light Dark Tab Air Test 1
 
 EXPname = {'Ex2'; 'Ex3'};
 figure
@@ -1517,9 +1379,9 @@ grid on
 hold off
 % Set the background color to white
 plotnorm()
-fprintf('DL_Error_T_ = %s \n',Tsave)
+fprintf('DL_Error_T = %s \n',Tsave)
 if exportfigs == 1
-    eval(sprintf('export_fig DL_Error_T_ -png -r300 -painters'))
+    eval(sprintf('export_fig DL_Error_T -png -r300 -painters'))
 end
 
 %% Smooth Error bars Light Dark Tab Air Test 1
@@ -1589,6 +1451,146 @@ plotnorm()
 fprintf('DL_Error_T_S = %s \n',Tsave)
 if exportfigs == 1
     eval(sprintf('export_fig DL_Error_T_S -png -r300 -painters'))
+end
+
+%% Raw detects Light Dark Tab Air Test 1
+% could add loop here to create plots for detections to compare the number
+% of detections for all tests vice just 1 and 2 for Tablet in ambient and dark and end
+
+EXPname = {'Ex2'; 'Ex3'};
+figure
+hold on
+for k = 1:numel(EXPname)
+    
+    switch EXPname{k}
+        case 'Ex2'
+            EXPtype = ' Open Air, Ambient';
+        case 'Ex3'
+            EXPtype = ' Open Air, Dark';
+        case 'Ex5'
+            EXPtype = ' In Water, Ambient';
+        case 'Ex6'
+            EXPtype = ' In Water, Dark';
+    end
+    
+    AFMname = {'T'};
+    TESTtype = EXPtype;
+    TESTtitle = 'Known Distance';
+    xLBL = 'Known Distance (m)';
+    yLBL = 'Detections';
+
+    for m = 1:numel(AFMname)
+        switch AFMname{m}
+            case 'P'
+                TagType = 'Paper Tag';
+                ID = 'Tag_5';
+            case 'V1'
+                if EXPname{k} == 'Ex2' | EXPname{k} == 'Ex5' 
+                    TagType = 'AFM';
+                else
+                    TagType = 'AFM-1';
+                end
+                ID = 'Tag_7';
+            case 'V2'
+                TagType = 'AFM-2';
+                ID = 'Tag_7';
+            case 'T'
+                TagType = 'Tablet';
+                ID = 'Tag_5';
+        end
+
+
+        try
+            plot(Data.(EXPname{k}).Results.(AFMname{m}).Test1.(ID)(:,1),Data.(EXPname{k}).Results.(AFMname{m}).Test1.(ID)(:,6),'-*','DisplayName',[TagType EXPtype])
+        catch
+            warning(['Error - DID NOT COMPUTE', EXPname{k}, AFMname{m}, 'Test1', ID]);
+            continue
+        end
+    end
+end
+
+gcf();
+legend('Location','NW')
+Tsave = ['Detections vs ', TESTtitle, ' with False Positives, Air LD'];
+%title({['Detections vs ', TESTtitle, ' with False Positives']; 'Air LD'})
+xlabel(xLBL)
+ylabel(yLBL)
+grid on
+hold off
+% Set the background color to white
+plotnorm()
+fprintf('DL_Detect_T = %s \n',Tsave)
+if exportfigs == 1
+    eval(sprintf('export_fig DL_Detect_T -png -r300 -painters'))
+end
+
+%% Smooth detects Light Dark Tab Air Test 1
+
+EXPname = {'Ex2'; 'Ex3'};
+figure
+hold on
+for k = 1:numel(EXPname)
+    
+    switch EXPname{k}
+        case 'Ex2'
+            EXPtype = ' Open Air, Ambient';
+        case 'Ex3'
+            EXPtype = ' Open Air, Dark';
+        case 'Ex5'
+            EXPtype = ' In Water, Ambient';
+        case 'Ex6'
+            EXPtype = ' In Water, Dark';
+    end
+    
+    AFMname = {'T'};
+    TESTtype = EXPtype;
+    TESTtitle = 'Known Distance';
+    xLBL = 'Known Distance (m)';
+    yLBL = 'Detections';
+
+    for m = 1:numel(AFMname)
+        switch AFMname{m}
+            case 'P'
+                TagType = 'Paper Tag';
+                ID = 'Tag_5';
+            case 'V1'
+                if EXPname{k} == 'Ex2' | EXPname{k} == 'Ex5' 
+                    TagType = 'AFM';
+                else
+                    TagType = 'AFM-1';
+                end
+                ID = 'Tag_7';
+            case 'V2'
+                TagType = 'AFM-2';
+                ID = 'Tag_7';
+            case 'T'
+                TagType = 'Tablet';
+                ID = 'Tag_5';
+        end
+
+
+        try
+            plot(Data.(EXPname{k}).Results.(AFMname{m}).Test1.(ID)(:,1),Data.(EXPname{k}).Results.(AFMname{m}).Test1.(ID)(:,7),'-*','DisplayName',[TagType EXPtype])
+        catch
+            warning(['Error - DID NOT COMPUTE', EXPname{k}, AFMname{m}, 'Test1', ID]);
+            continue
+        end
+    end
+end
+
+gcf();
+legend('Location','NW')
+Tsave = ['Detections vs ', TESTtitle, ' without False Positives, Air LD'];
+%title({['Detections vs ', TESTtitle, ' without False Positives']; 'Air LD'})
+xlabel(xLBL)
+ylabel(yLBL)
+grid on
+hold off
+% Set the background color to white
+plotnorm()
+fprintf('DL_Detect_T_S = %s \n',Tsave)
+if exportfigs == 1
+    eval(sprintf('export_fig DL_Detect_T_S -png -r300 -painters'))
 end
 
 %% Raw detects Light Dark Tab Air Test 2

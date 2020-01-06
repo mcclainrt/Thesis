@@ -1,5 +1,7 @@
 function [Filtered] = tagfilter(Structure) % removed tagID
 
+% Separates raw data by tag id numbers.
+
 TestsAvail = fieldnames(Structure);
 
 %https://www.mathworks.com/matlabcentral/answers/224877-how-to-extract-rows-based-on-column-values-in-a-matrix
